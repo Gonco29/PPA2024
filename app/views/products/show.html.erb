@@ -1,0 +1,12 @@
+
+<h1><%= @product.name %></h1>
+
+<p><strong>Precio:</strong> <%= number_to_currency(@product.price) %></p>
+<p><strong>Categoría:</strong> <%= @product.category %></p>
+<p><strong>Detalles:</strong> <%= @product.details %></p>
+<p><strong>Stock:</strong> <%= @product.stock %></p>
+
+<%= link_to "Editar", edit_product_path(@product), class: "btn btn-secondary", if: policy(@product).update? %>
+<%= link_to 'Eliminar', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger", if: policy(@product).destroy? %>
+
+<%= link_to 'Volver al Índice', products_path, class: 'btn btn-secondary' %>

@@ -1,0 +1,18 @@
+
+<h1>Lista de Productos</h1>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <%= link_to product.name, product %>
+        $<%= product.price %>
+
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="fst-italic">"No se encontraron productos".</p>
+<% end %>
+
+<%= link_to "Nuevo Producto", new_product_path if policy(Product.new).create? %>

@@ -78,3 +78,8 @@ end
 
 
 gem "cloudinary"
+
+gem 'pundit'
+
+gem 'pg_search'
+
