@@ -1,18 +1,25 @@
+<h2 class="mt-5">Lista de Productos</h2>
 
-<h1>Lista de Productos</h1>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <% @products.each do |product| %>
+    <div class="col">
+      <div class="card productcard h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to product.name, product %></h5>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text">$<%= product.price %></p>
+            <%= link_to new_product_path, class: "btn btn-custom btn-primary btn-sm ms-3" do %>
+              <i class="fas fa-plus"></i> Agregar
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<% if @products.any? %>
-  <ul>
-    <% @products.each do |product| %>
-      <li>
-        <%= link_to product.name, product %>
-        $<%= product.price %>
-
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p class="fst-italic">"No se encontraron productos".</p>
+<% if @products.empty? %>
+  <p class="fst-italic">No se encontraron productos.</p>
 <% end %>
 
 <%= link_to "Nuevo Producto", new_product_path if policy(Product.new).create? %>
