@@ -1,0 +1,38 @@
+.custom-carousel-control .carousel-control-prev-icon,
+.custom-carousel-control .carousel-control-next-icon {
+  background-image: none;
+  color: #ff9800; 
+  font-size: 2rem;
+}
+
+.custom-carousel-control .carousel-control-prev-icon::before,
+.custom-carousel-control .carousel-control-next-icon::before {
+  content: '';
+  display: inline-block;
+  border: solid #ff9800;
+  border-width: 0 3px 3px 0;
+  padding: 5px;
+}
+
+.custom-carousel-control .carousel-control-prev-icon::before {
+  transform: rotate(135deg);
+}
+
+.custom-carousel-control .carousel-control-next-icon::before {
+  transform: rotate(-45deg);
+}
+
+
+/* Estilos para la imagen principal */
+.main-image-container img {
+  border-radius: 6px;
+}
+
+/* Estilos para las miniaturas */
+#thumbnailCarousel .carousel-inner .carousel-item img {
+  border-radius: 6px;
+}
+
+.thumbnail-img.selected {
+  border: 2px solid #ff9800;
+}

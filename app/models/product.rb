@@ -6,4 +6,6 @@ class Product < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+    has_many_attached :photos
 end
