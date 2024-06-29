@@ -5,9 +5,9 @@
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -35,6 +35,11 @@
   <div class="field">
     <%= form.label :stock %>
     <%= form.number_field :stock %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photos, "Upload Photos" %>
+    <%= form.file_field :photos, multiple: true %>
   </div>
 
   <div class="actions">
