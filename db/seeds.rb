@@ -1,9 +1,12 @@
-# seeds.rb
+require 'open-uri'
 
-# Categorías disponibles
+Product.destroy_all
+
 categories = ['Motores', 'Controles', 'Accesorios', 'Placas']
 
-# Array de productos de ejemplo
+# Array de nombres de imágenes disponibles en assets/images
+image_names = ['product1.jpg', 'product2.jpg', 'product3.jpg', 'product4.jpg']
+
 products = [
   {
     name: 'Motor eléctrico A',
@@ -149,8 +152,14 @@ products = [
 
 # Creación de los productos en la base de datos
 products.each do |product_attrs|
-  Product.create(product_attrs)
+  product = Product.create(product_attrs)
+
+  # Seleccionar aleatoriamente de 1 a 6 imágenes disponibles
+  rand(1..6).times do
+    image_name = image_names.sample
+    file_path = Rails.root.join('app', 'assets', 'images', image_name)
+    product.photos.attach(io: File.open(file_path), filename: image_name)
+  end
 end
 
 puts 'Se han creado los productos de ejemplo.'
-
