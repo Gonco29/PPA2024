@@ -83,3 +83,5 @@ gem 'pundit'
 
 gem 'pg_search'
 
+gem 'faker'
+gem 'open-uri'
