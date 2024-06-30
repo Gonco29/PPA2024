@@ -37,3 +37,12 @@
   background-color: var(--fc-btn-disabled-bg, #ff9800);
   border-color: var(--fc-btn-disabled-border-color, #ff9800);
 }
+
+
+.card-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff; /* Opcional: fondo blanco para separación */
+  padding: 10px; /* Espacio interno para separación */
+}
