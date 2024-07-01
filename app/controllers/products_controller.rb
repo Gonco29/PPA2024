@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     authorize @product
+    @related_products = Product.where(category: @product.category).where.not(id: @product.id).limit(5)
   end
 
   def new
