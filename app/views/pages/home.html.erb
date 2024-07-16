@@ -1,4 +1,5 @@
-<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+
+<div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -6,13 +7,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" style="height: 600px;">
-      <img src="<%= asset_path('banner1.jpg') %>" class="d-block w-100" alt="Slide 1" style="object-fit: cover; height: 100vh;">
+      <img src="<%= asset_path('banner1.jpg') %>" class="d-block w-100" alt="Slide 1" style="object-fit: fill; height: 100vh;">
     </div>
     <div class="carousel-item" style="height: 600px;">
-      <img src="<%= asset_path('banner2.jpg') %>" class="d-block w-100" alt="Slide 2" style="object-fit: cover; height: 100vh;">
+      <img src="<%= asset_path('banner2.png') %>" class="d-block w-100" alt="Slide 2" style="object-fit: cover; height: 100vh;">
     </div>
     <div class="carousel-item" style="height: 600px;">
-      <img src="<%= asset_path('banner3.jpg') %>" class="d-block w-100" alt="Slide 3" style="object-fit: cover; height: 100vh;">
+      <img src="<%= asset_path('banner3.png') %>" class="d-block w-100" alt="Slide 3" style="object-fit: cover; height: 100vh;">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -25,7 +26,7 @@
   </button>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5 ">
   <h2 class="mt-5">Productos Recomendados</h2>
 
   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
@@ -53,4 +54,9 @@
       </div>
     <% end %>
   </div>
+</div>
+
+
+<div class="">
+  <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Slide 1" style="object-fit: scale-down; ">
 </div>
