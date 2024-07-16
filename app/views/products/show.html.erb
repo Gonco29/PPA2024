@@ -11,10 +11,6 @@
           <div class="main-image-container">
             <%= cl_image_tag(@product.photos.first.key, id: "main-image", height: 600, width: 800, crop: :fill, class: "img-fluid border") %>
           </div>
-        <% else %>
-          <div class="main-image-container">
-            <%= image_tag('placeholder-image.jpg', id: "main-image", height: 600, width: 800, style: "object-fit: cover;", class: "img-fluid border") %>
-          </div>
         <% end %>
       </div>
 
