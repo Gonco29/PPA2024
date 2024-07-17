@@ -27,8 +27,13 @@ class CartItemsController < ApplicationController
   def destroy
     @cart_item = current_user.cart.cart_items.find(params[:id])
     @cart_item.destroy
-    redirect_to cart_path, notice: 'Producto eliminado del carrito'
+    respond_to do |format|
+      format.html { redirect_to cart_path, notice: 'Producto eliminado del carrito' }
+      format.turbo_stream # Para manejar actualización con Turbo Streams
+    end
   end
+
+
 
   private
 

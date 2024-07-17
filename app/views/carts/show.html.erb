@@ -1,6 +1,6 @@
 <h2>Carrito de Compras</h2>
 
-<% if @cart.cart_items.any? %>
+<% if @cart_items.any? %>
   <table class="table">
     <thead>
       <tr>
@@ -12,17 +12,23 @@
       </tr>
     </thead>
     <tbody>
-      <% @cart.cart_items.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= item.quantity %></td>
-          <td><%= number_to_currency(item.product.current_price) %></td>
-          <td><%= number_to_currency(item.quantity * item.product.current_price) %></td>
-          <td>
-            <%= link_to 'Eliminar', cart_item_path(item), method: :delete, class: 'btn btn-danger' %>
-          </td>
-        </tr>
-      <% end %>
+<% @cart.cart_items.each do |item| %>
+  <tr>
+    <td><%= item.product.name %></td>
+    <td><%= item.quantity %></td>
+    <td><%= number_to_currency(item.product.current_price) %></td>
+    <td><%= number_to_currency(item.quantity * item.product.current_price) %></td>
+    <td>
+      <%= link_to "Eliminar",
+                  cart_item_path(item),
+                  method: :delete,
+                  class: 'btn btn-danger',
+                  remote: true,
+                  data: { turbo_confirm: "¿Estás seguro?" } %>
+    </td>
+  </tr>
+<% end %>
+
     </tbody>
     <tfoot>
       <tr>
