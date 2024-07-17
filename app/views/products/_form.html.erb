@@ -1,11 +1,9 @@
-<!-- app/views/products/_form.html.erb -->
-<%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
+<%= form_with(model: @product, local: true) do |form| %>
+  <% if @product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
       <ul>
-        <% product.errors.full_messages.each do |message| %>
+        <% @product.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -71,7 +69,35 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :photos, "Upload Photos" %>
+    <%= form.label :on_sale, "En promoción" %>
+    <%= form.check_box :on_sale, id: "product_on_sale" %>
+  </div>
+
+  <div id="promotion_fields" style="<%= @product.on_sale? ? 'display: block;' : 'display: none;' %>">
+    <div class="field">
+      <%= form.label :discount_percentage, "Porcentaje de descuento" %>
+      <%= form.number_field :discount_percentage, min: 0, max: 100, id: "product_discount_percentage" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :promotional_price, "Precio promocional" %>
+      <%= form.text_field :promotional_price, readonly: true, disabled: true, id: "product_promotional_price" %>
+    </div>
+  </div>
+
+  <% if @product.persisted? && @product.photos.attached? %>
+    <div class="field">
+      <%= form.label :photos, "Fotos Existentes" %>
+      <div class="existing-photos">
+        <% @product.photos.each do |photo| %>
+          <%= image_tag photo.variant(resize: "100x100"), class: "existing-photo" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :photos, "Subir Nuevas Fotos" %>
     <%= form.file_field :photos, multiple: true %>
   </div>
 
