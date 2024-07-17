@@ -1,9 +1,11 @@
-<%= form_with(model: @product, local: true) do |form| %>
-  <% if @product.errors.any? %>
+<!-- app/views/products/_form.html.erb -->
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
       <ul>
-        <% @product.errors.full_messages.each do |message| %>
+        <% product.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -35,36 +37,41 @@
     <%= form.number_field :stock %>
   </div>
 
-  <div class="field">
-    <%= form.label :on_sale, "En promoción" %>
-    <%= form.check_box :on_sale, id: "product_on_sale" %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="field">
+        <%= form.label :on_sale, "En promoción" %>
+        <%= form.check_box :on_sale, data: { toggle_target: '#promotion_fields' }, id: 'on_sale_checkbox' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="field" id="promotion_fields" style="display: <%= product.on_sale? ? 'block' : 'none' %>;">
+        <%= form.label :discount_percentage, "Porcentaje de descuento" %>
+        <%= form.number_field :discount_percentage, data: { target: 'discountPercentage' } %>
+        <br>
+        <%= form.label :promotional_price, "Precio promocional" %>
+        <%= form.text_field :promotional_price, data: { target: 'promotionalPrice' } %>
+      </div>
+    </div>
   </div>
 
-  <div id="promotion_fields" style="<%= @product.on_sale? ? 'display: block;' : 'display: none;' %>">
+  <% if product.photos.attached? %>
     <div class="field">
-      <%= form.label :discount_percentage, "Porcentaje de descuento" %>
-      <%= form.number_field :discount_percentage, min: 0, max: 100, id: "product_discount_percentage" %>
-    </div>
-
-    <div class="field">
-      <%= form.label :promotional_price, "Precio promocional" %>
-      <%= form.text_field :promotional_price, readonly: true, disabled: true, id: "product_promotional_price" %>
-    </div>
-  </div>
-
-  <% if @product.persisted? && @product.photos.attached? %>
-    <div class="field">
-      <%= form.label :photos, "Fotos Existentes" %>
-      <div class="existing-photos">
-        <% @product.photos.each do |photo| %>
-          <%= image_tag photo.variant(resize: "100x100"), class: "existing-photo" %>
+      <label>Current Photos:</label>
+      <div class="row">
+        <% product.photos.each do |photo| %>
+          <div class="col-1 mb-3">
+            <%= cl_image_tag(photo.key, class: "img-thumbnail img-fluid", height: 100, width: 100, crop: :thumb) %>
+            <br>
+            <%= check_box_tag "remove_photos[]", photo.id %> Remove
+          </div>
         <% end %>
       </div>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :photos, "Subir Nuevas Fotos" %>
+    <%= form.label :photos, "Upload Photos" %>
     <%= form.file_field :photos, multiple: true %>
   </div>
 
@@ -72,3 +79,43 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const onSaleCheckbox = document.getElementById('on_sale_checkbox');
+    const promotionFields = document.getElementById('promotion_fields');
+    const discountPercentageInput = document.querySelector('[data-target="discountPercentage"]');
+    const promotionalPriceInput = document.querySelector('[data-target="promotionalPrice"]');
+    const originalPriceInput = document.getElementById('product_price');
+
+    // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
+    onSaleCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        promotionFields.style.display = 'block';
+      } else {
+        promotionFields.style.display = 'none';
+      }
+    });
+
+    // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
+    discountPercentageInput.addEventListener('input', function() {
+      const discountPercentage = parseFloat(this.value);
+      const originalPrice = parseFloat(originalPriceInput.value);
+
+      if (!isNaN(discountPercentage) && !isNaN(originalPrice)) {
+        const discountAmount = (originalPrice * discountPercentage) / 100;
+        const promotionalPrice = originalPrice - discountAmount;
+        promotionalPriceInput.value = promotionalPrice.toFixed(2);
+      } else {
+        promotionalPriceInput.value = '';
+      }
+    });
+
+    // Mostrar campos de promoción inicialmente si la casilla está marcada al cargar la página
+    if (onSaleCheckbox.checked) {
+      promotionFields.style.display = 'block';
+    } else {
+      promotionFields.style.display = 'none';
+    }
+  });
+</script>
