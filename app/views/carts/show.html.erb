@@ -1,0 +1,38 @@
+<h2>Carrito de Compras</h2>
+
+<% if @cart.cart_items.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.cart_items.each do |item| %>
+        <tr>
+          <td><%= item.product.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.product.current_price) %></td>
+          <td><%= number_to_currency(item.quantity * item.product.current_price) %></td>
+          <td>
+            <%= link_to 'Eliminar', cart_item_path(item), method: :delete, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="3">Total del Carrito:</th>
+        <td><%= number_to_currency(@cart.total_price) %></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+  <%= link_to 'Realizar Pedido', new_order_path, class: 'btn btn-primary' %>
+<% else %>
+  <p>No hay productos en tu carrito.</p>
+<% end %>
