@@ -40,7 +40,19 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     authorize @product
 
-    if @product.update(product_params)
+    # Eliminar fotos marcadas para eliminación
+    if params[:remove_photos].present?
+      params[:remove_photos].each do |photo_id|
+        @product.photos.find(photo_id).purge
+      end
+    end
+
+    # Adjuntar nuevas fotos
+    if product_params[:photos].present?
+      @product.photos.attach(product_params[:photos])
+    end
+
+    if @product.update(product_params.except(:photos))
       redirect_to @product, notice: 'Product was successfully updated.'
     else
       render :edit
