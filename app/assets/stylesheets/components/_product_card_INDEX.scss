@@ -46,3 +46,37 @@
   background-color: #fff; /* Opcional: fondo blanco para separación */
   padding: 10px; /* Espacio interno para separación */
 }
+
+.discount-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.productcard {
+  position: relative;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 1;
+}
+
+.fire-icon {
+  position: absolute;
+  bottom: 30px;
+  left: 25px;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+}
+
+.rounded-50 {
+  border-radius: 50%;
+}

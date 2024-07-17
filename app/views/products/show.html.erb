@@ -48,8 +48,8 @@
       <h1 class="d-none d-md-block"><%= @product.name %></h1>
       <hr class="col-12 d-md-none">
       <% if @product.on_sale? %>
-        <p class="text-decoration-line-through text-muted"><strong>Precio:</strong> <%= number_to_currency(@product.price) %></p>
-        <p><strong>Precio en oferta:</strong> <%= number_to_currency(@product.promotional_price) %></p>
+        <p class="text-decoration-line-through text-muted mb-0">Precio: <%= number_to_currency(@product.price) %></p>
+        <p class="mt-0"><strong>Precio en oferta:</strong> <%= number_to_currency(@product.promotional_price) %></p>
       <% else %>
         <p><strong>Precio:</strong> <%= number_to_currency(@product.price) %></p>
       <% end %>
