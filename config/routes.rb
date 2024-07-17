@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resource :cart, only: :show
   resources :cart_items, only: [:create, :update, :destroy]
   resources :orders, only: [:new, :create, :show]
+
+  get 'promotions', to: 'products#promotions'
 end

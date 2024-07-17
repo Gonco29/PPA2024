@@ -67,6 +67,10 @@ class ProductsController < ApplicationController
     redirect_to products_url, notice: 'Product was successfully destroyed.'
   end
 
+  def promotions
+    @promoted_products = Product.where(on_sale: true)
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :price, :category, :details, :stock, :on_sale, :discount_percentage, :promotional_price, photos: [])
