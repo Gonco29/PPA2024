@@ -1,4 +1,4 @@
-
+<!-- app/views/home.html.erb -->
 <div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,37 +26,20 @@
   </button>
 </div>
 
-<div class="container mt-5 ">
-  <h2 class="mt-5">Productos Recomendados</h2>
+<div class="container mt-5 text-center">
+  <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
 
   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
-    <% @random_products.each do |product| %>
-      <div class="col">
-        <div class="card productcard h-100">
-          <% if product.photos.present? %>
-            <%= link_to product_path(product) do %>
-              <%= cl_image_tag(product.photos.first.key, class: "card-img-top p-3", height: 200, width: 180, crop: :fill, alt: product.name) %>
-            <% end %>
-          <% end %>
-          <div class="card-body d-flex flex-column">
-            <p class="card-text text-secondary"><%= product.category %></p>
-            <h5 class="card-title"><%= link_to product.name, product %></h5>
-            <div class="mt-auto">
-              <div class="d-flex justify-content-between align-items-center">
-                <p class="card-text">$<%= product.price %></p>
-                <%= link_to '#' , class: "btn btn-custom btn-primary btn-sm ms-3" do %>
-                  <i class="fas fa-plus"></i> Agregar
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <% @promoted_products.each do |product| %>
+      <%= render partial: 'products/product_card', locals: { product: product } %>
     <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to "Ver más promociones", promotions_path, class: "btn btn-primary text-white btn-custom " %>
   </div>
 </div>
 
-
 <div class="">
-  <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Slide 1" style="object-fit: scale-down; ">
+  <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Slide 1" style="object-fit: scale-down;">
 </div>
