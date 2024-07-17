@@ -1,2 +1,30 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h2>Detalles del Pedido</h2>
+
+<p><strong>ID del Pedido:</strong> <%= @order.id %></p>
+<p><strong>Total del Pedido:</strong> <%= number_to_currency(@order.total) %></p>
+<p><strong>Fecha de Creación:</strong> <%= @order.created_at.strftime('%d de %B de %Y') %></p>
+
+<h3>Productos en el Pedido:</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= number_to_currency(item.quantity * item.price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Volver al catálogo', products_path, class: 'btn btn-primary' %>
