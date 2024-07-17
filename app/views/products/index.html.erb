@@ -11,7 +11,7 @@
         <% if product.photos.present? %>
           <div class="position-relative">
             <%= link_to product_path(product) do %>
-              <%= cl_image_tag(product.photos.first.key, class: "card-img-top p-3 rounded-50", height: 200, width: 180, crop: :fill, alt: product.name) %>
+              <%= cl_image_tag(product.photos.first.key, class: "card-img-top p-3 rounded-50", height: 200, width: 200, crop: :fill, alt: product.name) %>
             <% end %>
             <% if product.on_sale? %>
               <div class="discount-badge bg-danger text-white rounded-circle p-2">
