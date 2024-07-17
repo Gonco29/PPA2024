@@ -47,7 +47,12 @@
     <div class="col-12 col-md-5 ms-5">
       <h1 class="d-none d-md-block"><%= @product.name %></h1>
       <hr class="col-12 d-md-none">
-      <p><strong>Precio:</strong> <%= number_to_currency(@product.price) %></p>
+      <% if @product.on_sale? %>
+        <p class="text-decoration-line-through text-muted mb-0">Precio: <%= number_to_currency(@product.price) %></p>
+        <p class="mt-0"><strong>Precio en oferta:</strong> <%= number_to_currency(@product.promotional_price) %></p>
+      <% else %>
+        <p><strong>Precio:</strong> <%= number_to_currency(@product.price) %></p>
+      <% end %>
       <p><strong>Categoría:</strong> <%= @product.category %></p>
       <p><strong>Detalles:</strong> <%= @product.details %></p>
       <p><strong>Stock:</strong> <%= @product.stock %></p>
@@ -79,7 +84,6 @@
 
   <hr class="mt-5 mb-3">
 
-
   <h2 class="mt-5">Productos Relacionados</h2>
 
   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
@@ -96,7 +100,12 @@
             <h5 class="card-title"><%= link_to product.name, product %></h5>
             <div class="mt-auto">
               <div class="d-flex justify-content-between align-items-center">
-                <p class="card-text">$<%= product.price %></p>
+                <% if product.on_sale? %>
+                  <p class="card-text text-decoration-line-through text-muted">$<%= product.price %></p>
+                  <p class="card-text">$<%= product.promotional_price %></p>
+                <% else %>
+                  <p class="card-text">$<%= product.price %></p>
+                <% end %>
                 <%= link_to '#' , class: "btn btn-custom btn-primary btn-sm ms-3" do %>
                   <i class="fas fa-plus"></i> Agregar
                 <% end %>
@@ -107,31 +116,4 @@
       </div>
     <% end %>
   </div>
-
-
 </div>
-
-<script>
-  // JS para el selector de unidades de Add:
-
-  document.addEventListener("DOMContentLoaded", function() {
-    const decrementButton = document.getElementById("button-decrement");
-    const incrementButton = document.getElementById("button-increment");
-    const quantityInput = document.getElementById("quantity-input");
-    const maxQuantity = parseInt(quantityInput.getAttribute("max"));
-
-    decrementButton.addEventListener("click", function() {
-      let currentValue = parseInt(quantityInput.value);
-      if (currentValue > 1) {
-        quantityInput.value = currentValue - 1;
-      }
-    });
-
-    incrementButton.addEventListener("click", function() {
-      let currentValue = parseInt(quantityInput.value);
-      if (currentValue < maxQuantity) {
-        quantityInput.value = currentValue + 1;
-      }
-    });
-  });
-</script>
