@@ -35,9 +35,12 @@
                 <p><strong>Precio:</strong> <%= number_to_currency(product.price) %></p>
               <% end %>
               <div class="d-flex justify-content-center mt-2">
-                <%= link_to '#' , class: "btn btn-custom btn-primary btn-sm ms-3" do %>
-                  <i class="fas fa-plus"></i> Agregar
-                <% end %>
+              <%= button_to cart_items_path(product_id: product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary ms-3" do %>
+                <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+              <% end %>
+
+
+
               </div>
             </div>
           </div>

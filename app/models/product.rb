@@ -14,6 +14,14 @@ class Product < ApplicationRecord
     self.promotional_price = price * (1 - discount_percentage / 100.0)
   end
 
+  def current_price
+    if on_sale?
+      promotional_price
+    else
+      price
+    end
+  end
+
   include PgSearch::Model
 
   pg_search_scope :search_by,
