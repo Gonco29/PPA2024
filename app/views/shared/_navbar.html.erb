@@ -5,29 +5,31 @@
         <%= image_tag("Logo-PPA.png", alt: "Logo PPA", id: "navbar-logo") %>
       <% end %>
 
+      <div class="cat2 d-none d-lg-flex mx-3">
+        <%= form_with url: products_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |form| %>
+          <div class="input-group">
+            <%= form.text_field :query, value: params[:query], class: "form-control custom-width", placeholder: "Buscar productos", style: "border-radius: 10px 0 0 10px; flex: 1 1 auto; width: 337px;" %>
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-outline-primary" style="border-radius: 0 10px 10px 0;">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
       <%= link_to root_path, class: "navbar-brand ms-1" do %>
         <%= image_tag("sicher-logo.png", alt: "Logo PPA", id: "navbar-logo") %>
       <% end %>
     </div>
 
-    <div class="cat2 d-none d-lg-flex">
-      <%= form_with url: products_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |form| %>
-        <div class="input-group">
-          <%= form.text_field :query, value: params[:query], class: "form-control custom-width", placeholder: "Buscar productos", style: "border-radius: 10px 0 0 10px; flex: 1 1 auto; width: 337px;" %>
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-outline-primary" style="border-radius: 0 10px 10px 0;">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      <% end %>
-    </div>
+
 
     <div class="cat3">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <%= link_to root_path, class: "nav-link" do %>
-            <i class="fas fa-home fa-lg"></i>
+           <i class="fa-solid fa-list-ul fa-lg"></i>
           <% end %>
         </li>
         <li class="nav-item">
