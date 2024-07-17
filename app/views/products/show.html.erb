@@ -63,9 +63,14 @@
           <input type="text" class="form-control text-center" id="quantity-input" value="1" min="1" max="<%= @product.stock %>" readonly style="width: 60px;">
           <button class="btn btn-outline-secondary" type="button" id="button-increment">+</button>
         </div>
-        <%= link_to '#' , class: "btn btn-custom btn-primary ms-3" do %>
-          <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
-        <% end %>
+              <%= button_to cart_items_path(product_id: @product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary ms-3" do %>
+                <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+              <% end %>
+
+
+
+
+
       </div>
 
       <br>
