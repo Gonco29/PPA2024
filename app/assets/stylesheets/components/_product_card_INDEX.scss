@@ -1,6 +1,6 @@
 
 .card:hover {
-  border-color: #ff9800;
+  border-color: $principal;
 }
 
 .card {
@@ -10,15 +10,15 @@
 
 .btn-custom {
   color: var(--fc-btn-color, #fff);
-  background-color: var(--fc-btn-bg, #ff9800);
-  border-color: var(--fc-btn-border-color, #ff9800);
+  background-color: var(--fc-btn-bg, $principal);
+  border-color: var(--fc-btn-border-color, $principal);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
 .btn-custom:hover {
   color: var(--fc-btn-hover-color, #fff);
-  background-color: var(--fc-btn-hover-bg, #d98405);
-  border-color: var(--fc-btn-hover-border-color, #d98405);
+  background-color: var(--fc-btn-hover-bg, $principalhover);
+  border-color: var(--fc-btn-hover-border-color, $principalhover);
 }
 
 .btn-custom:focus {
@@ -27,15 +27,15 @@
 
 .btn-custom:active {
   color: var(--fc-btn-active-color, #fff);
-  background-color: var(--fc-btn-active-bg, #d98405);
-  border-color: var(--fc-btn-active-border-color, #d98405);
+  background-color: var(--fc-btn-active-bg, $principalhover);
+  border-color: var(--fc-btn-active-border-color, $principalhover);
   box-shadow: var(--fc-btn-active-shadow, inset 0 3px 5px rgba(0, 0, 0, 0.125));
 }
 
 .btn-custom:disabled {
   color: var(--fc-btn-disabled-color, #fff);
-  background-color: var(--fc-btn-disabled-bg, #ff9800);
-  border-color: var(--fc-btn-disabled-border-color, #ff9800);
+  background-color: var(--fc-btn-disabled-bg, $principal);
+  border-color: var(--fc-btn-disabled-border-color, $principal);
 }
 
 
