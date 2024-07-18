@@ -26,6 +26,8 @@
   </button>
 </div>
 
+<!-- PROMOCIONES -->
+
 <div class="container mt-5 text-center">
   <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
 
@@ -40,15 +42,17 @@
   </div>
 </div>
 
+<!-- LOGOS DE MARCA -->
+
 <div class="my-5">
   <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Slide 1" style="object-fit: scale-down;">
 </div>
 
 
 <!-- FORMULARIO DE CONTACTO -->
-<div class="container">
+<div id="contacto" class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mx-auto">
       <h2>Contacto</h2>
       <h4 class="mb-4">¿Tenés una consulta? Escribinos.</h4>
       <%= form_with url: contact_path, local: true, html: { multipart: true } do |form| %>
@@ -100,16 +104,16 @@
         </div>
       </div>
     </div>
-    <div class="col-12 mx-2 my-5">
-      <div id="map"></div>
-    </div>
   </div>
 </div>
 
+<div class="col-12 mx-2 mb-1">
+  <div id="map"></div>
+</div>
+
 <script async
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbID_hpbQUTPllQmne23fA7ON7V7j492Q
-&callback=initMap">
-  // AIzaSyAbID_hpbQUTPllQmne23fA7ON7V7j492Q - !!!!!!!!!!REEMPLAZAR POR API KEY DEL DUEÑO!!!!!!!!!!!!!
+  src="https://maps.googleapis.com/maps/api/js?key=<%= @google_api_key %>&callback=initMap">
+  // !!!!!!!!!!REEMPLAZAR POR API KEY DEL DUEÑO!!!!!!!!!!!!!
 </script>
 
 <script>
@@ -129,6 +133,8 @@
 <style>
   #map {
     height: 400px;
-    width: 100%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
