@@ -46,12 +46,11 @@
 
 
 <!-- FORMULARIO DE CONTACTO -->
-<div id="contacto" class="container my-5">
+<div class="container">
   <div class="row">
     <div class="col-md-6">
       <h2>Contacto</h2>
-      <h4>¿Tenés una consulta? Escribinos.</h4>
-
+      <h4 class="mb-4">¿Tenés una consulta? Escribinos.</h4>
       <%= form_with url: contact_path, local: true, html: { multipart: true } do |form| %>
         <div class="form-group">
           <%= form.label :name, 'Nombre y Apellido' %>
@@ -74,11 +73,12 @@
           <%= form.file_field :attachment, class: 'form-control' %>
         </div>
         <div class="form-group mt-3">
-          <%= form.submit 'Enviar', class: 'btn btn-custom w-100 btn-primary btn-lg' %>
+          <%= form.submit 'Enviar', class: 'btn btn-primary btn-lg btn-custom w-100 mb-5' %>
         </div>
       <% end %>
     </div>
-    <div class="col-md-4 mx-auto pt-5">
+
+       <div class="col-md-4 mx-auto my-auto">
       <div class="card bg-light">
         <div class="card-body text-center">
           <h5 class="card-title">Casa central:</h5>
@@ -100,7 +100,35 @@
         </div>
       </div>
     </div>
-  </div>
-
+    <div class="col-12 mx-2 my-5">
+      <div id="map"></div>
+    </div>
   </div>
 </div>
+
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbID_hpbQUTPllQmne23fA7ON7V7j492Q
+&callback=initMap">
+  // AIzaSyAbID_hpbQUTPllQmne23fA7ON7V7j492Q - !!!!!!!!!!REEMPLAZAR POR API KEY DEL DUEÑO!!!!!!!!!!!!!
+</script>
+
+<script>
+  function initMap() {
+    var location = {lat: -34.8978457839486, lng: -56.069537488069656};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: location
+    });
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+</script>
+
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+</style>
