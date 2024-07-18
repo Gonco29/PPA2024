@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @random_products = Product.order("RANDOM()").limit(5)
     @promoted_products = Product.where(on_sale: true).limit(5)
+    @google_api_key = ENV['GOOGLE_API_KEY']
   end
 
   def contact
