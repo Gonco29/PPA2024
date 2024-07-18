@@ -38,11 +38,18 @@
             <i class="fab fa-whatsapp fa-lg"></i>
           <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to "#", class: "nav-link" do %>
+        <li class="nav-item position-relative">
+          <%= link_to cart_path, class: "nav-link position-relative" do %>
             <i class="fas fa-shopping-cart fa-lg"></i>
+            <% if @cart_items_count > 0 %>
+              <span class="position-absolute top-8 start-95 translate-middle badge rounded-pill bg-danger">
+                <%= @cart_items_count %>
+                <span class="visually-hidden">cart items</span>
+              </span>
+            <% end %>
           <% end %>
         </li>
+
 
         <li class="nav-item d-lg-none">
           <button class="btn btn-primary nav-link nav-link-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
