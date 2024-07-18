@@ -1,0 +1,68 @@
+<!-- app/views/contact_mailer/contact_email.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #dddddd;
+    }
+    .header img {
+      max-height: 50px;
+    }
+    .content {
+      padding: 20px 0;
+      text-align: center;
+    }
+    .content h1 {
+      color: #333333;
+      font-size: 24px;
+    }
+    .content p {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .footer {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <%= image_tag 'https://ppa.com.ar/web/image/website/3/logo/PPA%20Argentina?unique=a6ad006', alt: 'Logo PPA', id: 'navbar-logo' %>
+      <%# !!!!!! FALTA LOGO SICHER %>
+      <%= image_tag('sicher-logo.png', alt: 'Logo Sicher', id: 'navbar-logo') %>
+    </div>
+    <div class="content">
+      <h1>HEMOS RECIBIDO UNA CONSULTA DE UN NUEVO CLIENTE.</h1>
+      <p><strong>Nombre:</strong> <%= @name %></p>
+      <p><strong>Teléfono:</strong> <%= @phone %></p>
+      <p><strong>Mensaje:</strong></p>
+      <p><%= @message %></p>
+    </div>
+    <div class="footer">
+      <p>Este correo ha sido enviado automáticamente desde el formulario de contacto de su sitio web.</p>
+    </div>
+  </div>
+</body>
+</html>
