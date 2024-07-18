@@ -46,9 +46,9 @@
 
 
 <!-- FORMULARIO DE CONTACTO -->
-<div class="container">
+<div id="contacto" class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mx-auto">
       <h2>Contacto</h2>
       <h4 class="mb-4">¿Tenés una consulta? Escribinos.</h4>
       <%= form_with url: contact_path, local: true, html: { multipart: true } do |form| %>
@@ -100,10 +100,11 @@
         </div>
       </div>
     </div>
-    <div class="col-12 mx-2 my-5">
-      <div id="map"></div>
-    </div>
   </div>
+</div>
+
+<div class="col-12 mx-2 mb-1">
+  <div id="map"></div>
 </div>
 
 <script async
@@ -129,6 +130,8 @@
 <style>
   #map {
     height: 400px;
-    width: 100%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
