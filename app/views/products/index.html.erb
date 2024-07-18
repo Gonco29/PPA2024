@@ -1,16 +1,18 @@
 <!-- app/views/products/index.html.erb -->
-<h2 class="mt-5">Lista de Productos</h2>
+<div class="container">
+  <h2 class="mt-5">Lista de Productos</h2>
 
-<div class="d-flex justify-content-end mb-3">
-  <%= link_to "Nuevo Producto", new_product_path, class: "btn btn-primary text-white", if: policy(Product.new).create? %>
-</div>
+  <div class="d-flex justify-content-end mb-3">
+    <%= link_to "Nuevo Producto", new_product_path, class: "btn btn-primary text-white", if: policy(Product.new).create? %>
+  </div>
 
-<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
-  <% @products.each do |product| %>
-    <%= render partial: 'products/product_card', locals: { product: product } %>
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+    <% @products.each do |product| %>
+      <%= render partial: 'products/product_card', locals: { product: product } %>
+    <% end %>
+  </div>
+
+  <% if @products.empty? %>
+    <p class="fst-italic">No se encontraron productos.</p>
   <% end %>
 </div>
-
-<% if @products.empty? %>
-  <p class="fst-italic">No se encontraron productos.</p>
-<% end %>
