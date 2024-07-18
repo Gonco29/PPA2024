@@ -1,7 +1,7 @@
 .custom-carousel-control .carousel-control-prev-icon,
 .custom-carousel-control .carousel-control-next-icon {
   background-image: none;
-  color: #ff9800;
+  color: $principal;
   font-size: 2rem;
 }
 
@@ -9,7 +9,7 @@
 .custom-carousel-control .carousel-control-next-icon::before {
   content: '';
   display: inline-block;
-  border: solid #ff9800;
+  border: solid $principal;
   border-width: 0 3px 3px 0;
   padding: 5px;
 }
@@ -34,5 +34,5 @@
 }
 
 .thumbnail-img.selected {
-  border: 2px solid #ff9800;
+  border: 2px solid $principal;
 }

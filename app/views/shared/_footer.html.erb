@@ -1,0 +1,63 @@
+<div class="bg-primary mt-4">
+  <div class="container py-5 ps-4">
+    <div class="row">
+      <!-- Primer Columna -->
+      <div class="col-md-3">
+        <h5>Enlaces</h5>
+        <ul class="list-unstyled">
+          <li><%= link_to 'Tienda', products_path, class: 'linkfooter' %></li>
+          <li><%= link_to 'Promociones', promotions_path, class: 'linkfooter' %></li>
+          <li><%= link_to 'Nosotros', '#', class: 'linkfooter' %></li>
+        </ul>
+      </div>
+
+      <!-- Segunda Columna -->
+      <div class="col-md-3">
+        <h5>Información</h5>
+        <ul class="list-unstyled">
+          <li><%= link_to 'Términos y condiciones', '#', class: 'linkfooter' %></li>
+          <li><%= link_to 'Política de cambios', '#', class: 'linkfooter' %></li>
+          <li><%= link_to 'Garantía', '#', class: 'linkfooter' %></li>
+        </ul>
+      </div>
+
+      <!-- Tercera Columna -->
+      <div class="col-md-3">
+        <h5>Políticas</h5>
+        <ul class="list-unstyled">
+          <li><%= link_to 'Política de Cookies', '#', class: 'linkfooter' %></li>
+          <li><%= link_to 'Protección de Datos Personales', '#', class: 'linkfooter' %></li>
+          <li><%= link_to 'Política de Privacidad', '#', class: 'linkfooter' %></li>
+        </ul>
+      </div>
+
+      <!-- Cuarta Columna -->
+      <div class="col-md-3 ps-5">
+        <%= image_tag('Logo-PPA.png', alt: 'Logo PPA', class: 'img-fluid mb-3 mt-3 navbar-logo') %>
+        <br>
+        <%= image_tag('sicher-logo.png', alt: 'Logo Sicher', class: 'img-fluid navbar-logo') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="subfooter w-100">
+<!-- Redes Sociales -->
+<div class="d-flex justify-content-end align-items-center mt-2 p-2">
+  <p class="mb-0 me-5" style="font-size: 1.2rem;">Síguenos en:</p>
+  <%= link_to '#', class: 'text-black me-2' do %>
+    <i class="fa-brands fa-square-instagram fa-2x"></i>
+  <% end %>
+  <%= link_to '#', class: 'text-black me-2' do %>
+    <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+  <% end %>
+  <%= link_to '#', class: 'text-black me-2' do %>
+    <i class="fa-brands fa-square-facebook fa-2x"></i>
+  <% end %>
+  <%= link_to '#', class: 'text-black' do %>
+    <i class="fa-brands fa-linkedin fa-2x"></i>
+  <% end %>
+</div>
+
+
+  </div>
+</div>
