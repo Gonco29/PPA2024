@@ -1,13 +1,18 @@
 # app/controllers/products_controller.rb
 class ProductsController < ApplicationController
   def index
+    @products = Product.all
+    @products = @products.where(category: params[:category]) if params[:category].present?
+    @products = @products.where(subcategory: params[:subcategory]) if params[:subcategory].present?
+
+    # Filtro por búsqueda de texto
     if params[:query].present?
-      @products = Product.search_by(params[:query])
-    else
-      @products = Product.all
+      @products = @products.search_by(params[:query])
     end
+
     authorize @products
   end
+
 
   def show
     @product = Product.find(params[:id])
@@ -73,6 +78,13 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :category, :details, :stock, :on_sale, :discount_percentage, :promotional_price, photos: [])
+    params.require(:product).permit(
+      :name, :price, :category, :subcategory, :details, :stock,
+      :on_sale, :discount_percentage, :promotional_price,
+      :sku, :warranty, :power, :controls_included, :rack_meters,
+      :arms, :usage_type, :gate_max_length, :indication, :installation_included,
+      photos: []
+    )
   end
+
 end

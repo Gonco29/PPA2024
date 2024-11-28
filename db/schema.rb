@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_17_145421) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_27_231832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_145421) do
     t.boolean "on_sale", default: false
     t.integer "discount_percentage"
     t.decimal "promotional_price", precision: 10, scale: 2
+    t.string "sku"
+    t.text "warranty"
+    t.string "power"
+    t.integer "controls_included"
+    t.integer "rack_meters"
+    t.integer "arms"
+    t.string "usage_type"
+    t.decimal "gate_max_length", precision: 5, scale: 2
+    t.boolean "installation_included", default: false
+    t.text "indication"
+    t.string "product_type"
+    t.string "subcategory"
+    t.integer "accionamiento"
   end
 
   create_table "users", force: :cascade do |t|
