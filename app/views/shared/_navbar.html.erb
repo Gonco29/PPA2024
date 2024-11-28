@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="cat1 d-flex align-items-center">
       <%= link_to root_path, class: "navbar-brand me-1" do %>
-        <%= image_tag("Logo-PPA.png", alt: "Logo PPA",  class: "navbar-logo") %>
+        <%= image_tag("Logo-PPA.png", alt: "Logo PPA", class: "navbar-logo") %>
       <% end %>
 
       <div class="cat2 d-none d-lg-flex mx-3">
@@ -19,22 +19,19 @@
       </div>
 
       <%= link_to root_path, class: "navbar-brand ms-1" do %>
-        <%= image_tag("sicher-logo.png", alt: "Logo PPA",  class: "navbar-logo") %>
+        <%= image_tag("sicher-logo.png", alt: "Logo PPA", class: "navbar-logo") %>
       <% end %>
     </div>
-
-
 
     <div class="cat3">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <%= link_to root_path, class: "nav-link" do %>
-           <i class="fa-solid fa-list-ul fa-lg"></i>
+            <i class="fa-solid fa-list-ul fa-lg"></i>
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "https://wa.me/+542615041558", class: "nav-link" do %>
-  <%# !!!!!!!!!ACORDARSE DE CAMBIAAR NUMERO POR EL CORRECTO DE PPA REEMPLAZAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! %>
             <i class="fab fa-whatsapp fa-lg"></i>
           <% end %>
         </li>
@@ -49,14 +46,11 @@
             <% end %>
           <% end %>
         </li>
-
-
         <li class="nav-item d-lg-none">
           <button class="btn btn-primary nav-link nav-link-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                <i class="fa-solid fa-bars fa-lg"></i>
+            <i class="fa-solid fa-bars fa-lg"></i>
           </button>
         </li>
-
       </ul>
     </div>
   </div>
@@ -83,10 +77,8 @@
   </div>
 </div>
 
-
 <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
   <div class="offcanvas-header">
-    <%# <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5> %>
     <div class="cat1">
       <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag("Logo-PPA.png", alt: "Logo PPA", id: "navbar-logo") %>
@@ -100,8 +92,8 @@
   </div>
   <div class="offcanvas-body">
     <div>
-      <div class="">
-        <%= form_with url: products_path, method: :get, local: true, class: "form-inline mt-3 mb-5" do |form| %>
+      <div class="mt-3 mb-5">
+        <%= form_with url: products_path, method: :get, local: true, class: "form-inline" do |form| %>
           <div class="input-group">
             <%= form.text_field :query, value: params[:query], class: "form-control", placeholder: "Buscar productos", style: "border-radius: 10px 0 0 10px;" %>
             <div class="input-group-append">
@@ -113,25 +105,20 @@
         <% end %>
       </div>
 
-     <div>
-  <ul class="navbar-nav justify-content-between">
-    <li class="nav-item">
-      <%= link_to "Nosotros", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Tienda", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Promociones", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Contacto", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
-    </li>
-  </ul>
-</div>
-
-
-
+      <ul class="navbar-nav justify-content-between">
+        <li class="nav-item">
+          <%= link_to "Nosotros", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Tienda", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Promociones", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contacto", "#", class: "nav-link", style: "border-bottom: 1px solid #ccc;" %>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
