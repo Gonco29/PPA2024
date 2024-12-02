@@ -1,6 +1,6 @@
 <!-- app/views/products/index.html.erb -->
 <div class="container">
-  <h2 class="mt-5">Lista de Productos</h2>
+  <h2 class="mt-5 fw-bold">Lista de Productos</h2>
 
   <div class="d-flex justify-content-end mb-3">
     <%= link_to "Nuevo Producto", new_product_path, class: "btn btn-primary text-white", if: policy(Product.new).create? %>

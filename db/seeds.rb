@@ -66,7 +66,7 @@ products_data = [
     name: "Motor Custom",
     category: "Automatismos",
     subcategory: "Corredizos",
-    price: 6000,
+    price: 6600,
     installation_included: false,
     details: "",
     power: "1/4 HP",
@@ -150,7 +150,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 5,
     warranty: "1 Año*",
-    photos: ["MOTOR STEEL – STEEL JET 4.jpeg"]
+    photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
     name: "Motor Steel Jet",
@@ -165,7 +165,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 5,
     warranty: "1 Año*",
-    photos: ["MOTOR STEEL – STEEL JET 4.jpeg"]
+    photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
     name: "Motor Powerful",
@@ -240,7 +240,7 @@ products_data = [
     usage_type: "Residencial",
     indication: "Revestimiento pesado",
     warranty: "1 Año*",
-    photos: ["MOTOR PENTA – PENTA JET 2.jpeg"]
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
     name: "Motor Penta",
@@ -255,7 +255,7 @@ products_data = [
     usage_type: "Residencial",
     indication: "Revestimiento pesado",
     warranty: "1 Año*",
-    photos: ["MOTOR PENTA – PENTA JET 2.jpeg"]
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
     name: "Motor Penta Jet",
@@ -270,7 +270,7 @@ products_data = [
     usage_type: "Residencial",
     indication: "Revestimiento pesado",
     warranty: "1 Año*",
-    photos: ["MOTOR PENTA – PENTA JET  2.jpeg"]
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
     name: "Motor Penta Jet",
@@ -285,7 +285,7 @@ products_data = [
     usage_type: "Residencial",
     indication: "Revestimiento pesado",
     warranty: "1 Año*",
-    photos: ["MOTOR PENTA – PENTA JET  2.jpeg"]
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
     name: "Motor Torsión 2",
@@ -330,7 +330,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 3,
     warranty: "1 Año*",
-    photos: ["UNIQUE SIMPLE – DOBLE.jpeg"]
+    photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
   },
   {
     name: "Motor Unique Doble",
@@ -345,7 +345,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 3,
     warranty: "1 Año*",
-    photos: ["UNIQUE SIMPLE – DOBLE.jpeg"]
+    photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
   },
   {
     name: "Motor Premium Doble",
@@ -360,7 +360,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 6,
     warranty: "1 Año*",
-    photos: ["PREMIUM SIMPLE – DOBLE – INDUSTRIAL 2.jpeg"]
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
     name: "Motor Premium Doble",
@@ -375,7 +375,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 6,
     warranty: "1 Año*",
-    photos: ["PREMIUM SIMPLE – DOBLE – INDUSTRIAL 2.jpeg"]
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
     name: "Motor Unique Simple",
@@ -420,7 +420,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 6,
     warranty: "1 Año*",
-    photos: ["PREMIUM SIMPLE – DOBLE – INDUSTRIAL 2.jpeg"]
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
     name: "Motor Premium Simple",
@@ -435,7 +435,7 @@ products_data = [
     usage_type: "Residencial",
     gate_max_length: 6,
     warranty: "1 Año*",
-    photos: ["PREMIUM SIMPLE – DOBLE – INDUSTRIAL 2.jpeg"]
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
     name: "Motor Industrial Doble",
@@ -450,7 +450,7 @@ products_data = [
     usage_type: "Industrial",
     gate_max_length: 7,
     warranty: "1 Año*",
-    photos: ["PREMIUM SIMPLE – DOBLE – INDUSTRIAL 2.jpeg"]
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
     name: "Motor Hub",
@@ -508,3 +508,4 @@ products_data.each do |product_data|
 end
 
 puts "Productos cargados correctamente."
+puts "Se han creado #{Product.count} productos."

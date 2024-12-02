@@ -14,10 +14,21 @@
             <%= image_tag('fire.jpg', class: 'img-fluid') %>
           </div>
         <% end %>
+        <% if product.installation_included %>
+          <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
+            Instalación incluida
+          </div>
+        <% else %>
+          <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
+            Instalación no incluida
+          </div>
+        <% end %>
       </div>
     <% end %>
     <div class="card-body d-flex flex-column text-center">
-      <p class="card-text text-secondary"><%= product.category %></p>
+      <p class="card-text text-secondary mb-0"><%= product.category %></p>
+      <p class="card-text text-secondary mt-0"><%= product.subcategory %></p>
+
       <h5 class="card-title"><%= link_to product.name, product %></h5>
       <div class="mt-auto">
         <div class="">

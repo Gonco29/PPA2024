@@ -1,19 +1,25 @@
 <!-- app/views/home.html.erb -->
-<div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel">
+<%# <div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel"> %>
+<div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel" data-bs-interval="3000">
+
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" style="height: 600px;">
-      <img src="<%= asset_path('banner1.jpg') %>" class="d-block w-100" alt="Slide 1" style="object-fit: fill; height: 100vh;">
+      <img src="<%= asset_path('Banner1.png') %>" class="d-block w-100" alt="Slide 1" style="object-fit: contain; height: 600px;">
     </div>
     <div class="carousel-item" style="height: 600px;">
-      <img src="<%= asset_path('banner2.png') %>" class="d-block w-100" alt="Slide 2" style="object-fit: cover; height: 100vh;">
+      <img src="<%= asset_path('Banner2.png') %>" class="d-block w-100" alt="Slide 2" style="object-fit: contain; height: 600px;">
     </div>
     <div class="carousel-item" style="height: 600px;">
-      <img src="<%= asset_path('banner3.png') %>" class="d-block w-100" alt="Slide 3" style="object-fit: cover; height: 100vh;">
+      <img src="<%= asset_path('Banner3.png') %>" class="d-block w-100" alt="Slide 3" style="object-fit: contain; height: 600px;">
+    </div>
+    <div class="carousel-item" style="height: 600px;">
+      <img src="<%= asset_path('Banner4.png') %>" class="d-block w-100" alt="Slide 4" style="object-fit: contain; height: 600px;">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -26,14 +32,16 @@
   </button>
 </div>
 
+
+
 <!-- PROMOCIONES -->
 
 <div class="container mt-5 text-center">
   <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
 
-  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5">
     <% @promoted_products.each do |product| %>
-      <%= render partial: 'products/product_card', locals: { product: product } %>
+      <%= render partial: 'products/product_card_promo', locals: { product: product } %>
     <% end %>
   </div>
 
@@ -45,7 +53,7 @@
 <!-- LOGOS DE MARCA -->
 
 <div class="my-5">
-  <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Slide 1" style="object-fit: scale-down;">
+  <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Marcas representadas" style="object-fit: scale-down;">
 </div>
 
 <!-- VIDEO DE PRESENTACIÓN -->
@@ -64,7 +72,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- FORMULARIO DE CONTACTO -->
 <div id="contacto" class="container mt-5">
@@ -99,7 +106,7 @@
       <% end %>
     </div>
 
-       <div class="col-md-4 mx-auto my-auto">
+    <div class="col-md-4 mx-auto my-auto">
       <div class="card bg-light">
         <div class="card-body text-center">
           <h5 class="card-title">Casa central:</h5>
@@ -116,7 +123,7 @@
             Sábados 9:00 - 13:00
           </p>
           <p class="card-text">
-            0800 8000
+            <i class="fa-solid fa-phone-volume"></i> <strong>0800 8000</strong>
           </p>
         </div>
       </div>
