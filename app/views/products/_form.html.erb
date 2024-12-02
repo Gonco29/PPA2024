@@ -143,22 +143,23 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const onSaleCheckbox = document.getElementById('on_sale_checkbox');
-    const promotionFields = document.getElementById('promotion_fields');
-    const discountPercentageInput = document.querySelector('[data-target="discountPercentage"]');
-    const promotionalPriceInput = document.querySelector('[data-target="promotionalPrice"]');
-    const originalPriceInput = document.getElementById('product_price');
+  const onSaleCheckbox = document.getElementById('on_sale_checkbox');
+  const promotionFields = document.getElementById('promotion_fields');
+  const discountPercentageInput = document.getElementById('product_discount_percentage');
+  const promotionalPriceInput = document.getElementById('product_promotional_price');
+  const originalPriceInput = document.getElementById('product_price');
 
-    // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
-    onSaleCheckbox.addEventListener('change', function() {
-      if (this.checked) {
-        promotionFields.style.display = 'block';
-      } else {
-        promotionFields.style.display = 'none';
-      }
-    });
+  // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
+  onSaleCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      promotionFields.style.display = 'block';
+    } else {
+      promotionFields.style.display = 'none';
+    }
+  });
 
-    // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
+  // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
+  if (discountPercentageInput && promotionalPriceInput && originalPriceInput) {
     discountPercentageInput.addEventListener('input', function() {
       const discountPercentage = parseFloat(this.value);
       const originalPrice = parseFloat(originalPriceInput.value);
@@ -171,12 +172,14 @@
         promotionalPriceInput.value = '';
       }
     });
+  }
 
-    // Mostrar campos de promoción inicialmente si la casilla está marcada al cargar la página
-    if (onSaleCheckbox.checked) {
-      promotionFields.style.display = 'block';
-    } else {
-      promotionFields.style.display = 'none';
-    }
-  });
+  // Mostrar campos de promoción inicialmente si la casilla está marcada al cargar la página
+  if (onSaleCheckbox.checked) {
+    promotionFields.style.display = 'block';
+  } else {
+    promotionFields.style.display = 'none';
+  }
+});
+
 </script>

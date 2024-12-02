@@ -21,6 +21,16 @@
           </div>
         <% end %>
       </div>
+      <% # Con o Sin Instalación %>
+      <% if @product.installation_included %>
+        <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
+          Instalación incluida
+        </div>
+      <% else %>
+        <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
+          Instalación no incluida
+        </div>
+      <% end %>
 
       <% # Mostrar miniaturas de las otras imágenes si hay más de una %>
       <% if @product.photos.length > 1 %>
@@ -84,7 +94,6 @@
                 <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
               <% end %>
       </div>
-      
       <p><strong>Stock:</strong> <%= @product.stock %></p>
 
       <br>
