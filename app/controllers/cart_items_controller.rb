@@ -1,43 +1,61 @@
+
+# CartItemsController
 class CartItemsController < ApplicationController
-  before_action :authenticate_user!
-
+  # Método para agregar un producto al carrito
   def create
-    @cart = current_user.cart || Cart.create(user: current_user)
-    @product = Product.find(params[:product_id])
-    @cart_item = @cart.cart_items.find_or_initialize_by(product_id: @product.id)
-    @cart_item.quantity ||= 0
-    @cart_item.quantity += params[:quantity].to_i
+    @cart = session_cart
+    product_id = params[:product_id].to_s
 
-    if @cart_item.save
-      redirect_to cart_path, notice: 'Producto agregado al carrito'
+    if @cart.key?(product_id)
+      @cart[product_id]["quantity"] += params[:quantity].to_i
     else
-      redirect_to product_path(@product), alert: 'No se pudo agregar el producto al carrito'
+      product = Product.find(product_id)
+      @cart[product_id] = {
+        "product_id" => product.id,
+        "quantity" => params[:quantity].to_i,
+        "name" => product.name,
+        "price" => product.price
+      }
+    end
+
+    session[:cart] = @cart
+    redirect_to cart_path, notice: 'Producto agregado al carrito'
+  end
+
+  # Método para eliminar un producto del carrito
+  def destroy
+    @cart = session_cart
+    product_id = params[:id].to_s
+
+    if @cart.key?(product_id)
+      @cart.delete(product_id)
+      session[:cart] = @cart
+      respond_to do |format|
+        format.html { redirect_to cart_path, notice: 'Producto eliminado del carrito' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to cart_path, alert: 'No se pudo eliminar el producto del carrito'
     end
   end
 
+  # Método para actualizar la cantidad de un producto en el carrito
   def update
-    @cart_item = current_user.cart.cart_items.find(params[:id])
-    if @cart_item.update(cart_item_params)
+    @cart = session_cart
+    product_id = params[:id].to_s
+
+    if @cart.key?(product_id)
+      @cart[product_id]["quantity"] = params[:quantity].to_i
+      session[:cart] = @cart
       redirect_to cart_path, notice: 'Carrito actualizado'
     else
       redirect_to cart_path, alert: 'No se pudo actualizar el carrito'
     end
   end
 
-  def destroy
-    @cart_item = current_user.cart.cart_items.find(params[:id])
-    @cart_item.destroy
-    respond_to do |format|
-      format.html { redirect_to cart_path, notice: 'Producto eliminado del carrito' }
-      format.turbo_stream # Para manejar actualización con Turbo Streams
-    end
-  end
-
-
-
   private
 
-  def cart_item_params
-    params.require(:cart_item).permit(:quantity)
+  def session_cart
+    session[:cart] ||= {}
   end
 end
