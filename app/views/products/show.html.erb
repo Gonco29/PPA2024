@@ -23,11 +23,11 @@
       </div>
       <% # Con o Sin Instalación %>
       <% if @product.installation_included %>
-        <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
+        <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 22.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
           Instalación incluida
         </div>
       <% else %>
-        <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
+        <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 22.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
           Instalación no incluida
         </div>
       <% end %>
@@ -136,8 +136,11 @@
 
       <hr class="my-6">
 
-      <%= link_to "Editar", edit_product_path(@product), class: "btn btn-secondary", if: policy(@product).update? %>
-      <%= link_to 'Eliminar', product_path(@product), data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' }, class: "btn btn-danger", if: policy(@product).destroy? %>
+      <% if user_signed_in? && policy(Product).create? %>
+        <%= link_to "Editar", edit_product_path(@product), class: "btn btn-secondary", if: policy(@product).update? %>
+        <%= link_to 'Eliminar', product_path(@product), data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' }, class: "btn btn-danger", if: policy(@product).destroy? %>
+      <% end %>
+
     </div>
   </div>
 

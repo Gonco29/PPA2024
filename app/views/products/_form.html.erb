@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-6 mb-3">
         <%= form.label :price, "Precio", class: "form-label" %>
-        <%= form.number_field :price, step: 0.01, class: "form-control", placeholder: "Ingrese el precio" %>
+        <%= form.number_field :price, step: 0.01, class: "form-control", placeholder: "Ingrese el precio", id: 'product_price' %>
       </div>
     </div>
 
@@ -69,68 +69,27 @@
       </div>
     <% end %>
 
-    <!-- Campos adicionales -->
-    <h3 class="mb-3">Detalles adicionales</h3>
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <%= form.label :sku, "SKU", class: "form-label" %>
-        <%= form.text_field :sku, class: "form-control", placeholder: "Código único del producto" %>
-      </div>
-      <div class="col-md-6 mb-3">
-        <%= form.label :power, "Potencia", class: "form-label" %>
-        <%= form.text_field :power, class: "form-control", placeholder: "Ejemplo: 1/3 HP" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <%= form.label :controls_included, "Controles incluidos", class: "form-label" %>
-        <%= form.number_field :controls_included, class: "form-control", placeholder: "Ejemplo: 2" %>
-      </div>
-      <div class="col-md-4 mb-3">
-        <%= form.label :rack_meters, "Metros de cremallera", class: "form-label" %>
-        <%= form.number_field :rack_meters, class: "form-control", placeholder: "Ejemplo: 3" %>
-      </div>
-      <div class="col-md-4 mb-3">
-        <%= form.label :arms, "Brazos", class: "form-label" %>
-        <%= form.number_field :arms, class: "form-control", placeholder: "Ejemplo: 2" %>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :usage_type, "Tipo de uso", class: "form-label" %>
-      <%= form.text_field :usage_type, class: "form-control", placeholder: "Ejemplo: Residencial o Industrial" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :gate_max_length, "Largo máximo del portón (m)", class: "form-label" %>
-      <%= form.number_field :gate_max_length, step: 0.1, class: "form-control", placeholder: "Ejemplo: 4.5" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :indication, "Indicación", class: "form-label" %>
-      <%= form.text_area :indication, class: "form-control", placeholder: "Especificaciones adicionales" %>
-    </div>
-
     <!-- Promociones -->
     <h3 class="mb-3">Promociones</h3>
     <div class="row">
       <div class="col-md-6 mb-3">
         <%= form.label :on_sale, "¿En promoción?", class: "form-label" %>
         <div class="form-check">
-          <%= form.check_box :on_sale, class: "form-check-input", data: { toggle_target: '#promotion_fields' }, id: 'on_sale_checkbox' %>
+          <%= form.check_box :on_sale, class: "form-check-input", id: 'on_sale_checkbox' %>
           <%= form.label :on_sale, "Sí", class: "form-check-label" %>
         </div>
       </div>
-      <div id="promotion_fields" style="display: <%= product.on_sale? ? 'block' : 'none' %>;">
-        <div class="col-md-6 mb-3">
-          <%= form.label :discount_percentage, "Porcentaje de descuento", class: "form-label" %>
-          <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20" %>
-        </div>
-        <div class="col-md-6 mb-3">
-          <%= form.label :promotional_price, "Precio promocional", class: "form-label" %>
-          <%= form.text_field :promotional_price, class: "form-control", readonly: true %>
-        </div>
+    </div>
+
+    <!-- Campos de Promoción SIEMPRE visibles -->
+    <div class="row mx-4">
+      <div class="col-md-3 mb-3">
+        <%= form.label :discount_percentage, "Porcentaje de descuento", class: "form-label" %>
+        <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20", id: 'product_discount_percentage' %>
+      </div>
+      <div class="col-md-3 mb-3">
+        <%= form.label :promotional_price, "Precio promocional", class: "form-label" %>
+        <%= form.text_field :promotional_price, class: "form-control", readonly: true, id: 'product_promotional_price' %>
       </div>
     </div>
 
@@ -142,44 +101,36 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const onSaleCheckbox = document.getElementById('on_sale_checkbox');
-  const promotionFields = document.getElementById('promotion_fields');
-  const discountPercentageInput = document.getElementById('product_discount_percentage');
-  const promotionalPriceInput = document.getElementById('product_promotional_price');
-  const originalPriceInput = document.getElementById('product_price');
+  document.addEventListener('turbo:load', function() {
+    const onSaleCheckbox = document.getElementById('on_sale_checkbox');
+    const discountPercentageInput = document.getElementById('product_discount_percentage');
+    const promotionalPriceInput = document.getElementById('product_promotional_price');
+    const originalPriceInput = document.getElementById('product_price');
 
-  // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
-  onSaleCheckbox.addEventListener('change', function() {
-    if (this.checked) {
-      promotionFields.style.display = 'block';
-    } else {
-      promotionFields.style.display = 'none';
+    // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
+    if (onSaleCheckbox) {
+      onSaleCheckbox.addEventListener('change', function() {
+        if (!this.checked) {
+          discountPercentageInput.value = '';
+          promotionalPriceInput.value = '';
+        }
+      });
+    }
+
+    // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
+    if (discountPercentageInput && promotionalPriceInput && originalPriceInput) {
+      discountPercentageInput.addEventListener('input', function() {
+        const discountPercentage = parseFloat(this.value);
+        const originalPrice = parseFloat(originalPriceInput.value);
+
+        if (!isNaN(discountPercentage) && !isNaN(originalPrice)) {
+          const discountAmount = (originalPrice * discountPercentage) / 100;
+          const promotionalPrice = originalPrice - discountAmount;
+          promotionalPriceInput.value = promotionalPrice.toFixed(2);
+        } else {
+          promotionalPriceInput.value = '';
+        }
+      });
     }
   });
-
-  // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
-  if (discountPercentageInput && promotionalPriceInput && originalPriceInput) {
-    discountPercentageInput.addEventListener('input', function() {
-      const discountPercentage = parseFloat(this.value);
-      const originalPrice = parseFloat(originalPriceInput.value);
-
-      if (!isNaN(discountPercentage) && !isNaN(originalPrice)) {
-        const discountAmount = (originalPrice * discountPercentage) / 100;
-        const promotionalPrice = originalPrice - discountAmount;
-        promotionalPriceInput.value = promotionalPrice.toFixed(2);
-      } else {
-        promotionalPriceInput.value = '';
-      }
-    });
-  }
-
-  // Mostrar campos de promoción inicialmente si la casilla está marcada al cargar la página
-  if (onSaleCheckbox.checked) {
-    promotionFields.style.display = 'block';
-  } else {
-    promotionFields.style.display = 'none';
-  }
-});
-
 </script>
