@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create, :show]
 
   get 'promotions', to: 'products#promotions'
+  get 'about', to: 'pages#about'
+
   post 'contact', to: 'pages#contact'
 end
