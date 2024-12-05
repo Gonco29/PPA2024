@@ -48,6 +48,10 @@
 }
 
 .discount-badge {
+  position: absolute;
+  top: 25px;
+  right: 75px;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,13 +63,6 @@
 
 .productcard {
   position: relative;
-}
-
-.discount-badge {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  z-index: 1;
 }
 
 .fire-icon {

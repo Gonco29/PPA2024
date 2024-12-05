@@ -1,165 +1,511 @@
-require 'open-uri'
+# db/seeds.rb
 
+puts "Eliminando items del carrito..."
+CartItem.destroy_all
+
+puts "Eliminando carritos..."
+Cart.destroy_all
+
+puts "Eliminando pedidos..."
+OrderItem.destroy_all
+Order.destroy_all
+
+puts "Eliminando productos existentes..."
 Product.destroy_all
 
-categories = ['Motores', 'Controles', 'Accesorios', 'Placas']
+puts "Cargando productos nuevos..."
 
-# Array de nombres de imágenes disponibles en assets/images
-image_names = ['product1.jpg', 'product2.jpg', 'product3.jpg', 'product4.jpg']
-
-products = [
+# Cargar todos los productos según el archivo PDF proporcionado
+products_data = [
   {
-    name: 'Motor eléctrico A',
-    price: 199.99,
-    category: categories.sample,
-    details: 'Motor eléctrico de alta potencia para uso industrial.',
-    stock: 10
+    name: "Motor Eurus 20",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 15000,
+    installation_included: true,
+    details: "",
+    power: "1/3 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 4,
+    warranty: "1 Año*",
+    photos: ["MOTOR EURUS 20 2.jpeg"]
   },
   {
-    name: 'Control remoto universal',
-    price: 49.99,
-    category: categories.sample,
-    details: 'Control remoto compatible con la mayoría de los equipos electrónicos.',
-    stock: 20
+    name: "Motor Eurus 20",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 9900,
+    installation_included: false,
+    details: "Cubre defectos de fábrica. Repuestos y Servicio Técnico.",
+    power: "1/3 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 4,
+    warranty: "1 Año*",
+    photos: ["MOTOR EURUS 20 2.jpeg"]
   },
   {
-    name: 'Placa de circuito C',
-    price: 29.99,
-    category: categories.sample,
-    details: 'Placa de circuito impreso para proyectos electrónicos.',
-    stock: 15
+    name: "Motor Custom",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 12000,
+    installation_included: true,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["MOTOR CUSTOM 4.jpeg"]
   },
   {
-    name: 'Accesorio X',
-    price: 9.99,
-    category: categories.sample,
-    details: 'Accesorio útil para mejorar el rendimiento de equipos.',
-    stock: 30
+    name: "Motor Custom",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 6600,
+    installation_included: false,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["MOTOR CUSTOM 4.jpeg"]
   },
   {
-    name: 'Motor industrial B',
-    price: 299.99,
-    category: categories.sample,
-    details: 'Motor robusto para aplicaciones industriales pesadas.',
-    stock: 5
+    name: "Motor Speed",
+    category: "Automatismos",
+    subcategory: "Corredizos Rápidos",
+    price: 15000,
+    installation_included: true,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 3.5,
+    warranty: "1 Año*",
+    photos: ["MOTOR SPEED 3.jpeg"]
   },
   {
-    name: 'Controlador de temperatura',
-    price: 89.99,
-    category: categories.sample,
-    details: 'Dispositivo para controlar y regular la temperatura en sistemas automatizados.',
-    stock: 12
+    name: "Motor Speed",
+    category: "Automatismos",
+    subcategory: "Corredizos Rápidos",
+    price: 8800,
+    installation_included: false,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 3.5,
+    warranty: "1 Año*",
+    photos: ["MOTOR SPEED 3.jpeg"]
   },
   {
-    name: 'Placa de expansión D',
-    price: 39.99,
-    category: categories.sample,
-    details: 'Placa de expansión para agregar funcionalidades a dispositivos electrónicos.',
-    stock: 18
+    name: "Motor Steel",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 17000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 5,
+    warranty: "1 Año*",
+    photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: 'Accesorio Y',
-    price: 14.99,
-    category: categories.sample,
-    details: 'Accesorio versátil para diversas aplicaciones.',
-    stock: 25
+    name: "Motor Steel",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 13000,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 5,
+    warranty: "1 Año*",
+    photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: 'Motor de alta velocidad',
-    price: 159.99,
-    category: categories.sample,
-    details: 'Motor compacto diseñado para alcanzar altas velocidades.',
-    stock: 8
+    name: "Motor Steel Jet",
+    category: "Automatismos",
+    subcategory: "Corredizos Rápidos",
+    price: 22000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 5,
+    warranty: "1 Año*",
+    photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: 'Control de iluminación inteligente',
-    price: 129.99,
-    category: categories.sample,
-    details: 'Sistema de control de iluminación avanzado con conectividad IoT.',
-    stock: 15
+    name: "Motor Steel Jet",
+    category: "Automatismos",
+    subcategory: "Corredizos Rápidos",
+    price: 16000,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 5,
+    warranty: "1 Año*",
+    photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: 'Placa base para proyectos',
-    price: 49.99,
-    category: categories.sample,
-    details: 'Placa base diseñada para facilitar la creación de proyectos electrónicos.',
-    stock: 22
+    name: "Motor Powerful",
+    category: "Automatismos",
+    subcategory: "Corredizos Industrial",
+    price: 32000,
+    installation_included: true,
+    details: "",
+    power: "1 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Industrial",
+    gate_max_length: 12,
+    warranty: "1 Año*",
+    photos: ["MOTOR POWERFUL.jpeg"]
   },
   {
-    name: 'Accesorio Z',
-    price: 19.99,
-    category: categories.sample,
-    details: 'Accesorio especializado para optimizar funciones específicas.',
-    stock: 28
+    name: "Motor Powerful",
+    category: "Automatismos",
+    subcategory: "Corredizos Industrial",
+    price: 24000,
+    installation_included: false,
+    details: "",
+    power: "1 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Industrial",
+    gate_max_length: 12,
+    warranty: "1 Año*",
+    photos: ["MOTOR POWERFUL.jpeg"]
   },
   {
-    name: 'Motor pequeño',
-    price: 79.99,
-    category: categories.sample,
-    details: 'Motor compacto ideal para aplicaciones donde el espacio es limitado.',
-    stock: 10
+    name: "Motor Potenza",
+    category: "Automatismos",
+    subcategory: "Basculante",
+    price: 20000,
+    installation_included: true,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Revestimiento liviano",
+    warranty: "1 Año*",
+    photos: ["MOTOR POTENZA 2.jpeg"]
   },
   {
-    name: 'Control de accesos biométrico',
-    price: 199.99,
-    category: categories.sample,
-    details: 'Dispositivo avanzado para controlar accesos mediante identificación biométrica.',
-    stock: 7
+    name: "Motor Potenza",
+    category: "Automatismos",
+    subcategory: "Basculante",
+    price: 14000,
+    installation_included: false,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Revestimiento liviano",
+    warranty: "1 Año*",
+    photos: ["MOTOR POTENZA 2.jpeg"]
   },
   {
-    name: 'Placa de desarrollo E',
-    price: 59.99,
-    category: categories.sample,
-    details: 'Placa de desarrollo para explorar y prototipar nuevas ideas electrónicas.',
-    stock: 20
+    name: "Motor Penta",
+    category: "Automatismos",
+    subcategory: "Basculante",
+    price: 22000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Revestimiento pesado",
+    warranty: "1 Año*",
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: 'Accesorio de ajuste fino',
-    price: 29.99,
-    category: categories.sample,
-    details: 'Accesorio que permite ajustes precisos en dispositivos mecánicos.',
-    stock: 14
+    name: "Motor Penta",
+    category: "Automatismos",
+    subcategory: "Basculante",
+    price: 16000,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Revestimiento pesado",
+    warranty: "1 Año*",
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: 'Motor resistente al agua',
-    price: 249.99,
-    category: categories.sample,
-    details: 'Motor diseñado para operar en ambientes húmedos y condiciones adversas.',
-    stock: 6
+    name: "Motor Penta Jet",
+    category: "Automatismos",
+    subcategory: "Basculante Rápido",
+    price: 30000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Revestimiento pesado",
+    warranty: "1 Año*",
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: 'Controlador de potencia',
-    price: 109.99,
-    category: categories.sample,
-    details: 'Dispositivo para controlar y gestionar el suministro de potencia eléctrica.',
-    stock: 9
+    name: "Motor Penta Jet",
+    category: "Automatismos",
+    subcategory: "Basculante Rápido",
+    price: 22000,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Revestimiento pesado",
+    warranty: "1 Año*",
+    photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: 'Placa de interfaz F',
-    price: 79.99,
-    category: categories.sample,
-    details: 'Placa de interfaz para conectar diferentes dispositivos y sistemas electrónicos.',
-    stock: 17
+    name: "Motor Torsión 2",
+    category: "Automatismos",
+    subcategory: "Basculante",
+    price: 23000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Cuando no hay espacio en costados",
+    warranty: "1 Año*",
+    photos: ["MOTOR TORSION 2.jpeg"]
   },
   {
-    name: 'Accesorio universal',
-    price: 12.99,
-    category: categories.sample,
-    details: 'Accesorio versátil compatible con una amplia gama de equipos.',
-    stock: 24
+    name: "Motor Torsión 2",
+    category: "Automatismos",
+    subcategory: "Basculante",
+    price: 18500,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    accionamiento: 1,
+    usage_type: "Residencial",
+    indication: "Cuando no hay espacio en costados",
+    warranty: "1 Año*",
+    photos: ["MOTOR TORSION 2.jpeg"]
+  },
+  {
+    name: "Motor Unique Doble",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 27000,
+    installation_included: true,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    arms: 2,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
+  },
+  {
+    name: "Motor Unique Doble",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 19000,
+    installation_included: false,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    arms: 2,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
+  },
+  {
+    name: "Motor Premium Doble",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 32000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    arms: 2,
+    usage_type: "Residencial",
+    gate_max_length: 6,
+    warranty: "1 Año*",
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
+  },
+  {
+    name: "Motor Premium Doble",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 24000,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    arms: 2,
+    usage_type: "Residencial",
+    gate_max_length: 6,
+    warranty: "1 Año*",
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
+  },
+  {
+    name: "Motor Unique Simple",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 15000,
+    installation_included: true,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    arms: 1,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
+  },
+  {
+    name: "Motor Unique Simple",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 11000,
+    installation_included: false,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    arms: 1,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
+  },
+  {
+    name: "Motor Premium Simple",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 17000,
+    installation_included: true,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    arms: 1,
+    usage_type: "Residencial",
+    gate_max_length: 6,
+    warranty: "1 Año*",
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
+  },
+  {
+    name: "Motor Premium Simple",
+    category: "Automatismos",
+    subcategory: "Pivotante",
+    price: 14000,
+    installation_included: false,
+    details: "",
+    power: "1/2 HP",
+    controls_included: 2,
+    arms: 1,
+    usage_type: "Residencial",
+    gate_max_length: 6,
+    warranty: "1 Año*",
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
+  },
+  {
+    name: "Motor Industrial Doble",
+    category: "Automatismos",
+    subcategory: "Pivotante Industrial",
+    price: 40000,
+    installation_included: false,
+    details: "",
+    power: "1 HP",
+    controls_included: 2,
+    arms: 2,
+    usage_type: "Industrial",
+    gate_max_length: 7,
+    warranty: "1 Año*",
+    photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
+  },
+  {
+    name: "Motor Hub",
+    category: "Automatismos",
+    subcategory: "Corredizos",
+    price: 4400,
+    installation_included: false,
+    details: "",
+    power: "1/4 HP",
+    controls_included: 2,
+    rack_meters: 3,
+    usage_type: "Residencial",
+    gate_max_length: 3,
+    warranty: "1 Año*",
+    photos: ["MOTOR HUB 7.jpeg"]
   }
 ]
+products_data.each do |product_data|
+  puts "Cargando producto: #{product_data[:name]}"
 
-# Creación de los productos en la base de datos
-products.each do |product_attrs|
-  product = Product.create(product_attrs)
+  # Crear el producto sin guardarlo aún
+  product = Product.new(
+    name: product_data[:name],
+    category: product_data[:category],
+    subcategory: product_data[:subcategory],
+    price: product_data[:price],
+    installation_included: product_data[:installation_included],
+    details: product_data[:details],
+    power: product_data[:power],
+    controls_included: product_data[:controls_included],
+    rack_meters: product_data[:rack_meters],
+    usage_type: product_data[:usage_type],
+    gate_max_length: product_data[:gate_max_length],
+    warranty: product_data[:warranty]
+  )
 
-  # Seleccionar aleatoriamente de 1 a 6 imágenes disponibles
-  rand(1..6).times do
-    image_name = image_names.sample
-    file_path = Rails.root.join('app', 'assets', 'images', image_name)
-    product.photos.attach(io: File.open(file_path), filename: image_name)
+  # Adjuntar las fotos antes de guardar
+  product_data[:photos].each do |photo_name|
+    photo_path = Rails.root.join('app/assets/images/Productos', photo_name)
+    puts "Buscando la foto en: #{photo_path}"
+    if File.exist?(photo_path)
+      product.photos.attach(io: File.open(photo_path), filename: photo_name)
+    else
+      puts "Foto no encontrada: #{photo_name}"
+    end
+  end
+
+  # Guardar el producto si se han adjuntado fotos
+  if product.photos.attached?
+    product.save!
+    puts "Producto cargado: #{product.name}"
+  else
+    puts "No se pudo cargar el producto: #{product.name} (falta foto)"
   end
 end
 
-puts 'Se han creado los productos de ejemplo.'
+puts "Productos cargados correctamente."
+puts "Se han creado #{Product.count} productos."
