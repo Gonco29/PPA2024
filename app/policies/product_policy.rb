@@ -1,22 +1,21 @@
-# app/policies/product_policy.rb
 class ProductPolicy < ApplicationPolicy
   def index?
-    true # Permitir a todos ver la lista de productos
+    true # Todos los usuarios (visitantes y logueados) pueden ver el índice de productos
   end
 
   def show?
-    true # Permitir a todos ver un producto individual
+    true # Todos los usuarios (visitantes y logueados) pueden ver detalles de los productos
   end
 
   def create?
-    user.admin? # Solo permitir a administradores crear productos
+    user&.admin? # Solo permitir a administradores crear productos; `user&` evita llamar a `admin?` si `user` es nil
   end
 
   def update?
-    user.admin? # Solo permitir a administradores actualizar productos
+    user&.admin? # Solo permitir a administradores editar productos
   end
 
   def destroy?
-    user.admin? # Solo permitir a administradores eliminar productos
+    user&.admin? # Solo permitir a administradores eliminar productos
   end
 end
