@@ -14,7 +14,7 @@ class CartItemsController < ApplicationController
         "product_id" => product.id,
         "quantity" => params[:quantity].to_i,
         "name" => product.name,
-        "price" => product.price
+        "price" => product.current_price
       }
     end
 

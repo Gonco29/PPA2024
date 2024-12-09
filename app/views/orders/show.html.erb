@@ -1,9 +1,23 @@
 <div class="container">
-  <h2>Detalles del Pedido</h2>
+ <div class="row mt-5">
+    <div class="col-md-6">
+      <h2 class="mb-5">Detalles del Pedido</h2>
 
-  <p><strong>ID del Pedido:</strong> <%= @order.id %></p>
-  <p><strong>Total del Pedido:</strong> <%= number_to_currency(@order.total) %></p>
-  <p><strong>Fecha de Creación:</strong> <%= @order.created_at.strftime('%d de %B de %Y') %></p>
+      <p><strong>ID del Pedido:</strong> <%= @order.id %></p>
+      <p><strong>Total del Pedido:</strong> <%= number_to_currency(@order.total) %></p>
+      <p><strong>Fecha de Creación:</strong> <%= @order.created_at.strftime('%d de %B de %Y') %></p>
+    </div>
+
+    <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
+      <div>
+        <h3>Método de Pago</h3>
+        <%= image_tag "QR.png", alt: "Paga con Mercado Pago", class: "img-fluid", style: "max-width: 300px;" %>
+        <p>Escanea este código para realizar tu pago con Mercado Pago.</p>
+    <!-- CAMBIAR POR QR REAL!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+      </div>
+    </div>
+  </div>
 
   <h3>Productos en el Pedido:</h3>
 

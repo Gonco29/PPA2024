@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   get 'promotions', to: 'products#promotions'
   get 'about', to: 'pages#about'
+  get 'legales', to: 'pages#legales'
+
+
 
   post 'contact', to: 'pages#contact'
 end
