@@ -39,7 +39,7 @@
 <div class="container mt-5 text-center">
   <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
 
-  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5">
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
     <% @promoted_products.each do |product| %>
       <%= render partial: 'products/product_card_promo', locals: { product: product } %>
     <% end %>
@@ -139,7 +139,7 @@
 
 <script async
   src="https://maps.googleapis.com/maps/api/js?key=<%= @google_api_key %>&callback=initMap">
-  // !!!!!!!!!!REEMPLAZAR POR API KEY DEL DUEÑO!!!!!!!!!!!!!
+  // !!!!!!!!!!REEMPLAZAR CAMBIAR POR API KEY DEL DUEÑO!!!!!!!!!!!!!
 </script>
 
 <script>
