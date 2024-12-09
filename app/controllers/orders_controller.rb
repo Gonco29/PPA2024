@@ -19,13 +19,14 @@ class OrdersController < ApplicationController
       return
     end
 
-    # Para usuarios no registrados, podemos usar un usuario genérico
-    guest_user = User.find_or_create_by(email: "guest@example.com") do |user|
-      user.password = SecureRandom.hex(8) # Contraseña aleatoria segura
-      user.first_name = "Guest"
-      user.last_name = "User"
-      user.address = "No address provided" # Asigna algún valor por defecto si este campo es requerido
-    end
+    guest_user = User.find_by(email: "guest@example.com") || User.create!(
+      email: "guest@example.com",
+      password: SecureRandom.hex(8),
+      first_name: "Guest",
+      last_name: "User",
+      address: "No address provided"
+    )
+
 
     @order = Order.new(order_params)
     @order.total = calculate_order_total(@cart)
@@ -45,14 +46,16 @@ class OrdersController < ApplicationController
           redirect_to order_path(@order), notice: 'Pedido realizado con éxito'
         else
           flash.now[:alert] = "No se pudo crear el pedido. Por favor, revisa los errores."
-          render :new
+          render :new and return
         end
       end
     rescue => e
+      Rails.logger.error("Error al procesar el pedido: #{e.message}")
       flash.now[:alert] = "Hubo un problema al procesar el pedido: #{e.message}"
       render :new
     end
   end
+
 
   def show
     @order = Order.find(params[:id])
