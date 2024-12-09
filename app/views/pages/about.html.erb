@@ -9,7 +9,7 @@
   <!-- Bloque secundario con texto e imagen alineados -->
   <div class="row align-items-center mt-4">
     <div class="col-md-6">
-      <div class="p-4 bg-light rounded">
+      <div class="p-4 bg-light rounded-3">
         <p>
           Con 30 años de experiencia, PPA se ha consolidado como la marca líder en automatización de portones en Uruguay. Gracias a nuestras innovadoras campañas publicitarias y estratégicas acciones de marketing, hemos democratizado el acceso a la automatización, haciéndola popular y asequible para todos.
 
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="col-md-6 text-center">
-      <img src="https://example.com/sucursal_sicher.jpg" alt="Imagen de la sucursal de Sicher" class="img-fluid rounded">
+      <%= image_tag 'About1.jpg', alt: 'Imagen de la sucursal de Sicher', class: 'img-fluid rounded-3', style: 'width: 350px; height: auto;' %>
     </div>
   </div>
 
@@ -25,14 +25,14 @@
   <div class="row mt-4 text-center">
     <!-- Columna 1: Imagen promocional -->
     <div class="col-md-4 mb-4">
-      <img src="https://example.com/ahora_si_wifi.jpg" alt="Promoción de 'Ahora Sí Wi-Fi'" class="img-fluid rounded">
+      <%= image_tag 'About2.jpg', alt: "Promoción de 'Ahora Sí Wi-Fi'", class: 'img-fluid rounded-3', style: 'width: 120px; height: auto;' %>
       <p class="mt-2"><strong>Sicher</strong> - Sistemas de Seguridad</p>
     </div>
 
     <!-- Columna 2: Número de contacto con ícono -->
     <div class="col-md-4 mb-4">
       <div class="p-4 bg-light rounded h-100 d-flex align-items-center justify-content-center">
-        <p class=" mb-0">
+        <p class=" mb-0 rounded-3">
           La fusión con Sicher Systems de Seguridad nos posiciona para competir en los más altos estándares de calidad. Esta alianza nos permite incorporar nuevos productos a nuestro portafolio y estar a la vanguardia de los avances tecnológicos.
 
         </p>
@@ -40,9 +40,11 @@
     </div>
 
     <!-- Columna 3: Imagen con homenaje -->
-    <div class="col-md-5 mb-5">
-      <img src="https://example.com/toto_da_silveira.jpg" alt="Imagen homenaje a Toto Da Silveira" class="img-fluid rounded">
+  <div class="row mt-5 justify-content-center text-center">
+    <div class="col-md-6 mb-5">
+      <%= image_tag 'About3.jpg', alt: 'Imagen homenaje a Toto Da Silveira', class: 'img-fluid rounded-3', style: 'width: 100%; max-width: 500px;' %>
       <p class="text-center mt-2"><em>Un homenaje a nuestro querido amigo Toto Da Silveira</em></p>
     </div>
+  </div>
   </div>
 </div>
