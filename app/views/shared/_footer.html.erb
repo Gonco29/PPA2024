@@ -1,35 +1,22 @@
 <div class="bg-primary mt-4">
   <div class="container py-5 ps-4">
+
+
     <div class="row">
       <!-- Primer Columna -->
-      <div class="col-md-3">
-        <h5>Enlaces</h5>
-        <ul class="list-unstyled">
-          <li><%= link_to 'Tienda', products_path, class: 'linkfooter' %></li>
-          <li><%= link_to 'Promociones', promotions_path, class: 'linkfooter' %></li>
-          <li><%= link_to 'Nosotros', about_path, class: 'linkfooter' %></li>
-        </ul>
+      <div class="col-md-5">
+        <p class="my-1", style="font-size: 1.2rem;"> Motor con 1 año de garantía por defectos de fábrica.</p>
+        <p class="my-1", style="font-size: 1.2rem;">Instalación incluida en Montevideo y alrededores.</p>
+        <p class="mt-1 mb-4", style="font-size: 1.2rem;">Envíos al interior a cargo del comprador.</p>
+        <%= link_to 'Términos y condiciones', legales_path, class: 'linkfooter my-5', style: "font-size: 1.2rem;" %>
       </div>
 
-      <!-- Segunda Columna -->
-      <div class="col-md-3">
-        <h5>Información</h5>
-        <ul class="list-unstyled">
-          <li><%= link_to 'Términos y condiciones', legales_path, class: 'linkfooter' %></li>
-          <li><%= link_to 'Política de cambios', legales_path, class: 'linkfooter' %></li>
-          <li><%= link_to 'Garantía', legales_path, class: 'linkfooter' %></li>
-        </ul>
+      <div class="col-md-1">
       </div>
 
-      <!-- Tercera Columna -->
       <div class="col-md-3">
-        <h5></h5>
-        <ul class="list-unstyled">
-          <li><%= link_to '', '#', class: 'linkfooter' %></li>
-          <li><%= link_to '', '#', class: 'linkfooter' %></li>
-          <li><%= link_to '', '#', class: 'linkfooter' %></li>
-        </ul>
       </div>
+
 
       <!-- Cuarta Columna -->
       <div class="col-md-3 ps-5">
@@ -42,19 +29,20 @@
 
   <div class="subfooter w-100">
 <!-- Redes Sociales -->
-<div class="d-flex justify-content-end align-items-center mt-2 p-2">
-  <p class="mb-0 me-5" style="font-size: 1.2rem;">Síguenos en:</p>
+<%# !!!!!!REEMPLAZAR FALTA REDES LINKS a SOCIALES CAMBIAR!!!!!!!!!!!!! %>
+<div class="d-flex justify-content-end align-items-center my-2 p-3">
+  <p class="mb-0 me-5" style="font-size: 1.4rem;">Síguenos en:</p>
   <%= link_to '#', class: 'text-black me-2' do %>
-    <i class="fa-brands fa-square-instagram fa-2x"></i>
+    <%# <i class="fa-brands fa-square-instagram fa-2x"></i> %>
+    <i class="fa-brands fa-instagram fa-2x"></i>
   <% end %>
   <%= link_to '#', class: 'text-black me-2' do %>
-    <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+    <%# <i class="fa-brands fa-square-facebook fa-2x"></i> %>
+    <i class="fa-brands fa-facebook-f fa-2x"></i>
   <% end %>
   <%= link_to '#', class: 'text-black me-2' do %>
-    <i class="fa-brands fa-square-facebook fa-2x"></i>
-  <% end %>
-  <%= link_to '#', class: 'text-black' do %>
-    <i class="fa-brands fa-linkedin fa-2x"></i>
+    <%# <i class="fa-brands fa-square-x-twitter fa-2x"></i> %>
+    <i class="fa-brands fa-tiktok fa-2x"></i>
   <% end %>
 </div>
 
