@@ -1,48 +1,44 @@
-<div class="col">
-  <div class="card h-100 bg-light flex-row" style="width: 300%;">
-    <% if product.photos.present? %>
-      <div class="position-relative ms-5 p-3 d-flex justify-content-center align-items-center" style="flex: 1;">
-        <%= link_to product_path(product) do %>
-          <%= cl_image_tag(product.photos.first.key, class: "card-img rounded-50", height: 200, width: 200, crop: :thumb, alt: product.name) %>
-        <% end %>
-        <% if product.on_sale? %>
-          <div class="fire-icon">
-            <%= image_tag('fire3.png', class: 'img-fluid') %>
-          </div>
-        <% end %>
-
-
-
-        <% if product.installation_included %>
-          <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
-            Instalación incluida
-          </div>
-        <% else %>
-          <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
-            Instalación no incluida
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="card-body d-flex flex-column text-center ms-3" style="flex: 2;">
-      <p class="card-text text-secondary mb-0"><%= product.category %></p>
-      <p class="card-text text-secondary mt-0"><%= product.subcategory %></p>
-
-      <h5 class="card-title"><%= link_to product.name, product %></h5>
-      <div class="mt-auto">
-        <div class="">
+<div class="promo-card-container">
+  <div class="promo-card">
+    <div class="card h-100 py-3 flex-row rounded-5", style="background-color: #C2C1C0 !important; ";>
+      <% if product.photos.present? %>
+        <div class="position-relative ms-5 d-flex justify-content-center align-items-center" style="flex: 1;">
+          <%= link_to product_path(product) do %>
+            <%= cl_image_tag(product.photos.first.key, class: "card-img rounded-50", height: 200, width: 200, crop: :thumb, alt: product.name) %>
+          <% end %>
           <% if product.on_sale? %>
-            <div class="d-flex justify-content-center">
-              <p class="bg-danger text-white py-1 rounded-5 text-center" style="width: 30%; font-size: 0.75rem;">DESCUENTO: <%= product.discount_percentage %> %</p>
+            <div class="fire-icon">
+              <%= image_tag('fire3.png', class: 'img-fluid') %>
             </div>
+          <% end %>
+          <% if product.installation_included %>
+            <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
+              Instalación incluida
+            </div>
+          <% else %>
+            <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
+              Instalación no incluida
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="card-body d-flex flex-column text-center ms-3" style="flex: 2;">
+        <p class="card-text text-secondary mb-0"><%= product.category %></p>
+        <p class="card-text text-secondary mt-0"><%= product.subcategory %></p>
+
+        <h5 class="card-title"><%= link_to product.name, product %></h5>
+        <div class="mt-auto">
+          <% if product.on_sale? %>
+
             <p class="text-decoration-line-through text-muted mb-0">Precio: <%= number_to_currency(product.price) %></p>
-            <p class="mt-0"><strong>Precio en oferta:</strong> <%= number_to_currency(product.promotional_price) %></p>
+            <p class="my-0"><strong>Precio en oferta:</strong> <%= number_to_currency(product.promotional_price) %></p>
+            <p class="mt-0"> Imp. Inc.</p>
           <% else %>
             <p><strong>Precio:</strong> <%= number_to_currency(product.price) %></p>
           <% end %>
           <div class="d-flex justify-content-center mt-2">
-            <%= button_to cart_items_path(product_id: product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary ms-3" do %>
-              <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+            <%= button_to cart_items_path(product_id: product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary ms-3 rounded-5",  style: "width: 175px; margin: 0 auto;" do %>
+              <i class="fa-solid fa-cart-plus"></i>
             <% end %>
           </div>
         </div>
