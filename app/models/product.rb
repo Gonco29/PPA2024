@@ -16,6 +16,16 @@ class Product < ApplicationRecord
   # Métodos relacionados con la promoción (manteniendo los existentes)
   before_save :calculate_promotional_price, if: :on_sale?
 
+  validates :promo_text, length: { maximum: 200 }, allow_blank: true
+  validate :promo_text_line_limit
+
+
+  def promo_text_line_limit
+    if promo_text.present? && promo_text.lines.count > 5
+      errors.add(:promo_text, "No puede tener más de 5 líneas.")
+    end
+  end
+
   def on_sale?
     on_sale
   end
