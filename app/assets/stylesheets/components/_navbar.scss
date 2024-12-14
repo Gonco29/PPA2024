@@ -41,3 +41,64 @@
   font-size: 0.75rem;
   padding: 0.25em 0.5em;
 }
+
+// --
+/* Estilos base para los dropdowns */
+.dropdown-menu {
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #ffffff; /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  border: 1px solid #e3e3e3; /* Borde ligero */
+  z-index: 1050; /* Asegura que esté por encima */
+  padding: 0.5rem 0; /* Espaciado interno */
+}
+
+/* Submenú */
+.dropdown-menu .dropdown-menu {
+  position: absolute; /* Posición absoluta */
+  left: 100%; /* Posiciona el submenú a la derecha del menú principal */
+  top: 0; /* Alinea el submenú verticalmente */
+  z-index: 1050; /* Asegura que esté por encima */
+  display: none; /* Ocúltalo por defecto */
+  border-radius: 8px; /* Bordes redondeados para submenús */
+  background-color: #ffffff; /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para submenús */
+}
+
+/* Mostrar submenú al hover */
+.dropdown-menu .dropdown-item:hover + .dropdown-menu,
+.dropdown-menu .dropdown-menu:hover {
+  display: block; /* Muestra el submenú */
+}
+
+/* Hover sobre los ítems del menú */
+.dropdown-item {
+  padding: 10px 15px; /* Espaciado cómodo */
+  font-size: 1rem; /* Tamaño del texto */
+  color: #333; /* Color del texto */
+  border-radius: 6px; /* Bordes redondeados al hover */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Animación suave */
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa; /* Fondo suave */
+  color: #ff9800; /* Color del texto resaltado */
+}
+
+/* Ajustes de separaciones y alineaciones */
+.dropdown-menu .dropdown-menu {
+  margin-top: 0;
+  margin-left: 1px; /* Ajuste para evitar separación excesiva */
+}
+
+/* Mejora en los enlaces de la navbar */
+.navbar-nav .nav-link {
+  padding: 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #f0f0f0;
+  color: #ff9800;
+}
