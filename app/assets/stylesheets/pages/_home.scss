@@ -11,3 +11,30 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Open Sans', sans-serif;
 }
+
+
+// FORM DE CONTACTO
+
+.input-line-contact {
+  border: none; /* Elimina todos los bordes */
+  border-bottom: 2px solid black; /* Agrega solo la línea inferior */
+  border-radius: 0; /* Elimina los bordes redondeados */
+  outline: none; /* Elimina el contorno al enfocarse */
+  width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+  box-shadow: none; /* Evita sombras externas */
+  padding: 5px 0; /* Agrega algo de espacio interno */
+  background-color: transparent; /* Fondo transparente */
+}
+
+.input-line-contact:focus {
+  border: none;
+  border-bottom: 2px solid #ff9800; /* Cambia la línea a azul al enfocarse */
+  outline: none; /* Mantén el contorno desactivado */
+  background-color: transparent;
+  outline: none; /* Elimina el contorno del navegador */
+  box-shadow: none;
+}
+
+textarea.input-line-contact {
+  // resize: none; /* Evita que el usuario pueda redimensionar el área de texto */
+}
