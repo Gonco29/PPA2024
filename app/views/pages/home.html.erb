@@ -52,12 +52,12 @@
 
 <!-- LOGOS DE MARCA -->
 
-<div class="my-5">
+<div class=" mt-5 py-5", style="">
   <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Marcas representadas" style="object-fit: scale-down;">
 </div>
 
 <!-- VIDEO DE PRESENTACIÓN -->
-<div class="bg-light py-5">
+<div class="py-5", style="background-color: #BFC2C1">
   <div class="row mx-5">
     <div class="col-md-6 mx-auto">
       <div class="embed-responsive embed-responsive-16by9 m-5">
@@ -82,32 +82,32 @@
       <%= form_with url: contact_path, local: true, html: { multipart: true } do |form| %>
         <div class="form-group">
           <%= form.label :name, 'Nombre y Apellido' %>
-          <%= form.text_field :name, class: 'form-control' %>
+          <%= form.text_field :name, class: 'form-control input-line-contact' %>
         </div>
         <div class="form-group">
           <%= form.label :email, 'Correo Electrónico' %>
-          <%= form.email_field :email, class: 'form-control' %>
+          <%= form.email_field :email, class: 'form-control input-line-contact' %>
         </div>
         <div class="form-group">
           <%= form.label :phone, 'Número de Teléfono' %>
-          <%= form.text_field :phone, class: 'form-control' %>
+          <%= form.text_field :phone, class: 'form-control input-line-contact' %>
         </div>
         <div class="form-group">
           <%= form.label :message, 'Mensaje' %>
-          <%= form.text_area :message, class: 'form-control' %>
+          <%= form.text_area :message, class: 'form-control input-line-contact' %>
         </div>
         <div class="form-group">
           <%= form.label :attachment, 'Adjuntar Archivo (opcional)' %>
-          <%= form.file_field :attachment, class: 'form-control' %>
+          <%= form.file_field :attachment, class: 'form-control input-line-contact' %>
         </div>
         <div class="form-group mt-3">
-          <%= form.submit 'Enviar', class: 'btn btn-primary btn-lg btn-custom w-100 mb-5' %>
+          <%= form.submit 'Enviar', class: 'btn btn-primary btn-lg btn-custom w-100 mb-5 rounded-5' %>
         </div>
       <% end %>
     </div>
 
     <div class="col-md-4 mx-auto my-auto">
-      <div class="card bg-light">
+      <div class="card bg-light rounded-5">
         <div class="card-body text-center">
           <h5 class="card-title">Casa central:</h5>
           <p class="card-text">
@@ -146,7 +146,7 @@
   function initMap() {
     var location = {lat: -34.8978457839486, lng: -56.069537488069656};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 16,
       center: location
     });
     var marker = new google.maps.Marker({
