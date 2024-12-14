@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params.except(:photos))
       redirect_to @product, notice: 'Product was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(
-      :name, :price, :category, :subcategory, :details, :stock,
+      :name, :price, :category, :subcategory, :details, :stock, :promo_text,
       :on_sale, :discount_percentage, :promotional_price,
       :sku, :warranty, :power, :controls_included, :rack_meters,
       :arms, :usage_type, :gate_max_length, :indication, :installation_included,
