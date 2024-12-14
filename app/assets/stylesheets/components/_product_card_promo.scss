@@ -41,3 +41,8 @@
   font-size: 0.75rem;
   font-weight: bold;
 }
+
+.promo-card-text {
+  line-height: 1.5; /* Controla el espacio entre líneas */
+  white-space: pre-wrap; /* Asegura que los saltos de línea y espacios adicionales se respeten */
+}

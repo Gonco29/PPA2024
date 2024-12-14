@@ -1,15 +1,16 @@
 <div class="container">
   <%= form_with(model: product, local: true, class: "needs-validation") do |form| %>
-    <% if product.errors.any? %>
-      <div class="alert alert-danger">
-        <h4 class="alert-heading"><%= pluralize(product.errors.count, "error/es") %> impidieron guardar este producto:</h4>
-        <ul>
-          <% product.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+
+    <% if @product.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>Errores:</h4>
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
     <!-- Título -->
     <h2 class="mb-4">Datos del Producto</h2>
@@ -83,6 +84,12 @@
 
     <!-- Campos de Promoción SIEMPRE visibles -->
     <div class="row mx-4">
+
+      <div class="col-md-3 mb-3">
+        <%= form.label :promo_text, "Información para la PROMO CARD", class: "form-label" %>
+        <%= form.text_area :promo_text, class: "form-control", rows: 5, maxlength: 200, placeholder: "Datos del Producto en Promoción", id: 'promo_text_info' %>
+      </div>
+
       <div class="col-md-3 mb-3">
         <%= form.label :discount_percentage, "Porcentaje de descuento", class: "form-label" %>
         <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20", id: 'product_discount_percentage' %>
