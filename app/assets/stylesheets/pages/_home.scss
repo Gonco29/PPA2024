@@ -1,13 +1,7 @@
 // Specific CSS for your home-page
-@font-face {
-  font-family: 'Century Gothic';
-  src: url('/fonts/century-gothic.woff2') format('woff2'),
-       url('/fonts/century-gothic.woff') format('woff');
-  font-weight: light;
-  font-style: normal;
-}
+
 body {
-  font-family: 'Century Gothic', Arial, sans-serif;
+  font-family: 'Questrial', Arial, sans-serif;
   background-color: white;
   // padding-left: 100px;
   // padding-right: 100px;
@@ -16,7 +10,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Century Gothic', Arial, sans-serif;
+  font-family: 'Raleway', Arial, sans-serif;
 
   // font-family: 'Questrial', sans-serif;
 }

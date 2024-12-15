@@ -4,7 +4,7 @@
 }
 
 .card {
-  background-color: white;
+  // background-color: white;
   border-radius: 0.5rem;
 }
 
@@ -54,5 +54,15 @@
 }
 
 .rounded-50 {
-  border-radius: 50%;
+   width: 250px; /* Ajusta según tu diseño */
+  height: 250px; /* El mismo valor que el ancho */
+  border-radius: 50%; /* Asegura que sea circular */
+  object-fit: cover;
+}
+
+.highlighted-text {
+  font-weight: bold; /* Hace el texto más grueso */
+  font-size: 1.2rem; /* Aumenta ligeramente el tamaño de la fuente */
+  color: #333; /* Cambia el color a un gris más oscuro */
+  font-weight: 900;
 }
