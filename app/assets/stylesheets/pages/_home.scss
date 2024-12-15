@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Raleway', Arial, sans-serif;
   background-color: white;
   // padding-left: 100px;
   // padding-right: 100px;
@@ -10,7 +10,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Questrial', Arial, sans-serif;
+
+  // font-family: 'Questrial', sans-serif;
 }
 
 
@@ -34,8 +36,4 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent;
   outline: none; /* Elimina el contorno del navegador */
   box-shadow: none;
-}
-
-textarea.input-line-contact {
-  // resize: none; /* Evita que el usuario pueda redimensionar el área de texto */
 }

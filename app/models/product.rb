@@ -19,6 +19,10 @@ class Product < ApplicationRecord
   validates :promo_text, length: { maximum: 200 }, allow_blank: true
   validate :promo_text_line_limit
 
+  validates :discount_percentage, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, if: :on_sale?
+  validates :promotional_price, presence: true, numericality: { greater_than: 0 }, if: :on_sale?
+  validates :promo_text, presence: true, if: :on_sale?
+
 
   def promo_text_line_limit
     if promo_text.present? && promo_text.lines.count > 5
@@ -50,9 +54,9 @@ class Product < ApplicationRecord
   # Método para la descripción de la garantía
   def warranty_description
     if installation_included
-      "1 Año. Cubre defectos de fábrica. Repuestos y Servicio Técnico."
+      "* Garantía 1 Año. Cubre defectos de fábrica. Repuestos y Servicio Técnico."
     else
-      "1 Año. No cubre garantía por mala instalación."
+      "* Garantía 1 Año. No cubre garantía por mala instalación."
     end
   end
 
@@ -60,7 +64,7 @@ class Product < ApplicationRecord
   include PgSearch::Model
 
   pg_search_scope :search_by,
-    against: [:name, :details, :category, :subcategory, :installation_included, :product_type],
+    against: [:name, :details, :category, :subcategory, :installation_included, :promo_text, :product_type],
     using: {
       tsearch: { prefix: true }
     }
