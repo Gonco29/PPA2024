@@ -36,19 +36,21 @@
 
 <!-- PROMOCIONES -->
 
-<div class="container mt-5 text-center">
-  <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
+  <% if @promoted_products.present? %>
+    <div class="container mt-5 text-center">
+      <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
 
-  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
-    <% @promoted_products.each do |product| %>
-      <%= render partial: 'products/product_card_promo', locals: { product: product } %>
-    <% end %>
-  </div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
+          <% @promoted_products.each do |product| %>
+            <%= render partial: 'products/product_card_promo', locals: { product: product } %>
+          <% end %>
+        </div>
 
-  <div class="mt-4">
-    <%= link_to "Ver más promociones", promotions_path, class: "btn btn-primary text-white btn-custom rounded-5" %>
-  </div>
-</div>
+        <div class="mt-4">
+          <%= link_to "Ver más promociones", promotions_path, class: "btn btn-primary text-white btn-custom rounded-5" %>
+        </div>
+    </div>
+  <% end %>
 
 <!-- LOGOS DE MARCA -->
 
