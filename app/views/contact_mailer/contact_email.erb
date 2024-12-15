@@ -1,4 +1,3 @@
-<!-- app/views/contact_mailer/contact_email.html.erb -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,59 +8,100 @@
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
+      line-height: 1.6;
     }
     .container {
       width: 100%;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 20px auto;
       background-color: #ffffff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     .header {
+      background-color: #ff7f00; /* Color corporativo */
+      padding: 20px;
       text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #dddddd;
+      color: #ffffff;
     }
     .header img {
-      max-height: 50px;
+      max-height: 60px;
+      margin: 0 auto;
+    }
+    .header h1 {
+      margin: 10px 0 0;
+      font-size: 24px;
+      font-weight: bold;
     }
     .content {
-      padding: 20px 0;
-      text-align: center;
+      padding: 20px;
     }
-    .content h1 {
+    .content h2 {
       color: #333333;
-      font-size: 24px;
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
     }
     .content p {
       color: #555555;
       font-size: 16px;
-      line-height: 1.5;
+      margin: 8px 0;
+    }
+    .content p span {
+      font-weight: bold;
+      color: #333333;
     }
     .footer {
+      background-color: #f8f9fa;
+      padding: 15px;
       text-align: center;
-      padding-top: 20px;
+      font-size: 12px;
+      color: #888888;
       border-top: 1px solid #dddddd;
+    }
+    .button {
+      display: inline-block;
+      background-color: #007bff;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 20px auto;
+      font-size: 16px;
+    }
+    .button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Encabezado -->
     <div class="header">
-      <%= image_tag 'https://ppa.com.ar/web/image/website/3/logo/PPA%20Argentina?unique=a6ad006', alt: 'Logo PPA', id: 'navbar-logo' %>
-      <%# !!!!!! FALTA LOGO SICHER CAMBIAR%>
-      <%= image_tag('sicher-logo.png', alt: 'Logo Sicher', id: 'navbar-logo') %>
+      <div>
+        <%= image_tag 'https://ppa.com.ar/web/image/website/3/logo/PPA%20Argentina?unique=a6ad006', alt: 'Logo PPA', id: 'navbar-logo' %>
+        <%= image_tag 'https://static.wixstatic.com/media/ea58d7_92172e0f84cc4382b8e1d2c495cfcbe4~mv2.png/v1/crop/x_0,y_66,w_1500,h_377/fill/w_540,h_140,al_c,q_85,usm_2.00_1.00_0.00,enc_avif,quality_auto/ea58d7_92172e0f84cc4382b8e1d2c495cfcbe4~mv2.png', alt: 'Logo Sicher', id: 'navbar-logo' %>
+      </div>
+      <h1>Nueva Consulta Recibida</h1>
     </div>
+
+    <!-- Contenido -->
     <div class="content">
-      <h1>HEMOS RECIBIDO UNA CONSULTA DE UN NUEVO CLIENTE.</h1>
-      <p><strong>Nombre:</strong> <%= @name %></p>
-      <p><strong>Teléfono:</strong> <%= @phone %></p>
-      <p><strong>Mensaje:</strong></p>
-      <p><%= @message %></p>
+      <h2>Detalles de la Consulta:</h2>
+      <p><span>Nombre:</span> <%= @name %></p>
+      <p><span>Teléfono:</span> <%= @phone %></p>
+      <p><span>Correo Electrónico:</span> <%= @email %></p>
+      <p><span>Mensaje:</span></p>
+      <p style="font-style: italic; color: #333333; background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+        "<%= @message %>"
+      </p>
     </div>
+
+    <!-- Pie de página -->
     <div class="footer">
-      <p>Este correo ha sido enviado automáticamente desde el formulario de contacto de su sitio web.</p>
+      <p>Este correo fue generado automáticamente desde el formulario de contacto en su sitio web.</p>
+      <p>No responda directamente a este mensaje.</p>
     </div>
   </div>
 </body>

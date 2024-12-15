@@ -36,19 +36,21 @@
 
 <!-- PROMOCIONES -->
 
-<div class="container mt-5 text-center">
-  <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
+  <% if @promoted_products.present? %>
+    <div class="container mt-5 text-center">
+      <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
 
-  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
-    <% @promoted_products.each do |product| %>
-      <%= render partial: 'products/product_card_promo', locals: { product: product } %>
-    <% end %>
-  </div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
+          <% @promoted_products.each do |product| %>
+            <%= render partial: 'products/product_card_promo', locals: { product: product } %>
+          <% end %>
+        </div>
 
-  <div class="mt-4">
-    <%= link_to "Ver más promociones", promotions_path, class: "btn btn-primary text-white btn-custom rounded-5" %>
-  </div>
-</div>
+        <div class="mt-4">
+          <%= link_to "Ver más promociones", promotions_path, class: "btn btn-primary text-white btn-custom rounded-5" %>
+        </div>
+    </div>
+  <% end %>
 
 <!-- LOGOS DE MARCA -->
 
@@ -57,7 +59,7 @@
 </div>
 
 <!-- VIDEO DE PRESENTACIÓN -->
-<div class="py-5", style="background-color: #d7d9d8">
+<div class="py-5", style="background-color: #E1E4E3">
   <div class="row mx-5">
     <div class="col-md-6 mx-auto">
       <div class="embed-responsive embed-responsive-16by9 m-5">
@@ -76,8 +78,8 @@
 <!-- FORMULARIO DE CONTACTO -->
 <div id="contacto" class="container mt-5">
   <div class="row">
-    <div class="col-md-6 mx-auto">
-      <h2>Contacto</h2>
+    <div class="col-md-5 mx-auto">
+      <h2 class="mb-4"><strong>Contacto</strong></h2>
       <h4 class="mb-4">¿Tenés una consulta? Escribinos.</h4>
       <%= form_with url: contact_path, local: true, html: { multipart: true } do |form| %>
         <div class="form-group">
@@ -107,15 +109,15 @@
     </div>
 
     <div class="col-md-4 mx-auto my-auto">
-      <div class="card bg-light rounded-5">
+      <div class="card p-5 rounded-5", style="background-color: #E1E4E3">
         <div class="card-body text-center">
-          <h5 class="card-title">Casa central:</h5>
-          <p class="card-text">
+          <h5 class="card-title mb-0">Casa central:</h5>
+          <p class="card-text mt-0">
             Rambla República de México 5863<br>
             Montevideo
           </p>
-          <h5 class="card-title mt-3">Sucursal Maldonado:</h5>
-          <p class="card-text">
+          <h5 class="card-title mt-3 mb-0">Sucursal Maldonado:</h5>
+          <p class="card-text mt-0">
             Calle Av. España, Parada 26
           </p>
           <p class="card-text">
@@ -124,6 +126,10 @@
           </p>
           <p class="card-text">
             <i class="fa-solid fa-phone-volume"></i> <strong>0800 8000</strong>
+              <%= link_to "https://wa.me/+542615041558", class: "nav-link" do %>
+            <%# !!!!!!!! CAMBIAR REEMPLAZAR NUMERO DE whatsapp REAL %>
+              <i class="fab fa-whatsapp fa-lg"></i> Escribinos por whatsapp
+            <% end %>
           </p>
         </div>
       </div>

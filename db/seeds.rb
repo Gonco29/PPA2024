@@ -18,7 +18,7 @@ puts "Cargando productos nuevos..."
 # Cargar todos los productos según el archivo PDF proporcionado
 products_data = [
   {
-    name: "Motor Eurus 20",
+    name: "Eurus 20",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 15000,
@@ -33,7 +33,7 @@ products_data = [
     photos: ["MOTOR EURUS 20 2.jpeg"]
   },
   {
-    name: "Motor Eurus 20",
+    name: "Eurus 20",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 9900,
@@ -48,7 +48,7 @@ products_data = [
     photos: ["MOTOR EURUS 20 2.jpeg"]
   },
   {
-    name: "Motor Custom",
+    name: "Custom",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 12000,
@@ -63,7 +63,7 @@ products_data = [
     photos: ["MOTOR CUSTOM 4.jpeg"]
   },
   {
-    name: "Motor Custom",
+    name: "Custom",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 6600,
@@ -78,7 +78,7 @@ products_data = [
     photos: ["MOTOR CUSTOM 4.jpeg"]
   },
   {
-    name: "Motor Speed",
+    name: "Speed",
     category: "Automatismos",
     subcategory: "Corredizos Rápidos",
     price: 15000,
@@ -93,7 +93,7 @@ products_data = [
     photos: ["MOTOR SPEED 3.jpeg"]
   },
   {
-    name: "Motor Speed",
+    name: "Speed",
     category: "Automatismos",
     subcategory: "Corredizos Rápidos",
     price: 8800,
@@ -108,7 +108,7 @@ products_data = [
     photos: ["MOTOR SPEED 3.jpeg"]
   },
   {
-    name: "Motor Steel",
+    name: "Steel",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 17000,
@@ -123,7 +123,7 @@ products_data = [
     photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: "Motor Steel",
+    name: "Steel",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 13000,
@@ -138,7 +138,7 @@ products_data = [
     photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: "Motor Steel Jet",
+    name: "Steel Jet",
     category: "Automatismos",
     subcategory: "Corredizos Rápidos",
     price: 22000,
@@ -153,7 +153,7 @@ products_data = [
     photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: "Motor Steel Jet",
+    name: "Steel Jet",
     category: "Automatismos",
     subcategory: "Corredizos Rápidos",
     price: 16000,
@@ -168,7 +168,7 @@ products_data = [
     photos: ["MOTOR STEEL - STEEL JET 4.jpeg"]
   },
   {
-    name: "Motor Powerful",
+    name: "Powerful",
     category: "Automatismos",
     subcategory: "Corredizos Industrial",
     price: 32000,
@@ -183,7 +183,7 @@ products_data = [
     photos: ["MOTOR POWERFUL.jpeg"]
   },
   {
-    name: "Motor Powerful",
+    name: "Powerful",
     category: "Automatismos",
     subcategory: "Corredizos Industrial",
     price: 24000,
@@ -198,7 +198,7 @@ products_data = [
     photos: ["MOTOR POWERFUL.jpeg"]
   },
   {
-    name: "Motor Potenza",
+    name: "Potenza",
     category: "Automatismos",
     subcategory: "Basculante",
     price: 20000,
@@ -213,7 +213,7 @@ products_data = [
     photos: ["MOTOR POTENZA 2.jpeg"]
   },
   {
-    name: "Motor Potenza",
+    name: "Potenza",
     category: "Automatismos",
     subcategory: "Basculante",
     price: 14000,
@@ -228,7 +228,7 @@ products_data = [
     photos: ["MOTOR POTENZA 2.jpeg"]
   },
   {
-    name: "Motor Penta",
+    name: "Penta",
     category: "Automatismos",
     subcategory: "Basculante",
     price: 22000,
@@ -243,7 +243,7 @@ products_data = [
     photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: "Motor Penta",
+    name: "Penta",
     category: "Automatismos",
     subcategory: "Basculante",
     price: 16000,
@@ -258,7 +258,7 @@ products_data = [
     photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: "Motor Penta Jet",
+    name: "Penta Jet",
     category: "Automatismos",
     subcategory: "Basculante Rápido",
     price: 30000,
@@ -273,7 +273,7 @@ products_data = [
     photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: "Motor Penta Jet",
+    name: "Penta Jet",
     category: "Automatismos",
     subcategory: "Basculante Rápido",
     price: 22000,
@@ -288,7 +288,7 @@ products_data = [
     photos: ["MOTOR PENTA - PENTA JET 2.jpeg"]
   },
   {
-    name: "Motor Torsión 2",
+    name: "Torsión 2",
     category: "Automatismos",
     subcategory: "Basculante",
     price: 23000,
@@ -303,7 +303,7 @@ products_data = [
     photos: ["MOTOR TORSION 2.jpeg"]
   },
   {
-    name: "Motor Torsión 2",
+    name: "Torsión 2",
     category: "Automatismos",
     subcategory: "Basculante",
     price: 18500,
@@ -318,7 +318,7 @@ products_data = [
     photos: ["MOTOR TORSION 2.jpeg"]
   },
   {
-    name: "Motor Unique Doble",
+    name: "Unique Doble",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 27000,
@@ -333,7 +333,7 @@ products_data = [
     photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
   },
   {
-    name: "Motor Unique Doble",
+    name: "Unique Doble",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 19000,
@@ -348,7 +348,7 @@ products_data = [
     photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
   },
   {
-    name: "Motor Premium Doble",
+    name: "Premium Doble",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 32000,
@@ -363,7 +363,7 @@ products_data = [
     photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
-    name: "Motor Premium Doble",
+    name: "Premium Doble",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 24000,
@@ -378,7 +378,7 @@ products_data = [
     photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
-    name: "Motor Unique Simple",
+    name: "Unique Simple",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 15000,
@@ -393,7 +393,7 @@ products_data = [
     photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
   },
   {
-    name: "Motor Unique Simple",
+    name: "Unique Simple",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 11000,
@@ -408,7 +408,7 @@ products_data = [
     photos: ["UNIQUE SIMPLE - DOBLE.jpeg"]
   },
   {
-    name: "Motor Premium Simple",
+    name: "Premium Simple",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 17000,
@@ -423,7 +423,7 @@ products_data = [
     photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
-    name: "Motor Premium Simple",
+    name: "Premium Simple",
     category: "Automatismos",
     subcategory: "Pivotante",
     price: 14000,
@@ -438,7 +438,7 @@ products_data = [
     photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
-    name: "Motor Industrial Doble",
+    name: "Industrial Doble",
     category: "Automatismos",
     subcategory: "Pivotante Industrial",
     price: 40000,
@@ -453,7 +453,7 @@ products_data = [
     photos: ["PREMIUM SIMPLE - DOBLE - INDUSTRIAL 2.jpeg"]
   },
   {
-    name: "Motor Hub",
+    name: "Hub",
     category: "Automatismos",
     subcategory: "Corredizos",
     price: 4400,

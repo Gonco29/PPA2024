@@ -70,6 +70,61 @@
       </div>
     <% end %>
 
+    <!-- Especificaciones -->
+    <h3 class="mb-3">Especificaciones</h3>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <%= form.label :sku, "SKU", class: "form-label" %>
+        <%= form.text_field :sku, class: "form-control", placeholder: "Código SKU del producto" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :stock, "Stock disponible", class: "form-label" %>
+        <%= form.number_field :stock, class: "form-control", placeholder: "Cantidad en stock" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :warranty, "Garantía", class: "form-label" %>
+        <%= form.text_area :warranty, class: "form-control", rows: 3, placeholder: "Detalles de la garantía" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <%= form.label :power, "Potencia", class: "form-label" %>
+        <%= form.text_field :power, class: "form-control", placeholder: "Ejemplo: 1/4 HP, 3/4 HP" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :controls_included, "Controles incluidos", class: "form-label" %>
+        <%= form.number_field :controls_included, class: "form-control", placeholder: "Cantidad de controles" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :rack_meters, "Metros de cremallera", class: "form-label" %>
+        <%= form.number_field :rack_meters, class: "form-control", placeholder: "Metros de cremallera incluidos" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <%= form.label :arms, "Cantidad de brazos", class: "form-label" %>
+        <%= form.number_field :arms, class: "form-control", placeholder: "Ejemplo: 1 brazo, 2 brazos" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :usage_type, "Tipo de uso", class: "form-label" %>
+        <%= form.text_field :usage_type, class: "form-control", placeholder: "Ejemplo: Residencial, Industrial" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :gate_max_length, "Longitud máxima del portón (m)", class: "form-label" %>
+        <%= form.number_field :gate_max_length, step: 0.01, class: "form-control", placeholder: "Longitud máxima en metros" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= form.label :indication, "Indicaciones del producto", class: "form-label" %>
+        <%= form.text_area :indication, class: "form-control", rows: 3, placeholder: "Indicaciones específicas para este producto" %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :product_type, "Tipo de producto", class: "form-label" %>
+        <%= form.text_field :product_type, class: "form-control", placeholder: "Ejemplo: Motor, Brazo hidráulico" %>
+      </div>
+    </div>
+
     <!-- Promociones -->
     <h3 class="mb-3">Promociones</h3>
     <div class="row">
@@ -82,9 +137,7 @@
       </div>
     </div>
 
-    <!-- Campos de Promoción SIEMPRE visibles -->
     <div class="row mx-4">
-
       <div class="col-md-3 mb-3">
         <%= form.label :promo_text, "Información para la PROMO CARD", class: "form-label" %>
         <%= form.text_area :promo_text, class: "form-control", rows: 5, maxlength: 200, placeholder: "Datos del Producto en Promoción", id: 'promo_text_info' %>
@@ -106,6 +159,7 @@
     </div>
   <% end %>
 </div>
+
 
 <script>
   document.addEventListener('turbo:load', function() {
