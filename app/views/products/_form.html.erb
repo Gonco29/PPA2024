@@ -159,3 +159,39 @@
     </div>
   <% end %>
 </div>
+
+
+<script>
+  document.addEventListener('turbo:load', function() {
+    const onSaleCheckbox = document.getElementById('on_sale_checkbox');
+    const discountPercentageInput = document.getElementById('product_discount_percentage');
+    const promotionalPriceInput = document.getElementById('product_promotional_price');
+    const originalPriceInput = document.getElementById('product_price');
+
+    // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
+    if (onSaleCheckbox) {
+      onSaleCheckbox.addEventListener('change', function() {
+        if (!this.checked) {
+          discountPercentageInput.value = '';
+          promotionalPriceInput.value = '';
+        }
+      });
+    }
+
+    // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
+    if (discountPercentageInput && promotionalPriceInput && originalPriceInput) {
+      discountPercentageInput.addEventListener('input', function() {
+        const discountPercentage = parseFloat(this.value);
+        const originalPrice = parseFloat(originalPriceInput.value);
+
+        if (!isNaN(discountPercentage) && !isNaN(originalPrice)) {
+          const discountAmount = (originalPrice * discountPercentage) / 100;
+          const promotionalPrice = originalPrice - discountAmount;
+          promotionalPriceInput.value = promotionalPrice.toFixed(2);
+        } else {
+          promotionalPriceInput.value = '';
+        }
+      });
+    }
+  });
+</script>
