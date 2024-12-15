@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @related_products = Product.where(category: @product.category).where.not(id: @product.id).limit(5)
+    @related_products = Product.where(category: @product.subcategory).where.not(id: @product.id).limit(5)
   end
 
   # Acciones restringidas a usuarios administradores
