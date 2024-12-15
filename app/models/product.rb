@@ -19,6 +19,10 @@ class Product < ApplicationRecord
   validates :promo_text, length: { maximum: 200 }, allow_blank: true
   validate :promo_text_line_limit
 
+  validates :discount_percentage, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, if: :on_sale?
+  validates :promotional_price, presence: true, numericality: { greater_than: 0 }, if: :on_sale?
+  validates :promo_text, presence: true, if: :on_sale?
+
 
   def promo_text_line_limit
     if promo_text.present? && promo_text.lines.count > 5
