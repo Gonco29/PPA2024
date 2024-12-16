@@ -5,8 +5,8 @@
   <% if @cart_notice.any? %>
     <div class="modal fade" id="cartNoticeModal" tabindex="-1" aria-labelledby="cartNoticeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-warning text-dark">
+        <div class="modal-content rounded-5">
+          <div class="modal-header bg-primary text-dark" style="border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
             <h5 class="modal-title" id="cartNoticeModalLabel">¡Aviso Importante!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
@@ -18,7 +18,7 @@
             </ul>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            <button type="button" class="btn btn-primary rounded-5" data-bs-dismiss="modal">Entendido</button>
           </div>
         </div>
       </div>
