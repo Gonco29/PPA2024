@@ -11,8 +11,8 @@ class Product < ApplicationRecord
   # Validaciones opcionales
   validates :price, numericality: { greater_than: 0 }, allow_nil: false
   validates :controls_included, :rack_meters, :arms, numericality: { only_integer: true, allow_nil: true }
-  validates :installation_included, inclusion: { in: [true, false] }
-
+  validates :installation_included, inclusion: { in: [true, false], message: "debe ser Sí o No" }
+  
   # Métodos relacionados con la promoción (manteniendo los existentes)
   before_save :calculate_promotional_price, if: :on_sale?
 
@@ -39,7 +39,7 @@ class Product < ApplicationRecord
   end
 
   def current_price
-    if on_sale?
+    if on_sale? && promotional_price.present?
       promotional_price
     else
       price

@@ -1,7 +1,17 @@
 <div class="container">
   <h2>Carrito de Compras</h2>
 
-  <% if @cart.any? %>
+  <% if @cart_notice.any? %>
+    <div class="alert alert-warning">
+      <ul class="mb-0">
+        <% @cart_notice.each do |notice| %>
+          <li><%= notice %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @cart_items.any? %>
     <table class="table">
       <thead>
         <tr>
@@ -14,35 +24,29 @@
         </tr>
       </thead>
       <tbody>
-        <% @cart.each do |product_id, item_details| %>
-          <% product = Product.find_by(id: product_id) %>
-          <% if product %>
-            <tr>
-              <td><%= product.name %></td>
-              <td>
-                <% if product.photos.attached? %>
-                  <%= cl_image_tag(product.photos.first.key, height: 100, width: 100, class: "rounded-3", crop: :fill, alt: product.name) %>
-                <% end %>
-              </td>
-              <td><%= item_details["quantity"] %></td>
-              <td><%= number_to_currency(product.on_sale? ? product.promotional_price : product.price) %></td>
-              <td><%= number_to_currency(item_details["quantity"] * (product.on_sale? ? product.promotional_price : product.price)) %></td>
-              <td>
-                <%= link_to cart_item_path(product_id), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar este artículo del carrito?' }, class: 'btn text-danger' do %>
-                  <i class="fa fa-trash fa-lg"></i>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+        <% @cart_items.each do |item| %>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td>
+              <% if item.product.photos.attached? %>
+                <%= cl_image_tag(item.product.photos.first.key, height: 100, width: 100, class: "rounded-3", crop: :fill, alt: item.product.name) %>
+              <% end %>
+            </td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.price) %></td>
+            <td><%= number_to_currency(item.quantity * item.price) %></td>
+            <td>
+              <%= link_to cart_item_path(item.product.id), method: :delete, data: { confirm: '¿Eliminar este artículo?' }, class: 'btn text-danger' do %>
+                <i class="fa fa-trash fa-lg"></i>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
           <th colspan="4">Total del Carrito:</th>
-          <td><strong><%= number_to_currency(@cart.sum do |product_id, item|
-            product = Product.find_by(id: product_id)
-            item["quantity"] * (product.on_sale? ? product.promotional_price : product.price)
-          end) %></strong></td>
+          <td><strong><%= number_to_currency(@cart_items.sum { |item| item.quantity * item.price }) %></strong></td>
           <td></td>
         </tr>
       </tfoot>
