@@ -233,8 +233,7 @@
                   <p class="card-text">$<%= product.price %></p>
                 <% end %>
                 <%= button_to cart_items_path(product_id: @product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary" do %>
-                  <i class="fa-solid fa-cart-plus"></i> Agregar
-                <% end %>
+                  <i class="fa-solid fa-cart-plus"></i> Agregar                <% end %>
               </div>
             </div>
           </div>
