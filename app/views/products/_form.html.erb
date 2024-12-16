@@ -40,9 +40,16 @@
 
       <div class="col-md-4 mb-3">
         <%= form.label :installation_included, "¿Incluye instalación?", class: "form-label" %>
-        <div class="form-check">
-          <%= form.check_box :installation_included, class: "form-check-input" %>
-          <%= form.label :installation_included, "Sí", class: "form-check-label" %>
+        <div class="d-flex gap-3"> <!-- Flexbox para alinear horizontalmente con espacio -->
+          <div class="form-check">
+            <%= form.radio_button :installation_included, true, class: "form-check-input", id: "installation_included_yes" %>
+            <%= form.label :installation_included, "Sí", value: true, class: "form-check-label", for: "installation_included_yes" %>
+          </div>
+
+          <div class="form-check">
+            <%= form.radio_button :installation_included, false, class: "form-check-input", id: "installation_included_no" %>
+            <%= form.label :installation_included, "No", value: false, class: "form-check-label", for: "installation_included_no" %>
+          </div>
         </div>
       </div>
     </div>
