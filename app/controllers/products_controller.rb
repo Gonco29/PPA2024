@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to @product, notice: 'Product was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
