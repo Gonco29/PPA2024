@@ -1,17 +1,32 @@
 <div class="container">
   <h2>Carrito de Compras</h2>
 
+  <!-- Modal Bootstrap para mostrar los mensajes del carrito -->
   <% if @cart_notice.any? %>
-    <div class="alert alert-warning">
-      <ul class="mb-0">
-        <% @cart_notice.each do |notice| %>
-          <li><%= notice %></li>
-        <% end %>
-      </ul>
+    <div class="modal fade" id="cartNoticeModal" tabindex="-1" aria-labelledby="cartNoticeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="cartNoticeModalLabel">¡Aviso Importante!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="mb-0">
+              <% @cart_notice.each do |notice| %>
+                <li><%= notice %></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 
   <% if @cart_items.any? %>
+    <!-- Tabla de carrito -->
     <table class="table">
       <thead>
         <tr>
@@ -51,6 +66,7 @@
         </tr>
       </tfoot>
     </table>
+
     <%= link_to 'Realizar Pedido', new_order_path, class: 'btn btn-custom btn-primary' %>
   <% else %>
     <p>No hay productos en tu carrito.</p>
@@ -58,3 +74,21 @@
 
   <%= link_to 'Volver al catálogo', products_path, class: 'btn btn-primary' %>
 </div>
+
+<!-- Script para mostrar el modal automáticamente si hay mensajes -->
+<% if @cart_notice.any? %>
+  <script>
+    document.addEventListener("turbo:load", function () {
+      var cartNoticeModal = new bootstrap.Modal(document.getElementById('cartNoticeModal'));
+      cartNoticeModal.show();
+    });
+
+    // Fallback si no usas Turbo (para compatibilidad)
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.Turbo) {
+        var cartNoticeModal = new bootstrap.Modal(document.getElementById('cartNoticeModal'));
+        cartNoticeModal.show();
+      }
+    });
+  </script>
+<% end %>

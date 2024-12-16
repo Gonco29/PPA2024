@@ -52,3 +52,30 @@
   <% end %>
   <%= link_to "Solicitar Asesoramiento Técnico", root_path(anchor: 'contacto'), class: "btn btn-primary text-white btn-custom mt-3" %>
 </div>
+
+
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="legalesModal" tabindex="-1" aria-labelledby="legalesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="legalesModalLabel">Términos y Condiciones</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "pages/legales" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script para mostrar el modal automáticamente -->
+<script>
+  document.addEventListener("turbo:load", function() {
+    var legalesModal = new bootstrap.Modal(document.getElementById('legalesModal'));
+    legalesModal.show();
+  });
+</script>
