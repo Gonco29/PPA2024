@@ -85,10 +85,10 @@
 
       <hr class="col-12 d-md-none">
       <% if @product.on_sale? %>
-        <h3 class="text-decoration-line-through text-muted mb-0 fw-bolder">Precio: <%= number_to_currency(@product.price) %></h3>
-        <h3 class="mt-0 fw-bolder"><strong>Precio en oferta:</strong> <%= number_to_currency(@product.promotional_price) %> Imp. Inc.</h3>
+        <h3 class="text-decoration-line-through text-muted mb-0">Precio: $ <%= @product.price %></h3>
+        <h3 class="mt-0 fw-bolder"><strong>Precio en oferta:</strong> $ <%= @product.promotional_price %> Imp. Inc.</h3>
       <% else %>
-        <h3><strong><%= number_to_currency(@product.price) %></strong> Imp. Inc.</h3>
+        <h3><strong>$ <%= @product.price %></strong> Imp. Inc.</h3>
       <% end %>
 
       <div class=" d-flex align-items-center my-5">

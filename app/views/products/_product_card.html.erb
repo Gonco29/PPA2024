@@ -28,10 +28,10 @@
 
       <div class="mt-auto">
         <% if product.on_sale? %>
-          <p class="text-decoration-line-through text-muted mb-0 text-secondary">Precio: <%= number_to_currency(product.price) %></p>
-          <p class="mt-0"><strong>Precio en oferta:</strong> <%= number_to_currency(product.promotional_price) %> Imp. Inc.</p>
+          <p class="text-decoration-line-through text-muted mb-0 text-secondary">Precio: $ <%= product.price %></p>
+          <p class="mt-0"><strong>Precio en oferta:</strong> $ <%= product.promotional_price %> Imp. Inc.</p>
         <% else %>
-        <p class="highlighted-text"><%= number_to_currency(product.price) %> Imp. Inc.</p>
+        <p class="highlighted-text">$ <%= product.price %> Imp. Inc.</p>
         <% end %>
       </div>
 

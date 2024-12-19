@@ -10,7 +10,7 @@ class CartsController < ApplicationController
 
       if product
         # Detectar cambios en el precio actual del producto
-        if product.current_price.to_f != details["price"].to_f
+        if product.current_price.to_i != details["price"].to_i
           @cart_notice << "El precio de '#{product.name}' ha cambiado. Actualizamos el precio en tu carrito."
           details["price"] = product.current_price
         end
@@ -19,7 +19,7 @@ class CartsController < ApplicationController
         @cart_items << OpenStruct.new(
           product: product,
           quantity: details["quantity"],
-          price: product.current_price
+          price: product.formatted_price
         )
       else
         # Si el producto fue eliminado, quitarlo del carrito y mostrar aviso
@@ -36,7 +36,7 @@ class CartsController < ApplicationController
     session[:cart] ||= {}
     product = Product.find(params[:product_id])
 
-    session[:cart][product.id.to_s] ||= { "quantity" => 0, "price" => product.current_price }
+    session[:cart][product.id.to_s] ||= { "quantity" => 0, "price" => product.formatted_price }
     session[:cart][product.id.to_s]["quantity"] += 1
 
     redirect_to cart_path, notice: "#{product.name} se agregó al carrito."
