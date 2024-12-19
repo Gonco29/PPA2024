@@ -48,8 +48,8 @@
               <% end %>
             </td>
             <td><%= item.quantity %></td>
-            <td><%= number_to_currency(item.price) %></td>
-            <td><%= number_to_currency(item.quantity * item.price) %></td>
+            <td>$ <%= item.price %></td>
+            <td>$ <%= item.quantity * item.price %></td>
             <td>
               <%= link_to cart_item_path(item.product.id), method: :delete, data: { confirm: '¿Eliminar este artículo?' }, class: 'btn text-danger' do %>
                 <i class="fa fa-trash fa-lg"></i>
@@ -61,7 +61,7 @@
       <tfoot>
         <tr>
           <th colspan="4">Total del Carrito:</th>
-          <td><strong><%= number_to_currency(@cart_items.sum { |item| item.quantity * item.price }) %></strong></td>
+          <td><strong>$ <%= @cart_items.sum { |item| item.quantity * item.price } %></strong></td>
           <td></td>
         </tr>
       </tfoot>

@@ -82,7 +82,7 @@
 
 .dropdown-item:hover {
   // background-color: #f8f9fa; /* Fondo suave */
-  color: #ff9800; /* Color del texto resaltado */
+  color: $principal; /* Color del texto resaltado */
 }
 
 /* Ajustes de separaciones y alineaciones */
@@ -100,5 +100,5 @@
 
 .navbar-nav .nav-link:hover {
   // background-color: #f0f0f0;
-  color: #ff9800;
+  color: $principal;
 }

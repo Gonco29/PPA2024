@@ -9,10 +9,14 @@ class Product < ApplicationRecord
   validate :at_least_one_photo
 
   # Validaciones opcionales
+
+validates :price, presence: true
+validates :promotional_price, presence: true, if: :on_sale?
+
   validates :price, numericality: { greater_than: 0 }, allow_nil: false
   validates :controls_included, :rack_meters, :arms, numericality: { only_integer: true, allow_nil: true }
   validates :installation_included, inclusion: { in: [true, false], message: "debe ser Sí o No" }
-  
+
   # Métodos relacionados con la promoción (manteniendo los existentes)
   before_save :calculate_promotional_price, if: :on_sale?
 

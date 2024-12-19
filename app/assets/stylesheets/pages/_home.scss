@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .input-line-contact:focus {
   border: none;
-  border-bottom: 2px solid #ff9800; /* Cambia la línea a azul al enfocarse */
+  border-bottom: 2px solid $principal; /* Cambia la línea a azul al enfocarse */
   outline: none; /* Mantén el contorno desactivado */
   background-color: transparent;
   outline: none; /* Elimina el contorno del navegador */
