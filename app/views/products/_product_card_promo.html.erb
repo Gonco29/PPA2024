@@ -1,6 +1,6 @@
 <div class="promo-card-container">
   <div class="promo-card">
-    <div class="card h-100 py-4 flex-row rounded-5", style="background-color: #E1E4E3 !important; ";>
+    <div class="card h-100 py-4 flex-row rounded-5" style="background-color: #E1E4E3 !important;">
       <% if product.photos.present? %>
         <div class="position-relative ms-5 d-flex justify-content-center align-items-center" style="flex: 1;">
           <%= link_to product_path(product) do %>
@@ -23,21 +23,26 @@
         </div>
       <% end %>
       <div class="card-body d-flex flex-column text-center" style="flex: 2;">
+        <% if product.on_sale? %>
+          <p class="mb-3 bg-danger mx-auto text-white px-5 py-1 rounded-pill" style="font-size: 0.90rem;">
+            DESCUENTO: <%= product.discount_percentage %> %
+          </p>
+        <% end %>
 
         <h5 class="card-title"><strong><%= link_to product.name, product %></strong></h5>
+
         <p class="card-text text-secondary mt-2 promo-card-text"><%= product.promo_text %></p>
         <div class="mt-auto">
           <% if product.on_sale? %>
-
-            <p class="text-decoration-line-through text-muted mb-0">Precio: <%= number_to_currency(product.price) %></p>
-            <p class="my-0"><strong>Precio en oferta:</strong> <%= number_to_currency(product.promotional_price) %></p>
-            <p class="mt-0"> Imp. Inc.</p>
+            <p class="text-decoration-line-through text-muted mb-0">Precio: $ <%= product.formatted_price %></p>
+            <p class="my-0"><strong>Precio en oferta:</strong> $ <%= product.formatted_promotional_price %></p>
+            <p class="mt-0">Imp. Inc.</p>
           <% else %>
-            <p><strong>Precio:</strong> <%= number_to_currency(product.price) %></p>
+            <p><strong>Precio:</strong> $ <%= product.formatted_price %></p>
           <% end %>
           <div class="d-flex justify-content-center mt-2">
-            <%= button_to cart_items_path(product_id: product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary ms-3 rounded-5",  style: "width: 175px; margin: 0 auto;" do %>
-              <i class="fa-solid fa-cart-plus"></i>
+            <%= button_to cart_items_path(product_id: product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary ms-3 rounded-5", style: "width: 175px; margin: 0 auto;" do %>
+              <i class="fa-solid fa-cart-plus pe-3"></i> Agregar
             <% end %>
           </div>
         </div>

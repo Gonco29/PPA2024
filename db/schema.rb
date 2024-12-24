@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_14_215918) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_19_154501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_14_215918) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.decimal "price"
+    t.integer "price"
     t.string "category"
     t.text "details"
     t.integer "stock"
@@ -88,7 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_14_215918) do
     t.datetime "updated_at", null: false
     t.boolean "on_sale", default: false
     t.integer "discount_percentage"
-    t.decimal "promotional_price", precision: 10, scale: 2
+    t.integer "promotional_price"
     t.string "sku"
     t.text "warranty"
     t.string "power"
