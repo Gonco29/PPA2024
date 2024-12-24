@@ -1,8 +1,7 @@
-<!-- app/views/products/_product_card.html.erb -->
 <div class="col">
-  <div class="card productcard h-100 mb-0 rounded-5", style="background-color: #E1E4E3">
+  <div class="card productcard h-100 mb-0 rounded-5" style="background-color: #E1E4E3;">
     <% if product.photos.present? %>
-      <div class="position-relative d-flex justify-content-center align-items-cente">
+      <div class="position-relative d-flex justify-content-center align-items-center">
         <%= link_to product_path(product) do %>
           <%= cl_image_tag(product.photos.first.key, class: "card-img-top p-3 rounded-50", crop: :thumb, alt: product.name) %>
         <% end %>
@@ -28,10 +27,14 @@
 
       <div class="mt-auto">
         <% if product.on_sale? %>
-          <p class="text-decoration-line-through text-muted mb-0 text-secondary">Precio: $ <%= product.price %></p>
-          <p class="mt-0"><strong>Precio en oferta:</strong> $ <%= product.promotional_price %> Imp. Inc.</p>
+          <p class="text-decoration-line-through text-muted mb-0 text-secondary">
+            Precio: $ <%= product.formatted_price %>
+          </p>
+          <p class="mt-0">
+            <strong>Precio en oferta:</strong> $ <%= product.formatted_promotional_price %> Imp. Inc.
+          </p>
         <% else %>
-        <p class="highlighted-text">$ <%= product.price %> Imp. Inc.</p>
+          <p class="highlighted-text">$ <%= product.formatted_price %> Imp. Inc.</p>
         <% end %>
       </div>
 
