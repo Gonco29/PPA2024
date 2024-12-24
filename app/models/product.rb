@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
+
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy
+
   # Relación con ActiveStorage para manejar fotos
   has_many_attached :photos
 
@@ -12,18 +15,18 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }, allow_nil: false
   validates :controls_included, :rack_meters, :arms, numericality: { only_integer: true, allow_nil: true }
   validates :installation_included, inclusion: { in: [true, false], message: "debe ser Sí o No" }
-  
-  # Métodos relacionados con la promoción (manteniendo los existentes)
-  before_save :calculate_promotional_price, if: :on_sale?
+  validates :promotional_price, presence: true, if: :on_sale?
+  validates :discount_percentage, presence: true,
+                                  numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
+                                  if: :on_sale?
 
   validates :promo_text, length: { maximum: 200 }, allow_blank: true
   validate :promo_text_line_limit
 
-  validates :discount_percentage, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, if: :on_sale?
-  validates :promotional_price, presence: true, numericality: { greater_than: 0 }, if: :on_sale?
-  validates :promo_text, presence: true, if: :on_sale?
+  # Callbacks
+  before_save :calculate_promotional_price, if: :on_sale?
 
-
+  # Métodos relacionados con la promoción
   def promo_text_line_limit
     if promo_text.present? && promo_text.lines.count > 5
       errors.add(:promo_text, "No puede tener más de 5 líneas.")
@@ -46,6 +49,15 @@ class Product < ApplicationRecord
     end
   end
 
+  # Métodos para formatear precios
+  def formatted_price
+    number_with_delimiter(price, delimiter: '.', separator: '')
+  end
+
+  def formatted_promotional_price
+    number_with_delimiter(promotional_price, delimiter: '.', separator: '')
+  end
+
   # Método para validar que haya al menos una foto
   def at_least_one_photo
     errors.add(:photos, "debe incluir al menos una foto") if photos.blank?
@@ -64,8 +76,8 @@ class Product < ApplicationRecord
   include PgSearch::Model
 
   pg_search_scope :search_by,
-    against: [:name, :details, :category, :subcategory, :installation_included, :promo_text, :product_type],
-    using: {
-      tsearch: { prefix: true }
-    }
+                  against: %i[name details category subcategory installation_included promo_text product_type],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

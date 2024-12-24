@@ -15,6 +15,7 @@
       </div>
     <% end %>
 
+    <!-- Tabla de productos -->
     <table class="table">
       <thead>
         <tr>
@@ -31,8 +32,8 @@
             <tr>
               <td><%= product.name %></td>
               <td><%= item_details["quantity"] %></td>
-              <td><%= number_to_currency(product.on_sale? ? product.promotional_price : product.price) %></td>
-              <td><%= number_to_currency(item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)) %></td>
+              <td>$ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price) %></td>
+              <td>$ <%= number_with_delimiter(item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)) %></td>
             </tr>
           <% end %>
         <% end %>
@@ -40,7 +41,7 @@
       <tfoot>
         <tr>
           <th colspan="3">Total del Carrito:</th>
-          <td><strong><%= number_to_currency(@cart.sum do |product_id, item_details|
+          <td><strong>$ <%= number_with_delimiter(@cart.sum do |product_id, item_details|
             product = Product.find_by(id: product_id)
             item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)
           end) %></strong></td>
@@ -48,17 +49,16 @@
       </tfoot>
     </table>
     <p>* Disponibles para retiro.</p>
-    <%= form.submit 'Confirmar Pedido', class: 'btn btn-primary' %>
+    <%= form.submit 'Confirmar Pedido', class: 'btn btn-primary text-white rounded-5' %>
   <% end %>
-  <%= link_to "Solicitar Asesoramiento Técnico", root_path(anchor: 'contacto'), class: "btn btn-primary text-white btn-custom mt-3" %>
+  <%= link_to "Solicitar Asesoramiento Técnico", root_path(anchor: 'contacto'), class: "btn btn-primary rounded-5 text-black btn-custom mt-3" %>
 </div>
-
 
 <!-- Modal Bootstrap -->
 <div class="modal fade" id="legalesModal" tabindex="-1" aria-labelledby="legalesModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content rounded-5">
-      <div class="modal-header bg-primary text-white"  style="border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
+      <div class="modal-header bg-primary text-white" style="border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
         <h5 class="modal-title" id="legalesModalLabel">Términos y Condiciones</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
@@ -77,5 +77,13 @@
   document.addEventListener("turbo:load", function() {
     var legalesModal = new bootstrap.Modal(document.getElementById('legalesModal'));
     legalesModal.show();
+  });
+
+  // Fallback si no se usa Turbo
+  document.addEventListener("DOMContentLoaded", function() {
+    if (!window.Turbo) {
+      var legalesModal = new bootstrap.Modal(document.getElementById('legalesModal'));
+      legalesModal.show();
+    }
   });
 </script>

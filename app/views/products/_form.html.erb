@@ -2,15 +2,15 @@
   <%= form_with(model: product, local: true, class: "needs-validation") do |form| %>
 
     <% if @product.errors.any? %>
-    <div class="alert alert-danger">
-      <h4>Errores:</h4>
-      <ul>
-        <% @product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="alert alert-danger">
+        <h4>Errores:</h4>
+        <ul>
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <!-- Título -->
     <h2 class="mb-4">Datos del Producto</h2>
@@ -22,8 +22,8 @@
         <%= form.text_field :name, class: "form-control", placeholder: "Ingrese el nombre" %>
       </div>
       <div class="col-md-6 mb-3">
-        <%= form.label :price, "Precio", class: "form-label" %>
-        <%= form.number_field :price, step: 0.01, class: "form-control", placeholder: "Ingrese el precio", id: 'product_price' %>
+        <%= form.label :price, "Precio (sin centavos)", class: "form-label" %>
+        <%= form.number_field :price, class: "form-control", placeholder: "Ingrese el precio en pesos uruguayos", id: 'product_price' %>
       </div>
     </div>
 
@@ -40,15 +40,14 @@
 
       <div class="col-md-4 mb-3">
         <%= form.label :installation_included, "¿Incluye instalación?", class: "form-label" %>
-        <div class="d-flex gap-3"> <!-- Flexbox para alinear horizontalmente con espacio -->
+        <div class="d-flex gap-3">
           <div class="form-check">
             <%= form.radio_button :installation_included, true, class: "form-check-input", id: "installation_included_yes" %>
-            <%= form.label :installation_included, "Sí", value: true, class: "form-check-label", for: "installation_included_yes" %>
+            <%= form.label :installation_included, "Sí", class: "form-check-label", for: "installation_included_yes" %>
           </div>
-
           <div class="form-check">
             <%= form.radio_button :installation_included, false, class: "form-check-input", id: "installation_included_no" %>
-            <%= form.label :installation_included, "No", value: false, class: "form-check-label", for: "installation_included_no" %>
+            <%= form.label :installation_included, "No", class: "form-check-label", for: "installation_included_no" %>
           </div>
         </div>
       </div>
@@ -93,44 +92,6 @@
         <%= form.text_area :warranty, class: "form-control", rows: 3, placeholder: "Detalles de la garantía" %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <%= form.label :power, "Potencia", class: "form-label" %>
-        <%= form.text_field :power, class: "form-control", placeholder: "Ejemplo: 1/4 HP, 3/4 HP" %>
-      </div>
-      <div class="col-md-4 mb-3">
-        <%= form.label :controls_included, "Controles incluidos", class: "form-label" %>
-        <%= form.number_field :controls_included, class: "form-control", placeholder: "Cantidad de controles" %>
-      </div>
-      <div class="col-md-4 mb-3">
-        <%= form.label :rack_meters, "Metros de cremallera", class: "form-label" %>
-        <%= form.number_field :rack_meters, class: "form-control", placeholder: "Metros de cremallera incluidos" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <%= form.label :arms, "Cantidad de brazos", class: "form-label" %>
-        <%= form.number_field :arms, class: "form-control", placeholder: "Ejemplo: 1 brazo, 2 brazos" %>
-      </div>
-      <div class="col-md-4 mb-3">
-        <%= form.label :usage_type, "Tipo de uso", class: "form-label" %>
-        <%= form.text_field :usage_type, class: "form-control", placeholder: "Ejemplo: Residencial, Industrial" %>
-      </div>
-      <div class="col-md-4 mb-3">
-        <%= form.label :gate_max_length, "Longitud máxima del portón (m)", class: "form-label" %>
-        <%= form.number_field :gate_max_length, step: 0.01, class: "form-control", placeholder: "Longitud máxima en metros" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <%= form.label :indication, "Indicaciones del producto", class: "form-label" %>
-        <%= form.text_area :indication, class: "form-control", rows: 3, placeholder: "Indicaciones específicas para este producto" %>
-      </div>
-      <div class="col-md-6 mb-3">
-        <%= form.label :product_type, "Tipo de producto", class: "form-label" %>
-        <%= form.text_field :product_type, class: "form-control", placeholder: "Ejemplo: Motor, Brazo hidráulico" %>
-      </div>
-    </div>
 
     <!-- Promociones -->
     <h3 class="mb-3">Promociones</h3>
@@ -147,16 +108,15 @@
     <div class="row mx-4">
       <div class="col-md-3 mb-3">
         <%= form.label :promo_text, "Información para la PROMO CARD", class: "form-label" %>
-        <%= form.text_area :promo_text, class: "form-control", rows: 5, maxlength: 200, placeholder: "Datos del Producto en Promoción", id: 'promo_text_info' %>
+        <%= form.text_area :promo_text, class: "form-control", rows: 5, maxlength: 200, placeholder: "Datos del Producto en Promoción" %>
       </div>
-
       <div class="col-md-3 mb-3">
         <%= form.label :discount_percentage, "Porcentaje de descuento", class: "form-label" %>
-        <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20", id: 'product_discount_percentage' %>
+        <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20" %>
       </div>
       <div class="col-md-3 mb-3">
-        <%= form.label :promotional_price, "Precio promocional", class: "form-label" %>
-        <%= form.text_field :promotional_price, class: "form-control", readonly: true, id: 'product_promotional_price' %>
+        <%= form.label :promotional_price, "Precio promocional (calculado)", class: "form-label" %>
+        <%= form.text_field :promotional_price, value: product.promotional_price, class: "form-control", readonly: true %>
       </div>
     </div>
 
@@ -166,39 +126,3 @@
     </div>
   <% end %>
 </div>
-
-
-<script>
-  document.addEventListener('turbo:load', function() {
-    const onSaleCheckbox = document.getElementById('on_sale_checkbox');
-    const discountPercentageInput = document.getElementById('product_discount_percentage');
-    const promotionalPriceInput = document.getElementById('product_promotional_price');
-    const originalPriceInput = document.getElementById('product_price');
-
-    // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
-    if (onSaleCheckbox) {
-      onSaleCheckbox.addEventListener('change', function() {
-        if (!this.checked) {
-          discountPercentageInput.value = '';
-          promotionalPriceInput.value = '';
-        }
-      });
-    }
-
-    // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
-    if (discountPercentageInput && promotionalPriceInput && originalPriceInput) {
-      discountPercentageInput.addEventListener('input', function() {
-        const discountPercentage = parseFloat(this.value);
-        const originalPrice = parseFloat(originalPriceInput.value);
-
-        if (!isNaN(discountPercentage) && !isNaN(originalPrice)) {
-          const discountAmount = (originalPrice * discountPercentage) / 100;
-          const promotionalPrice = originalPrice - discountAmount;
-          promotionalPriceInput.value = promotionalPrice.toFixed(2);
-        } else {
-          promotionalPriceInput.value = '';
-        }
-      });
-    }
-  });
-</script>
