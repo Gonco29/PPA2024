@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
       redirect_to cart_path, alert: "No puedes realizar un pedido con un carrito vacío."
     end
   end
-
   def create
     @cart = session_cart
 
@@ -27,7 +26,6 @@ class OrdersController < ApplicationController
       address: "No address provided"
     )
 
-
     @order = Order.new(order_params)
     @order.total = calculate_order_total(@cart)
     @order.user = guest_user
@@ -35,6 +33,7 @@ class OrdersController < ApplicationController
     begin
       Order.transaction do
         if @order.save
+          # Creamos los items de la orden
           @cart.each do |product_id, item_details|
             @order.order_items.create!(
               product_id: product_id,
@@ -42,10 +41,15 @@ class OrdersController < ApplicationController
               price: item_details["price"]
             )
           end
+
+          # Enviamos el correo antes de limpiar el carrito
+          OrderMailer.confirmation_email(@order).deliver_now
+
+          # Limpiamos el carrito después de enviar el correo
           session[:cart] = {}
+
           redirect_to order_path(@order), notice: 'Pedido realizado con éxito'
         else
-          # En lugar de mostrar los errores en el formulario, los pasamos a la notificación
           flash.now[:alert] = "Por favor, revisa los errores antes de continuar:\n" +
                               @order.errors.full_messages.join("\n")
           render :new, status: :unprocessable_entity
@@ -57,6 +61,7 @@ class OrdersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
 
 
   def show

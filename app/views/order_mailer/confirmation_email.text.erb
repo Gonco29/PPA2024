@@ -1,0 +1,15 @@
+ Hola <%= @order.full_name %>,
+
+Gracias por realizar tu pedido con nosotros. Aquí están los detalles:
+
+<% @order.order_items.each do |item| %>
+- Producto: <%= item.product.name %>
+  Cantidad: <%= item.quantity %>
+  Precio unitario: $<%= number_with_delimiter(item.price) %>
+<% end %>
+
+Total: $<%= number_with_delimiter(@order.total) %>
+
+Si tienes alguna pregunta, no dudes en contactarnos.
+
+Este es un correo automático. No respondas a este mensaje.
