@@ -45,14 +45,16 @@ class OrdersController < ApplicationController
           session[:cart] = {}
           redirect_to order_path(@order), notice: 'Pedido realizado con éxito'
         else
-          flash.now[:alert] = "No se pudo crear el pedido. Por favor, revisa los errores."
-          render :new and return
+          # En lugar de mostrar los errores en el formulario, los pasamos a la notificación
+          flash.now[:alert] = "Por favor, revisa los errores antes de continuar:\n" +
+                              @order.errors.full_messages.join("\n")
+          render :new, status: :unprocessable_entity
         end
       end
     rescue => e
       Rails.logger.error("Error al procesar el pedido: #{e.message}")
       flash.now[:alert] = "Hubo un problema al procesar el pedido: #{e.message}"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -64,7 +66,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:total)
+    params.require(:order).permit(:total, :full_name, :email, :phone, :rut)
   end
 
   def calculate_order_total(cart)
