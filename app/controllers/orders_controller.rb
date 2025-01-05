@@ -71,7 +71,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:total, :full_name, :email, :phone, :rut)
+    params.require(:order).permit(:total, :full_name, :email, :phone, :rut, :terms_and_conditions)
   end
 
   def calculate_order_total(cart)
