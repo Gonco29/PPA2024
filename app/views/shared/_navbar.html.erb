@@ -69,25 +69,25 @@
           </li>
 
 
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="storeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Tienda
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="storeDropdown">
-    <li><%= link_to "Todos", products_path, class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
-    <li class="dropdown dropend">
-      <a class="dropdown-item dropdown-toggle" href="#" id="automatismosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.4rem;">
-        Automatismos
-      </a>
-      <ul class="dropdown-menu px-3" aria-labelledby="automatismosDropdown" >
-        <li><%= link_to "Corredizos", products_path(query: "Corredizo"), class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
-        <li><%= link_to "Basculantes", products_path(query: "Basculante"), class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
-        <li><%= link_to "Pivotantes", products_path(query: "Pivotante"), class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="storeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tienda
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="storeDropdown">
+              <li><%= link_to "Todos", products_path, class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
+              <li class="dropdown dropend">
+                <a class="dropdown-item dropdown-toggle" href="#" id="automatismosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.4rem;">
+                  Automatismos
+                </a>
+                <ul class="dropdown-menu px-3" aria-labelledby="automatismosDropdown" >
+                  <li><%= link_to "Corredizos", products_path(query: "Corredizo"), class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
+                  <li><%= link_to "Basculantes", products_path(query: "Basculante"), class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
+                  <li><%= link_to "Pivotantes", products_path(query: "Pivotante"), class: "dropdown-item", style: "font-size: 1.4rem;" %></li>
 
-      </ul>
-    </li>
-  </ul>
-</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
 
 
 
@@ -95,7 +95,7 @@
             <%= link_to "Promociones", promotions_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Contacto", root_path(anchor: 'contacto'), class: "nav-link" %>
+            <%= link_to "Contacto", contact_path, class: "nav-link" %>
           </li>
         </ul>
       </div>

@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [ :home ]
-
   def home
     @random_products = Product.order("RANDOM()").limit(5)
     @promoted_products = Product.where(on_sale: true).limit(5)
@@ -8,13 +6,25 @@ class PagesController < ApplicationController
   end
 
   def contact
-    name = params[:name]
-    email = params[:email]
-    phone = params[:phone]
-    message = params[:message]
-    attachment = params[:attachment]
+    if request.post?
+      # Procesar el formulario
+      name = params[:name]
+      email = params[:email]
+      phone = params[:phone]
+      message = params[:message]
+      attachment = params[:attachment]
 
-    ContactMailer.contact_email(name, email, phone, message, attachment).deliver_now
-    redirect_to root_path, notice: 'Tu mensaje ha sido enviado con éxito.'
+      # Validaciones simples
+      if name.blank? || email.blank? || message.blank?
+        flash[:alert] = 'Por favor, completa todos los campos requeridos.'
+        render :contact and return
+      end
+
+      # Lógica para enviar el correo
+      ContactMailer.contact_email(name, email, phone, message, attachment).deliver_now
+      redirect_to contact_path, notice: 'Tu mensaje ha sido enviado con éxito.'
+    else
+      # Renderiza la página de contacto (GET)
+    end
   end
 end

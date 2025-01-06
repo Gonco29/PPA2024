@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   get 'legales', to: 'pages#legales'
 
 
-
+  get 'contact', to: 'pages#contact'
   post 'contact', to: 'pages#contact'
 end

@@ -1,57 +1,87 @@
 <div class="container">
-  <h2>Realizar Pedido</h2>
+  <h2 class="mt-5 text-center">Realizar Pedido</h2>
 
-  <%= form_with(model: @order, url: orders_path, local: true) do |form| %>
+  <%= form_with(model: @order, url: orders_path, local: true, id: "order-form") do |form| %>
     <%= form.hidden_field :total, value: calculate_order_total(@cart) %>
 
-    <% if @order.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@order.errors.count, "error") %> impidieron que se guarde el pedido:</h2>
-        <ul>
-          <% @order.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <div class="row mt-5">
+      <!-- Columna izquierda: Formulario de datos -->
+      <div class="col-md-6 d-flex justify-content-center">
+        <div style="width: 70%;">
+          <h4 class="mb-4">Detalles del Cliente</h4>
+          <div class="form-group mb-2">
+            <%= form.label :full_name, 'Nombre y Apellido', class: 'form-label' %>
+            <%= form.text_field :full_name, class: 'form-control input-line-contact' %>
+          </div>
+          <div class="form-group mb-2">
+            <%= form.label :email, 'Correo Electrónico', class: 'form-label' %>
+            <%= form.email_field :email, class: 'form-control input-line-contact' %>
+          </div>
+          <div class="form-group mb-2">
+            <%= form.label :phone, 'Teléfono', class: 'form-label' %>
+            <%= form.text_field :phone, class: 'form-control input-line-contact' %>
+          </div>
+          <div class="form-group mb-2">
+            <%= form.label :rut, 'RUT', class: 'form-label' %>
+            <%= form.text_field :rut, class: 'form-control input-line-contact' %>
+          </div>
 
-    <!-- Tabla de productos -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart.each do |product_id, item_details| %>
-          <% product = Product.find_by(id: product_id) %>
-          <% if product %>
-            <tr>
-              <td><%= product.name %></td>
-              <td><%= item_details["quantity"] %></td>
-              <td>$ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price) %></td>
-              <td>$ <%= number_with_delimiter(item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)) %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="3">Total del Carrito:</th>
-          <td><strong>$ <%= number_with_delimiter(@cart.sum do |product_id, item_details|
-            product = Product.find_by(id: product_id)
-            item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)
-          end) %></strong></td>
-        </tr>
-      </tfoot>
-    </table>
-    <p>* Disponibles para retiro.</p>
-    <%= form.submit 'Confirmar Pedido', class: 'btn btn-primary text-white rounded-5' %>
+          <!-- Checkbox para términos y condiciones -->
+          <div class="form-check mt-3">
+            <!-- Checkbox con validación desde el modelo -->
+            <%= form.check_box :terms_and_conditions, class: 'form-check-input', required: true %>
+
+            <!-- Etiqueta del checkbox con el enlace -->
+            <%= form.label :terms_and_conditions, class: 'form-check-label' do %>
+              Acepto los <%= link_to 'Términos y Condiciones', legales_path, target: "_blank", style: "font-size: 1.2rem;" %>
+            <% end %>
+          </div>
+
+          <!-- Botón de Confirmar Pedido -->
+          <%= form.submit 'Confirmar Pedido', class: 'btn btn-primary text-white btn-lg w-100 rounded-5 mt-4' %>
+          <%# Botón secundario adicional %>
+          <%= link_to "Solicitar Asesoramiento Técnico", contact_path, class: "btn btn-secondary rounded-5 btn-custom w-100 mt-2" %>
+        </div>
+      </div>
+
+      <!-- Columna derecha: Resumen de la compra -->
+      <div class="col-md-6">
+        <h4 class="mb-4">Resumen de la compra</h4>
+        <div class="card">
+          <div class="card-body">
+            <% @cart.each do |product_id, item_details| %>
+              <% product = Product.find_by(id: product_id) %>
+              <% if product %>
+                <div class="d-flex align-items-center mb-3">
+                  <div>
+                    <% if product.photos.attached? %>
+                      <%= cl_image_tag(product.photos.first.key, height: 75, width: 75, class: "rounded-3 me-3", crop: :fill, alt: product.name) %>
+                    <% end %>
+                  </div>
+                  <div class="flex-grow-1">
+                    <strong><%= product.name %></strong><br>
+                    <small>Cantidad: <%= item_details["quantity"] %></small><br>
+                    <small>Precio Unitario: $ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price) %></small>
+                  </div>
+                  <div class="text-end">
+                    <strong>$ <%= number_with_delimiter(item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)) %></strong>
+                  </div>
+                </div>
+                <hr>
+              <% end %>
+            <% end %>
+            <div class="d-flex justify-content-between mt-3">
+              <strong>Total del Carrito:</strong>
+              <strong>$ <%= number_with_delimiter(@cart.sum do |product_id, item_details|
+                product = Product.find_by(id: product_id)
+                item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)
+              end) %> Imp. Inc.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-  <%= link_to "Solicitar Asesoramiento Técnico", root_path(anchor: 'contacto'), class: "btn btn-primary rounded-5 text-black btn-custom mt-3" %>
 </div>
 
 <!-- Modal Bootstrap -->
@@ -63,7 +93,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
-        <%= render "pages/legales" %>
+        <%= render "pages/legales" %> <!-- Contenido actual del modal -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary text-white rounded-5" data-bs-dismiss="modal">Aceptar</button>
@@ -72,17 +102,15 @@
   </div>
 </div>
 
-<!-- Script para mostrar el modal automáticamente -->
 <script>
-  document.addEventListener("turbo:load", function() {
-    var legalesModal = new bootstrap.Modal(document.getElementById('legalesModal'));
-    legalesModal.show();
-  });
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener el modal
+    const legalesModalElement = document.getElementById("legalesModal");
 
-  // Fallback si no se usa Turbo
-  document.addEventListener("DOMContentLoaded", function() {
-    if (!window.Turbo) {
-      var legalesModal = new bootstrap.Modal(document.getElementById('legalesModal'));
+    if (legalesModalElement) {
+      const legalesModal = new bootstrap.Modal(legalesModalElement);
+
+      // Mostrar el modal en cada renderizado de la página
       legalesModal.show();
     }
   });
