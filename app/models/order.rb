@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_many :order_items, dependent: :destroy
 
-  validates :full_name, :email, :phone, :rut, presence: true
+  validates :full_name, :email, :phone, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "no es válido" }
   validates :terms_and_conditions, acceptance: true
 
