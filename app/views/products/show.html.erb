@@ -146,13 +146,13 @@
         <% if @product.controls_included.present? %>
           <tr>
             <th>Controles incluidos</th>
-            <td><%= @product.controls_included %></td>
+            <td><%= @product.controls_included %> controles</td>
           </tr>
         <% end %>
         <% if @product.rack_meters.present? %>
           <tr>
             <th>Metros de cremallera</th>
-            <td><%= @product.rack_meters %></td>
+            <td><%= @product.rack_meters %> metros</td>
           </tr>
         <% end %>
         <% if @product.usage_type.present? %>
@@ -176,7 +176,7 @@
         <% if @product.arms.present? %>
           <tr>
             <th>Brazos</th>
-            <td><%= @product.arms %></td>
+            <td><%= @product.arms %> brazos</td>
           </tr>
         <% end %>
         <% if @product.accionamiento.present? %>
