@@ -61,11 +61,16 @@
       <tfoot>
         <tr>
           <th colspan="4">Total del Carrito:</th>
-          <td><strong>$ <%= number_with_delimiter(@cart_items.sum { |item| item.quantity * item.price }, delimiter: '.', separator: '') %></strong></td>
-          <td></td>
+          <td>
+
+          </td>
+          <td><p class="mb-0">IVA $0</p>
+            <strong>$ <%= number_with_delimiter(@cart_items.sum { |item| item.quantity * item.price }, delimiter: '.', separator: '') %> Imp. Inc. </strong></td>
         </tr>
       </tfoot>
     </table>
+
+    <p>* Disponibles para retiro</p>
 
     <%= link_to 'Realizar Pedido', new_order_path, class: 'btn btn-custom btn-primary rounded-5' %>
   <% else %>

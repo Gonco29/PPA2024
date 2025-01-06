@@ -146,13 +146,13 @@
         <% if @product.controls_included.present? %>
           <tr>
             <th>Controles incluidos</th>
-            <td><%= @product.controls_included %></td>
+            <td><%= @product.controls_included %> controles</td>
           </tr>
         <% end %>
         <% if @product.rack_meters.present? %>
           <tr>
             <th>Metros de cremallera</th>
-            <td><%= @product.rack_meters %></td>
+            <td><%= @product.rack_meters %> metros</td>
           </tr>
         <% end %>
         <% if @product.usage_type.present? %>
@@ -176,7 +176,7 @@
         <% if @product.arms.present? %>
           <tr>
             <th>Brazos</th>
-            <td><%= @product.arms %></td>
+            <td><%= @product.arms %> brazos</td>
           </tr>
         <% end %>
         <% if @product.accionamiento.present? %>
@@ -224,228 +224,42 @@
   </div>
 </div>
 
-<div class="container mt-5">
+<script>
+  document.addEventListener('turbo:load', function () {
+    const decrementButton = document.getElementById('button-decrement');
+    const incrementButton = document.getElementById('button-increment');
+    const quantityInput = document.getElementById('quantity-input');
 
-  <p style="font-size: 1.25rem;">
-    <%= link_to "Tienda", products_path %> /
-    <%= link_to @product.category, products_path(category: @product.category) %> /
-    <%= link_to @product.subcategory, products_path(category: @product.category, subcategory: @product.subcategory) %>
-  </p>
+    if (decrementButton && incrementButton && quantityInput) {
+      // Decrementar cantidad
+      decrementButton.addEventListener('click', function () {
+        let currentValue = parseInt(quantityInput.value);
+        const min = parseInt(quantityInput.getAttribute('min')) || 1;
+        if (currentValue > min) {
+          quantityInput.value = currentValue - 1;
+        }
+      });
 
-  <div class="row">
-    <div class="col-12 d-md-none text-center">
-      <h1 class="product-name"><%= @product.name %></h1>
-    </div>
+      // Incrementar cantidad
+      incrementButton.addEventListener('click', function () {
+        let currentValue = parseInt(quantityInput.value);
+        const max = parseInt(quantityInput.getAttribute('max')) || Infinity;
+        if (currentValue < max) {
+          quantityInput.value = currentValue + 1;
+        }
+      });
 
-    <div class="col-12 col-md-6">
-      <!-- Imagen principal del producto -->
-      <div class="text-center">
-        <% if @product.photos.present? %>
-          <div class="main-image-container">
-            <%= cl_image_tag(@product.photos.first.key, id: "main-image", height: 600, width: 800, crop: :fill, class: "img-fluid border") %>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- Con o Sin Instalación -->
-      <% if @product.installation_included %>
-        <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 23.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
-          Instalación incluida
-        </div>
-      <% else %>
-        <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 23.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
-          Instalación no incluida
-        </div>
-      <% end %>
-
-      <!-- Miniaturas -->
-      <% if @product.photos.length > 1 %>
-        <div id="thumbnailCarousel" class="carousel slide mt-3" data-bs-ride="false">
-          <div class="carousel-inner">
-            <% @product.photos.each_slice(4).with_index do |photos_slice, index| %>
-              <div class="carousel-item <%= 'active' if index == 0 %>">
-                <div class="row">
-                  <% photos_slice.each do |photo| %>
-                    <div class="col-3">
-                      <%= link_to(cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid"), "#", onclick: "document.getElementById('main-image').src=this.querySelector('img').src; return false;") %>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <% if @product.photos.length > 4 %>
-            <a class="carousel-control-prev custom-carousel-control" href="#thumbnailCarousel" role="button" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next custom-carousel-control" href="#thumbnailCarousel" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </a>
-          <% end %>
-        </div>
-      <% end %>
-
-      <!-- Botones de navegación -->
-      <div class="d-flex justify-content-between align-items-center mt-3">
-        <div>
-          <%= link_to 'Volver a Productos', products_path, class: 'btn btn-secondary rounded-5' %>
-        </div>
-
-        <% if user_signed_in? && policy(Product).create? %>
-          <div class="d-flex gap-2">
-            <%= link_to "Editar", edit_product_path(@product), class: "btn btn-secondary" if policy(@product).update? %>
-            <%= link_to 'Eliminar', product_path(@product),
-                  data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' },
-                  class: "btn btn-danger" if policy(@product).destroy? %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- Información del producto -->
-    <div class="col-12 col-md-5 ms-5 ps-5">
-
-      <h1 class="d-none d-md-block"> Motor <strong><%= @product.name %></strong></h1>
-      <p><strong>Categoría:</strong> <%= @product.category %> - <%= @product.subcategory %></p>
-
-      <hr class="col-12 d-md-none">
-      <% if @product.on_sale? %>
-        <h3 class="text-decoration-line-through text-muted mb-0">Precio: $ <%= @product.formatted_price %></h3>
-        <h3 class="mt-0 fw-bolder"><strong>Precio en oferta:</strong> $ <%= @product.formatted_promotional_price %> Imp. Inc.</h3>
-      <% else %>
-        <h3><strong>$ <%= @product.formatted_price %></strong> Imp. Inc.</h3>
-      <% end %>
-
-      <div class=" d-flex align-items-center my-5">
-        <div class="input-group quantity-selector" style="width: auto;">
-          <button class="btn btn-outline-secondary" type="button" id="button-decrement">-</button>
-          <input type="text" class="form-control text-center" id="quantity-input" name="quantity" value="1" min="1" max="<%= @product.stock %>" readonly style="width: 60px;">
-          <button class="btn btn-outline-secondary" type="button" id="button-increment">+</button>
-        </div>
-        <%= button_to cart_items_path(product_id: @product.id), method: :post, class: "btn btn-custom btn-primary ms-3 rounded-5", data: { turbo: false } do %>
-          <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
-        <% end %>
-      </div>
-
-      <p class="my-0 text-secondary">Potencia: <%= @product.power %></p>
-      <p class="my-0 text-secondary">Controles incluidos: <%= @product.controls_included %></p>
-      <p class="my-0 text-secondary">Uso: <%= @product.usage_type %></p>
-      <p class="mt-0 mb-3 text-secondary">Garantía: <%= @product.warranty %></p>
-      <% if @product.installation_included %>
-       <p class="my-0 fw-bold"> Instalación incluida </p>
-      <% else %>
-       <p class="my-0 fw-bold"> Instalación no incluida </p>
-      <% end %>
-      <p class="mt-0 text-secondary">Disponible para retiro</p>
-
-      <% if @product.details.present? %>
-        <p><strong>Detalles:</strong> <%= @product.details %></p>
-      <% end %>
-
-      <% if @product.sku.present? %>
-        <p><strong>SKU:</strong> <%= @product.sku %></p>
-      <% end %>
-
-      <% if @product.indication.present? %>
-        <p><strong>Indicación:</strong> <%= @product.indication %></p>
-      <% end %>
-
-      <% if @product.stock.present? %>
-        <p><strong>Stock:</strong> <%= @product.stock %></p>
-      <% end %>
-    </div>
-  </div>
-
-  <!-- Especificaciones -->
-  <h3 class="fw-bold mt-5 text-center">Especificaciones:</h3>
-  <div class="d-flex justify-content-center">
-    <table class="table table-bordered mt-3 w-50">
-      <tbody>
-        <% if @product.power.present? %>
-          <tr>
-            <th>Potencia</th>
-            <td><%= @product.power %></td>
-          </tr>
-        <% end %>
-        <% if @product.controls_included.present? %>
-          <tr>
-            <th>Controles incluidos</th>
-            <td><%= @product.controls_included %></td>
-          </tr>
-        <% end %>
-        <% if @product.rack_meters.present? %>
-          <tr>
-            <th>Metros de cremallera</th>
-            <td><%= @product.rack_meters %></td>
-          </tr>
-        <% end %>
-        <% if @product.usage_type.present? %>
-          <tr>
-            <th>Tipo de uso</th>
-            <td><%= @product.usage_type %></td>
-          </tr>
-        <% end %>
-        <% if @product.gate_max_length.present? %>
-          <tr>
-            <th>Largo máximo de portón</th>
-            <td><%= "#{@product.gate_max_length} metros" %></td>
-          </tr>
-        <% end %>
-        <% if @product.warranty.present? %>
-          <tr>
-            <th>Garantía</th>
-            <td><%= @product.warranty %></td>
-          </tr>
-        <% end %>
-        <% if @product.arms.present? %>
-          <tr>
-            <th>Brazos</th>
-            <td><%= @product.arms %></td>
-          </tr>
-        <% end %>
-        <% if @product.accionamiento.present? %>
-          <tr>
-            <th>Accionamiento</th>
-            <td><%= @product.accionamiento %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="text-muted text-center">
-    <%= @product.warranty_description %>
-  </p>
-
-  <!-- Productos relacionados -->
-  <h2 class="mt-5">Productos Relacionados</h2>
-  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
-    <% @related_products.each do |related_product| %>
-      <div class="col">
-        <div class="card productcard h-100">
-          <% if related_product.photos.present? %>
-            <%= link_to product_path(related_product) do %>
-              <%= cl_image_tag(related_product.photos.first.key, class: "card-img-top p-3", height: 200, width: 180, crop: :fill, alt: related_product.name) %>
-            <% end %>
-          <% end %>
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= link_to related_product.name, related_product %></h5>
-            <div class="mt-auto">
-              <% if related_product.on_sale? %>
-                <p class="card-text text-decoration-line-through text-muted">$<%= related_product.formatted_price %></p>
-                <p class="card-text">$<%= related_product.formatted_promotional_price %></p>
-              <% else %>
-                <p class="card-text">$<%= related_product.formatted_price %></p>
-              <% end %>
-              <%= button_to cart_items_path(product_id: related_product.id, quantity: 1), method: :post, class: "btn btn-custom btn-primary" do %>
-                <i class="fa-solid fa-cart-plus"></i> Agregar
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+      // Actualizar el valor en el botón de "Agregar al Carrito"
+      const addToCartButton = document.querySelector('form[action*="cart_items"]');
+      if (addToCartButton) {
+        addToCartButton.addEventListener('submit', function (event) {
+          const quantityField = document.createElement('input');
+          quantityField.type = 'hidden';
+          quantityField.name = 'quantity';
+          quantityField.value = quantityInput.value;
+          addToCartButton.appendChild(quantityField);
+        });
+      }
+    }
+  });
+</script>
