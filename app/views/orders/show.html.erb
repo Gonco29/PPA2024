@@ -1,45 +1,97 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-6">
-      <h2 class="mb-5">Detalles del Pedido</h2>
+<div class="container my-5">
 
-      <p><strong>ID del Pedido:</strong> <%= @order.id %></p>
-      <p><strong>Total del Pedido:</strong> $ <%= number_with_delimiter(@order.total) %></p>
-      <p><strong>Fecha de Creación:</strong> <%= @order.created_at.strftime('%d de %B de %Y') %></p>
-    </div>
+<div class="d-flex justify-content-center align-items-center my-5">
+  <%= link_to root_path, class: "me-3" do %>
+    <%= image_tag("Logo-PPA.png", alt: "Logo PPA", style: "height: 80px; width: auto;") %>
+  <% end %>
 
-    <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
-      <div>
-        <h3>Método de Pago</h3>
-        <%= image_tag "QR.png", alt: "Paga con Mercado Pago", class: "img-fluid", style: "max-width: 300px;" %>
-        <p>Escanea este código para realizar tu pago con Mercado Pago.</p>
-        <!-- CAMBIAR POR QR REAL!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+  <%= link_to root_path, class: "ms-3" do %>
+    <%= image_tag("sicher-logo.png", alt: "Logo Sicher", style: "height: 80px; width: auto;") %>
+  <% end %>
+</div>
+
+  <!-- Mensaje de confirmación -->
+  <div class="text-center mb-4">
+    <h1 class="fw-bold text-primary">Gracias por confiar en PPA - Sicher</h1>
+    <p class="text-muted">La confirmación de tu compra llegará al correo electrónico que proporcionaste, una vez verificado el pago correspondiente.</p>
+  </div>
+
+  <!-- Detalles del pedido -->
+  <div class="text-center mb-5">
+    <div class="card">
+      <div class="card-body">
+        <p><strong>ID del Pedido:</strong> <%= @order.id %></p>
+        <p><strong>Total del Pedido:</strong> $ <%= number_with_delimiter(@order.total) %></p>
+        <p><strong>Fecha de Creación:</strong> <%= I18n.l(@order.created_at, format: '%d de %B de %Y', locale: :es) %></p>
       </div>
     </div>
   </div>
 
-  <h3>Productos en el Pedido:</h3>
+  <!-- Sección de columnas -->
+  <div class="row">
+    <!-- Métodos de pago -->
+<div class="col-md-6 d-flex justify-content-center">
+  <div style="width: 70%;">
+    <h3 class="mb-4 text-primary text-center">Métodos de Pago</h3>
+    <div class="mb-4 text-center">
+      <h5>Giro bancario</h5>
+      <p class="mb-0">Nro. de Cuenta: 00 155 6189 00001</p>
+      <p>Titular: xxxxxxxx</p>
+    </div>
+    <hr>
+    <div class="text-center">
+      <%= image_tag "QR.png", alt: "Paga con Mercado Pago", class: "img-fluid", style: "max-width: 200px;" %>
+      <p>Escanea este código para realizar tu pago con Mercado Pago.</p>
+      <!-- CAMBIAR POR QR REAL!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    </div>
+  </div>
+</div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Precio Unitario</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @order.order_items.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= item.quantity %></td>
-          <td>$ <%= number_with_delimiter(item.price) %></td>
-          <td>$ <%= number_with_delimiter(item.quantity * item.price) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <!-- Resumen de la compra -->
+    <div class="col-md-6">
+      <h3 class="mb-4 text-primary text-center">Resumen de la Compra</h3>
+      <div class="card">
+        <div class="card-body">
+          <% @order.order_items.each do |item| %>
+            <% product = item.product %>
+            <div class="d-flex align-items-center mb-3">
+              <!-- Foto del producto -->
+              <div>
+                <% if product.photos.attached? %>
+                  <%= cl_image_tag(product.photos.first.key, height: 75, width: 75, class: "rounded-3 me-3", crop: :fill, alt: product.name) %>
+                <% else %>
+                  <%= image_tag "default-product.png", height: 75, width: 75, class: "rounded-3 me-3", style: "object-fit: cover;" %>
+                <% end %>
+              </div>
 
-  <%= link_to 'Volver al catálogo', products_path, class: 'btn btn-primary' %>
+              <!-- Detalles del producto -->
+              <div class="flex-grow-1">
+                <strong><%= product.name %></strong><br>
+                <small>Cantidad: <%= item.quantity %></small><br>
+                <small>Precio Unitario: $ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price) %></small>
+              </div>
+
+              <!-- Subtotal -->
+              <div class="text-end">
+                <strong>$ <%= number_with_delimiter(item.quantity * (product.on_sale? ? product.promotional_price : product.price)) %></strong>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+
+          <!-- Total del pedido -->
+          <div class="d-flex justify-content-between mt-3">
+            <strong>Total del Pedido:</strong>
+            <strong>$ <%= number_with_delimiter(@order.total) %> Imp. Inc.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón para regresar al catálogo -->
+  <div class="text-center mt-5">
+    <%= link_to 'Volver al catálogo', products_path, class: 'btn btn-primary text-white btn-lg w-100 rounded-5' %>
+  </div>
+
 </div>
