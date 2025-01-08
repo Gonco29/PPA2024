@@ -103,15 +103,23 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Obtener el modal
-    const legalesModalElement = document.getElementById("legalesModal");
+document.addEventListener("turbo:load", function () {
+  // Obtener el modal
+  const legalesModalElement = document.getElementById("legalesModal");
 
-    if (legalesModalElement) {
-      const legalesModal = new bootstrap.Modal(legalesModalElement);
+  if (legalesModalElement) {
+    const legalesModal = new bootstrap.Modal(legalesModalElement);
 
-      // Mostrar el modal en cada renderizado de la página
-      legalesModal.show();
-    }
-  });
+    // Asegurarte de que no haya superposición previa
+    document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
+
+    // Mostrar el modal
+    legalesModal.show();
+
+    // Asegurarte de que la capa de fondo se elimine al cerrar
+    legalesModalElement.addEventListener("hidden.bs.modal", function () {
+      document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
+    });
+  }
+});
 </script>
