@@ -49,8 +49,6 @@ products_data = [
   { name: "Industrial Doble", category: "Automatismos", subcategory: "Pivotante Industrial", price: 40000, installation_included: false, details: "", power: "1 HP", controls_included: 2, arms: 2, usage_type: "Industrial", gate_max_length: 7, warranty: "1 Año*" },
   { name: "Hub", category: "Automatismos", subcategory: "Corredizos", price: 4400, installation_included: false, details: "", power: "1/4 HP", controls_included: 2, rack_meters: 3, usage_type: "Residencial", gate_max_length: 3, warranty: "1 Año*" }
 ]
-products_data.each do |product_data|
-  puts "Cargando producto: #{product_data[:name]}"
 
 products_data.each do |product_data|
   puts "Cargando producto: #{product_data[:name]}"
