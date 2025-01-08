@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   validates :full_name, :email, :phone, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "no es válido" }
   validates :terms_and_conditions, acceptance: true
-  validates :rut, format: { with: /\A\d{12}\z/, message: "debe tener exactamente 12 dígitos" }, allow_nil: true
+  validates :rut, length: { is: 12 }, allow_blank: true
 
   # validates :phone, numericality: { only_integer: true, message: "debe contener solo números" }, length: { in: 8..15 }
   # validate :valid_rut_format
