@@ -1,104 +1,123 @@
-/* application.scss (o tu archivo de estilos) */
-
+/* Navbar superior siempre visible */
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-/* Ajuste específico para el logo en la barra de navegación */
-.navbar-lewagon .navbar-brand img {
-  max-height: 50px; /* Altura máxima del logo */
-  max-width: 150px; /* Ancho máximo del logo */
-  // margin-left: 20px;
-}
-
-/* Estilo adicional para el logo */
 .navbar-logo {
   max-height: 50px;
   max-width: 150px;
 }
 
-.nav-link:hover {
-  color: $principal; /* Color del texto en hover */
-  // background-color: #007bff; /* Color de fondo en hover */
+/* Siempre visible en pantallas grandes */
+.cat1 {
+  display: flex !important;
 }
 
-.nav-link-toggler {
+/* Barra de búsqueda visible en pantallas grandes */
+@media (min-width: 992px) {
+  .cat2 {
+    display: flex !important;
+  }
+}
+
+/* Navbar inferior visible en pantallas medianas y grandes */
+@media (min-width: 768px) {
+  .cat4 {
+    display: flex !important;
+  }
+  .cat4-dropdown {
+    display: none !important; /* Ocultar dropdown en pantallas medianas y grandes */
+  }
+}
+
+/* Navbar inferior oculto en pantallas pequeñas */
+@media (max-width: 767px) {
+  .cat4 {
+    display: none !important; /* Ocultar navbar inferior */
+  }
+  .cat4-dropdown {
+    display: block !important; /* Mostrar dropdown en pantallas pequeñas */
+  }
+}
+
+/* Asegurar que los íconos estén siempre alineados horizontalmente */
+.cat3 ul {
+  display: flex;
+  gap: 10px;
+}
+
+/* Ajustar el ancho del dropdown */
+.cat4-dropdown .dropdown-menu {
+  max-width: 250px; /* Ancho más pequeño del dropdown */
+  width: auto; /* Ajustar según contenido */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+}
+
+/* Estilo general del menú inferior y submenús en pantallas grandes */
+.cat4 ul.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo de los dropdowns */
+.cat4 .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none; /* Ocultar por defecto */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1050;
+}
+
+/* Submenú dentro del submenú */
+.cat4 .dropdown-menu .dropdown-menu {
+  top: 0;
+  left: 100%; /* Aparece a la derecha del submenú principal */
+  margin-left: 0.1rem;
+}
+
+/* Mostrar submenús al hover */
+.cat4 .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.cat4 .dropdown-menu .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Estilo de los ítems del menú */
+.cat4 .nav-link {
+  padding: 10px 15px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.cat4 .nav-link:hover {
   color: $principal;
 }
 
-.nav-link-toggler:hover {
-  color: white;
-  background-color: $principal;
+/* Estilo de los ítems dentro del dropdown */
+.cat4 .dropdown-menu .dropdown-item {
+  padding: 10px 15px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-
-.nav-item .badge {
-  font-size: 0.75rem;
-  padding: 0.25em 0.5em;
-}
-
-// --
-/* Estilos base para los dropdowns */
-.dropdown-menu {
-  border-radius: 8px; /* Bordes redondeados */
-  background-color: #ffffff; /* Fondo blanco */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  border: 1px solid #e3e3e3; /* Borde ligero */
-  z-index: 1050; /* Asegura que esté por encima */
-  padding: 0.5rem 0; /* Espaciado interno */
-}
-
-/* Submenú */
-.dropdown-menu .dropdown-menu {
-  position: absolute; /* Posición absoluta */
-  left: 100%; /* Posiciona el submenú a la derecha del menú principal */
-  top: 0; /* Alinea el submenú verticalmente */
-  z-index: 1050; /* Asegura que esté por encima */
-  display: none; /* Ocúltalo por defecto */
-  border-radius: 8px; /* Bordes redondeados para submenús */
-  background-color: #ffffff; /* Fondo blanco */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para submenús */
-}
-
-/* Mostrar submenú al hover */
-.dropdown-menu .dropdown-item:hover + .dropdown-menu,
-.dropdown-menu .dropdown-menu:hover {
-  display: block; /* Muestra el submenú */
-}
-
-/* Hover sobre los ítems del menú */
-.dropdown-item {
-  padding: 10px 15px; /* Espaciado cómodo */
-  font-size: 1rem; /* Tamaño del texto */
-  color: #333; /* Color del texto */
-  border-radius: 6px; /* Bordes redondeados al hover */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Animación suave */
-}
-
-.dropdown-item:hover {
-  // background-color: #f8f9fa; /* Fondo suave */
-  color: $principal; /* Color del texto resaltado */
-}
-
-/* Ajustes de separaciones y alineaciones */
-.dropdown-menu .dropdown-menu {
-  margin-top: 0;
-  margin-left: 1px; /* Ajuste para evitar separación excesiva */
-}
-
-/* Mejora en los enlaces de la navbar */
-.navbar-nav .nav-link {
-  padding: 10px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-  // background-color: #f0f0f0;
+.cat4 .dropdown-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
   color: $principal;
+}
+
+/* Ajuste en pantallas muy pequeñas para íconos del navbar */
+@media (max-width: 575px) {
+  .cat3 ul {
+    flex-direction: row; /* Mantener los íconos en línea horizontal */
+    justify-content: space-between;
+    gap: 5px;
+  }
 }
