@@ -80,3 +80,17 @@ end
 ls -l app/assets/images/
 puts "Productos cargados correctamente."
 puts "Se han creado #{Product.count} productos."
+
+puts "Creando usuario administrador..."
+
+User.create!(
+  email: "admin1@example.com",
+  password: "password123",
+  password_confirmation: "password123",
+  first_name: "Admin",
+  last_name: "One",
+  address: "Dirección de administrador",
+  admin: true
+)
+
+puts "Usuario administrador creado con éxito."
