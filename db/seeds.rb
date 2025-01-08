@@ -77,7 +77,7 @@ products_data.each do |product_data|
   product.save!
   puts "Producto cargado: #{product.name}"
 end
-ls -l app/assets/images/
+
 puts "Productos cargados correctamente."
 puts "Se han creado #{Product.count} productos."
 
