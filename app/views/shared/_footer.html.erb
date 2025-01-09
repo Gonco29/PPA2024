@@ -28,16 +28,30 @@
   </div>
 
 <div class="subfooter w-100">
-  <div class="d-flex justify-content-end align-items-center my-2 p-3">
-    <p class="mb-0 me-5" style="font-size: 1.4rem;">Síguenos en:</p>
-    <%= link_to 'https://www.instagram.com/ppauruguay/?hl=es', target: '_blank', class: 'text-black me-2' do %>
-      <i class="fa-brands fa-instagram fa-2x"></i>
-    <% end %>
-    <%= link_to 'https://www.facebook.com/profile.php?id=100064102380858', target: '_blank', class: 'text-black me-2' do %>
-      <i class="fa-brands fa-facebook-f fa-2x"></i>
-    <% end %>
-    <%= link_to 'https://www.tiktok.com/@ppa.uruguay.sicher?_t=ZM-8sBYDBXWJuv&_r=1', target: '_blank', class: 'text-black me-2' do %>
-      <i class="fa-brands fa-tiktok fa-2x"></i>
-    <% end %>
+  <div class="d-flex justify-content-between align-items-center my-2 p-3">
+    <!-- Usuario logueado -->
+    <div class="ms-3">
+      <% if user_signed_in? %>
+        <p class="mb-0" style="font-size: 1rem;">
+          Sesión iniciada: <%= current_user.email %>
+          <br>
+          <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "btn btn-link text-dark p-0" %>
+        </p>
+      <% end %>
+    </div>
+
+    <!-- Enlaces sociales -->
+    <div class="d-flex justify-content-end align-items-center flex-grow-1">
+      <p class="mb-0 me-5" style="font-size: 1.4rem;">Síguenos en:</p>
+      <%= link_to 'https://www.instagram.com/ppauruguay/?hl=es', target: '_blank', class: 'text-black me-2' do %>
+        <i class="fa-brands fa-instagram fa-2x"></i>
+      <% end %>
+      <%= link_to 'https://www.facebook.com/profile.php?id=100064102380858', target: '_blank', class: 'text-black me-2' do %>
+        <i class="fa-brands fa-facebook-f fa-2x"></i>
+      <% end %>
+      <%= link_to 'https://www.tiktok.com/@ppa.uruguay.sicher?_t=ZM-8sBYDBXWJuv&_r=1', target: '_blank', class: 'text-black me-2' do %>
+        <i class="fa-brands fa-tiktok fa-2x"></i>
+      <% end %>
+    </div>
   </div>
 </div>

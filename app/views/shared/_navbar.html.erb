@@ -30,15 +30,16 @@
       <div class="cat3 d-flex">
         <ul class="navbar-nav ms-auto d-flex align-items-center" style="font-size: 1.25rem;">
           <li class="nav-item">
-            <%= link_to "https://wa.me/+542615041558", class: "nav-link" do %>
+            <%= link_to "https://wa.me/+59895054339", class: "nav-link", target: "_blank", rel: "noopener" do %>
               <i class="fab fa-whatsapp fa-lg"></i>
             <% end %>
+          </li>
           </li>
           <li class="nav-item position-relative">
             <%= link_to cart_path, class: "nav-link position-relative" do %>
               <i class="fas fa-shopping-cart fa-lg"></i>
               <% if @cart_items_count > 0 %>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
                   <%= @cart_items_count %>
                 </span>
               <% end %>

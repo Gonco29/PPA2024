@@ -61,10 +61,10 @@
                   <div class="flex-grow-1">
                     <strong><%= product.name %></strong><br>
                     <small>Cantidad: <%= item_details["quantity"] %></small><br>
-                    <small>Precio Unitario: $ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price) %></small>
+                    <small>Precio Unitario: $ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price, delimiter: '.', separator: '') %></small>
                   </div>
                   <div class="text-end">
-                    <strong>$ <%= number_with_delimiter(item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)) %></strong>
+                    <strong>$ <%= number_with_delimiter(item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price), delimiter: '.', separator: '') %></strong>
                   </div>
                 </div>
                 <hr>
@@ -75,7 +75,7 @@
               <strong>$ <%= number_with_delimiter(@cart.sum do |product_id, item_details|
                 product = Product.find_by(id: product_id)
                 item_details["quantity"].to_i * (product.on_sale? ? product.promotional_price : product.price)
-              end) %> Imp. Inc.</strong>
+              end, delimiter: '.', separator: '') %> Imp. Inc.</strong>
             </div>
           </div>
         </div>

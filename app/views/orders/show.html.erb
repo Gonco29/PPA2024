@@ -20,8 +20,8 @@
   <div class="text-center mb-5">
     <div class="card">
       <div class="card-body">
-        <p><strong>ID del Pedido:</strong> <%= @order.id %></p>
-        <p><strong>Total del Pedido:</strong> $ <%= number_with_delimiter(@order.total) %></p>
+        <p><strong>ID del Pedido:</strong> #<%= @order.id %></p>
+        <p><strong>Total del Pedido:</strong> $ <%= number_with_delimiter(@order.total.to_i, delimiter: '.') %> Imp. Inc.</p>
         <p><strong>Fecha de Creación:</strong> <%= I18n.l(@order.created_at, format: '%d de %B de %Y', locale: :es) %></p>
       </div>
     </div>
@@ -35,14 +35,15 @@
     <h3 class="mb-4 text-primary text-center">Métodos de Pago</h3>
     <div class="mb-4 text-center">
       <h5>Giro bancario</h5>
-      <p class="mb-0">Nro. de Cuenta: 00 155 6189 00001</p>
-      <p>Titular: xxxxxxxx</p>
+      <p class="fw-bold mb-0">BROU</p>
+      <p class="mb-0">CC Moneda Nacional</p>
+      <p class="mb-0">001556189-00001</p>
+      <p>PPA Uruguay SRL</p>
     </div>
     <hr>
     <div class="text-center">
-      <%= image_tag "QR.png", alt: "Paga con Mercado Pago", class: "img-fluid", style: "max-width: 200px;" %>
+      <%= image_tag "QR PPA.jpg", alt: "Paga con Mercado Pago", class: "img-fluid", style: "max-width: 200px;" %>
       <p>Escanea este código para realizar tu pago con Mercado Pago.</p>
-      <!-- CAMBIAR POR QR REAL!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     </div>
   </div>
 </div>
@@ -68,12 +69,12 @@
               <div class="flex-grow-1">
                 <strong><%= product.name %></strong><br>
                 <small>Cantidad: <%= item.quantity %></small><br>
-                <small>Precio Unitario: $ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price) %></small>
+                <small>Precio Unitario: $ <%= number_with_delimiter(product.on_sale? ? product.promotional_price : product.price, delimiter: '.', separator: '') %></small>
               </div>
 
               <!-- Subtotal -->
               <div class="text-end">
-                <strong>$ <%= number_with_delimiter(item.quantity * (product.on_sale? ? product.promotional_price : product.price)) %></strong>
+                <strong>$ <%= number_with_delimiter((item.quantity * (product.on_sale? ? product.promotional_price : product.price)).to_i, delimiter: '.') %></strong>
               </div>
             </div>
             <hr>
@@ -82,7 +83,7 @@
           <!-- Total del pedido -->
           <div class="d-flex justify-content-between mt-3">
             <strong>Total del Pedido:</strong>
-            <strong>$ <%= number_with_delimiter(@order.total) %> Imp. Inc.</strong>
+            <strong>$ <%= number_with_delimiter(@order.total.to_i, delimiter: '.') %> Imp. Inc.</strong>
           </div>
         </div>
       </div>
