@@ -59,11 +59,24 @@
 </div>
 
 <!-- VIDEO DE PRESENTACIÓN -->
-<div class="py-5", style="background-color: #E1E4E3">
+<div class="py-5" style="background-color: #E1E4E3">
   <div class="row mx-5">
     <div class="col-md-6 mx-auto">
+      <% # Array de URLs con los dos nuevos videos %>
+      <% videos = [
+        "https://www.youtube.com/embed/0OAy8lpn2cc",
+        "https://www.youtube.com/embed/xulgz6eNjfE"
+      ] %>
+
+      <% # Selecciona un video aleatorio %>
+      <% selected_video = videos.sample %>
+
       <div class="embed-responsive embed-responsive-16by9 m-5">
-        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/mvo8Z5v9Y3Q?si=o3Nm_4kvfV_lrQPS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="embed-responsive-item" width="560" height="315" src="<%= selected_video %>"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
       </div>
     </div>
     <div class="col-md-6 mx-auto my-auto text-center">
