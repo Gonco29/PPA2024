@@ -1,8 +1,36 @@
+/* Estilo del footer */
+
 .linkfooter {
   color: white;
   text-decoration: none;
 }
 
+/* Estilo del subfooter */
 .subfooter {
   background-color: $principalhover;
+}
+
+/* Responsive Design */
+
+/* Pantallas pequeñas (hasta 767px) */
+@media (max-width: 767px) {
+  /* Footer */
+  .bg-primary .row {
+    text-align: center;
+  }
+
+  .bg-primary .col-md-5,
+  .bg-primary .col-md-3 {
+    margin-bottom: 20px;
+  }
+
+  /* Subfooter */
+  .subfooter {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .subfooter .ms-3 {
+    margin-bottom: 15px;
+  }
 }
