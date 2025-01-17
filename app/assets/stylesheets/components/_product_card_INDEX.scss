@@ -1,4 +1,5 @@
 
+
 .card:hover {
   border-color: $principal;
 }
@@ -65,4 +66,30 @@
   font-size: 1.2rem; /* Aumenta ligeramente el tamaño de la fuente */
   color: #333; /* Cambia el color a un gris más oscuro */
   font-weight: 800;
+}
+
+
+
+/* Personalizado: pasa de 4 a 3 tarjetas antes del breakpoint lg */
+@media (max-width: 1199px) {
+  .row-cols-lg-4 > * {
+    flex: 0 0 33.3333%; /* 3 columnas */
+    max-width: 33.3333%;
+  }
+}
+
+/* Mantén el comportamiento predeterminado de Bootstrap para 3 a 2 tarjetas */
+@media (max-width: 992px) {
+  .row-cols-md-3 > * {
+    flex: 0 0 50%; /* 2 columnas */
+    max-width: 50%;
+  }
+}
+
+/* Ya está configurado para 1 tarjeta en pantallas más pequeñas */
+@media (max-width: 576px) {
+  .row-cols-1 > * {
+    flex: 0 0 100%; /* 1 columna */
+    max-width: 100%;
+  }
 }
