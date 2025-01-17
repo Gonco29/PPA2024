@@ -118,12 +118,12 @@
 
 /* Imagen */
 .promo-card-image {
-  max-width: 80%; /* Ajusta el tamaño máximo */
-  height: auto;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto; /* Centra la imagen dentro del contenedor */
-  object-fit: cover; /* Asegura que la imagen mantenga proporciones */
+  width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  height: auto; /* Mantiene las proporciones */
+  object-fit: cover; /* Recorta la imagen si es necesario para llenar el espacio */
+  border-radius: 50%; /* Mantén el borde redondeado */
+  max-width: 300px; /* Limita el ancho máximo si es necesario */
+  max-height: 300px; /* Limita el alto máximo */
 }
 
 /* Badge de instalación */
