@@ -1,24 +1,19 @@
 <!-- app/views/home.html.erb -->
-<%# <div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel"> %>
 <div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel" data-bs-interval="3000">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="<%= asset_path('Banner1.png') %>" class="d-block w-100 banner-img" alt="Slide 1">
     </div>
     <div class="carousel-item">
-      <img src="<%= asset_path('Banner2.png') %>" class="d-block w-100 banner-img" alt="Slide 2">
+      <img src="<%= asset_path('Banner3.png') %>" class="d-block w-100 banner-img" alt="Slide 2">
     </div>
     <div class="carousel-item">
-      <img src="<%= asset_path('Banner3.png') %>" class="d-block w-100 banner-img" alt="Slide 3">
-    </div>
-    <div class="carousel-item">
-      <img src="<%= asset_path('Banner4.png') %>" class="d-block w-100 banner-img" alt="Slide 4">
+      <img src="<%= asset_path('Banner4.png') %>" class="d-block w-100 banner-img" alt="Slide 3">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -35,7 +30,7 @@
 
   <% if @promoted_products.present? %>
     <div class="container mt-5 text-center">
-      <h2 class="mt-5 mb-4">Tenemos las mejores promociones del Mercado</h2>
+      <h2 class="mt-5 mb-4 text-primary">Tenemos las mejores promociones del Mercado</h2>
 
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
           <% [@promoted_products.last].each do |product| %>
@@ -81,8 +76,8 @@
 
       <!-- Columna de texto -->
       <div class="col-lg-6 col-md-6 col-12 text-center">
-        <h2 class="mb-3">Garantía de Seguridad</h2>
-        <p class="mt-3 px-3 px-md-5 fs-4 fw-light text-gray">
+        <h2 class="mb-3 text-primary">Garantía de Seguridad</h2>
+        <p class="mt-3 px-3 px-md-5 fs-4 fw-bold text-gray">
           Motores con calidad SICHER. Vendemos únicamente ventilados Premium.
           Venta con y sin instalación.
         </p>
@@ -96,34 +91,4 @@
 
 <!-- MAPA -->
 
-<div class="col-12 mx-2 mt-5 mb-1">
-  <div id="map"></div>
-</div>
-
-<script async
-  src="https://maps.googleapis.com/maps/api/js?key=<%= @google_api_key %>&callback=initMap">
-  // !!!!!!!!!!REEMPLAZAR CAMBIAR POR API KEY DEL DUEÑO!!!!!!!!!!!!!
-</script>
-
-<script>
-  function initMap() {
-    var location = {lat: -34.8978457839486, lng: -56.069537488069656};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 16,
-      center: location
-    });
-    var marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-  }
-</script>
-
-<style>
-  #map {
-    height: 400px;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-</style>
+<%= render "shared/map" %>

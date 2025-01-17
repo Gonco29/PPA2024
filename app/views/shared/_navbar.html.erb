@@ -28,16 +28,16 @@
 
       <!-- Íconos de la derecha -->
       <div class="cat3 d-flex">
-        <ul class="navbar-nav ms-auto d-flex align-items-center" style="font-size: 1.25rem;">
+        <ul class="navbar-nav ms-auto d-flex align-items-center" style="font-size: 1.6rem;">
           <li class="nav-item">
             <%= link_to "https://wa.me/+59895054339", class: "nav-link", target: "_blank", rel: "noopener" do %>
-              <i class="fab fa-whatsapp fa-lg"></i>
+              <i class="fab fa-whatsapp fa-lg text-primary"></i>
             <% end %>
           </li>
           </li>
           <li class="nav-item position-relative">
             <%= link_to cart_path, class: "nav-link position-relative" do %>
-              <i class="fas fa-shopping-cart fa-lg"></i>
+              <i class="fas fa-shopping-cart fa-lg text-primary"></i>
               <% if @cart_items_count > 0 %>
                 <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
                   <%= @cart_items_count %>
@@ -47,8 +47,8 @@
           </li>
           <!-- Botón de menú dropdown para móviles -->
           <li class="nav-item d-lg-none">
-            <button class="btn btn-primary nav-link nav-link-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-              <i class="fa-solid fa-bars fa-lg"></i>
+            <button class="btn nav-link nav-link-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <i class="fa-solid fa-bars fa-lg text-primary"></i>
             </button>
           </li>
         </ul>
@@ -63,31 +63,31 @@
       <div class="cat4 d-none d-lg-flex w-100 justify-content-center">
         <ul class="navbar-nav justify-content-between w-50" style="font-size: 1.4rem;">
           <li class="nav-item">
-            <%= link_to "Nosotros", about_path, class: "nav-link" %>
+            <%= link_to "Nosotros", about_path, class: "nav-link text-black fw-bold" %>
           </li>
           <li class="nav-item dropdown position-relative">
-            <a class="nav-link dropdown-toggle" href="#" id="storeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <a class="nav-link dropdown-toggle text-black fw-bold" href="#" id="storeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
               Tienda
             </a>
             <ul class="dropdown-menu" aria-labelledby="storeDropdown">
-              <li><%= link_to "Todos", products_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Todos", products_path, class: "dropdown-item text-white" %></li>
               <li class="dropdown dropend position-relative">
-                <a class="dropdown-item dropdown-toggle" href="#" id="automatismosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                <a class="dropdown-item dropdown-toggle text-white" href="#" id="automatismosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                   Automatismos
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Corredizos", products_path(query: "Corredizo"), class: "dropdown-item" %></li>
-                  <li><%= link_to "Basculantes", products_path(query: "Basculante"), class: "dropdown-item" %></li>
-                  <li><%= link_to "Pivotantes", products_path(query: "Pivotante"), class: "dropdown-item" %></li>
+                  <li><%= link_to "Corredizos", products_path(query: "Corredizo"), class: "dropdown-item text-white" %></li>
+                  <li><%= link_to "Basculantes", products_path(query: "Basculante"), class: "dropdown-item text-white" %></li>
+                  <li><%= link_to "Pivotantes", products_path(query: "Pivotante"), class: "dropdown-item text-white" %></li>
                 </ul>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <%= link_to "Promociones", promotions_path, class: "nav-link" %>
+            <%= link_to "Promociones", promotions_path, class: "nav-link text-black fw-bold" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Contacto", contact_path, class: "nav-link" %>
+            <%= link_to "Contacto", contact_path, class: "nav-link text-black fw-bold" %>
           </li>
         </ul>
       </div>

@@ -27,8 +27,8 @@
           Instalación incluida
         </div>
       <% else %>
-        <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 23.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
-          Instalación no incluida
+        <div class="position-absolute text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 23.5%; right: 50%; max-width: 120px; font-size: 1.2rem; background-color: #fbab10;">
+          Sin instalación
         </div>
       <% end %>
 
@@ -110,7 +110,7 @@
       <% if @product.installation_included %>
        <p class="my-0 fw-bold"> Instalación incluida </p>
       <% else %>
-       <p class="my-0 fw-bold"> Instalación no incluida </p>
+       <p class="my-0 fw-bold"> Sin instalación </p>
       <% end %>
       <p class="mt-0 text-secondary">Disponible para retiro</p>
 

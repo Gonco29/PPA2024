@@ -51,7 +51,7 @@
 .cat4-dropdown .dropdown-menu {
   max-width: 250px; /* Ancho más pequeño del dropdown */
   width: auto; /* Ajustar según contenido */
-  background-color: #fff;
+  background-color: rgba($principal, 0.9); /* Mantén el color principal con 80% de transparencia */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px 15px;
@@ -70,7 +70,7 @@
   top: 100%;
   left: 0;
   display: none; /* Ocultar por defecto */
-  background-color: #fff;
+  background-color: rgba($principal, 0.9); /* Mantén el color principal con 80% de transparencia */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1050;
@@ -99,7 +99,7 @@
 }
 
 .cat4 .nav-link:hover {
-  color: $principal;
+  color: $principal; /* Mantén el color original */
 }
 
 /* Estilo de los ítems dentro del dropdown */
@@ -109,8 +109,10 @@
 }
 
 .cat4 .dropdown-menu .dropdown-item:hover {
-  background-color: #f8f9fa;
-  color: $principal;
+  // background-color: $principalhover; /* Mantén el color original */
+  background-color: rgba($principalhover, 0.8); /* Mantén el color principal con 80% de transparencia */
+
+  color: $principal; /* Mantén el color original */
 }
 
 /* Ajuste en pantallas muy pequeñas para íconos del navbar */
