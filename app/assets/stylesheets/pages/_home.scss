@@ -56,3 +56,15 @@ h1, h2, h3, h4, h5, h6 {
     height: 30vh; /* Reduce la altura a 30% en dispositivos pequeños */
   }
 }
+
+
+// VIDEOS DE HOME
+
+.video-container {
+  max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+  margin: 0 auto; /* Centra el video si hay espacio extra */
+}
+
+.text-gray {
+  color: #6c757d; /* Ajusta el color del texto gris si es necesario */
+}
