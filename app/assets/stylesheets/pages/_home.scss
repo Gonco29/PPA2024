@@ -37,3 +37,22 @@ h1, h2, h3, h4, h5, h6 {
   outline: none; /* Elimina el contorno del navegador */
   box-shadow: none;
 }
+
+
+// BANNER
+.carousel-inner {
+  height: auto; /* Ocupa el 50% de la altura de la ventana visible */
+}
+
+.banner-img {
+  object-fit: contain; /* Llena el contenedor sin deformarse */
+  width: 100%; /* Ocupa el 100% del ancho */
+  height: 100%; /* Se adapta al 100% de la altura del contenedor */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .carousel-inner {
+    height: 30vh; /* Reduce la altura a 30% en dispositivos pequeños */
+  }
+}
