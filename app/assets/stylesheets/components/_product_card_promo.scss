@@ -85,8 +85,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  // margin: 10px auto;
-  padding: 20px 0;
+  // height: 100%;
+  // margin: 20px;
+  // padding: 30px;
 }
 
 /* Configuración proporcional de la card */
@@ -100,7 +101,7 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Contenedor de la imagen */
@@ -114,6 +115,7 @@
   text-align: center;     /* Asegura que el contenido interno esté centrado */
   padding: 0; /* Elimina cualquier padding que pueda afectar el centrado */
   margin: 0 auto; /* Centra el contenedor */
+  // margin-top: 25px;
 }
 
 /* Imagen */
@@ -124,6 +126,7 @@
   border-radius: 50%; /* Mantén el borde redondeado */
   max-width: 300px; /* Limita el ancho máximo si es necesario */
   max-height: 300px; /* Limita el alto máximo */
+  // margin-top: 25px;
 }
 
 /* Badge de instalación */
