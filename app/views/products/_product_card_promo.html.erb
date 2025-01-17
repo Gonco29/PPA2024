@@ -59,7 +59,14 @@
       <% if product.photos.present? %>
         <div class="promo-card-image-container mt-5">
           <%= link_to product_path(product) do %>
-            <%= cl_image_tag(product.photos.first.key, class: "promo-card-image", alt: product.name) %>
+            <%= cl_image_tag(
+            product.photos.first.key,
+            class: "promo-card-image",
+            alt: product.name,
+            width: 200,
+            height: 200,
+            crop: :fill
+          ) %>
           <% end %>
           <% if product.on_sale? %>
             <div class="fire-icon">
