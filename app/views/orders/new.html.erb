@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mt-5 text-center">Realizar Pedido</h2>
+  <h2 class="text-center">Realizar Pedido</h2>
 
   <%= form_with(model: @order, url: orders_path, local: true, id: "order-form") do |form| %>
     <%= form.hidden_field :total, value: calculate_order_total(@cart) %>
