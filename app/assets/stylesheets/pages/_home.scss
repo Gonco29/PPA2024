@@ -77,3 +77,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: auto;
   margin-right: auto;
 }
+
+
+// SHOW DE ORDERS
+/* Configuración para pantallas pequeñas */
+@media (max-width: 576px) {
+  .logos-container {
+    flex-direction: column; /* Cambia de fila a columna */
+  }
+
+  .logo-item {
+    margin: 10px 0; /* Asegura que haya espacio entre las imágenes */
+  }
+}

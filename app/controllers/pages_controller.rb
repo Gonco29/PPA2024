@@ -26,5 +26,7 @@ class PagesController < ApplicationController
     else
       # Renderiza la página de contacto (GET)
     end
+    @google_api_key = ENV['GOOGLE_API_KEY']
+
   end
 end

@@ -1,3 +1,5 @@
+// original
+
 @media (min-width: 993px) {
 
   .promo-card-large {
@@ -21,6 +23,7 @@
 .promo-card {
   width: 80%; /* Mantiene el tamaño original de la card */
   max-width: 1200px; /* Ancho máximo para pantallas grandes */
+  min-width: 619px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
   border-radius: 10px; /* Bordes redondeados */
   // background-color: #b2b2abf1 !important;
@@ -66,18 +69,15 @@
 
 }
 
-
-
-// original
-
-
-
 .promo-card-large {
   display: block;
 }
 .promo-card-small {
   display: none;
 }
+
+
+
 
 /* Para pantallas más pequeñas */
 @media (max-width: 992px) {
@@ -93,15 +93,15 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  // height: 100%;
-  // margin: 20px;
-  // padding: 30px;
+  height: 100%; /* Garantiza que ocupe toda la altura disponible */
+  margin:  auto;
 }
 
 /* Configuración proporcional de la card */
 .promo-card {
   width: 100%;
   max-width: 400px; /* Ancho máximo en pantallas grandes */
+  min-width: 336px;
   aspect-ratio: 1 / 1.5; /* Relación de aspecto fija */
   background-color: #E1E4E3;
   border-radius: 10px;

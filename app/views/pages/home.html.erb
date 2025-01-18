@@ -1,38 +1,38 @@
 <!-- app/views/home.html.erb -->
-<div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel" data-bs-interval="3000">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  <div id="carouselExampleIndicators" class="carousel slide mt-1 p-5 bg-dark" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="<%= asset_path('Banner1.png') %>" class="d-block w-100 banner-img" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="<%= asset_path('Banner3.png') %>" class="d-block w-100 banner-img" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="<%= asset_path('Banner4.png') %>" class="d-block w-100 banner-img" alt="Slide 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="<%= asset_path('Banner1.png') %>" class="d-block w-100 banner-img" alt="Slide 1">
-    </div>
-    <div class="carousel-item">
-      <img src="<%= asset_path('Banner3.png') %>" class="d-block w-100 banner-img" alt="Slide 2">
-    </div>
-    <div class="carousel-item">
-      <img src="<%= asset_path('Banner4.png') %>" class="d-block w-100 banner-img" alt="Slide 3">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
-<!-- PROMOCIONES -->
+          <!-- PROMOCIONES -->
 
   <% if @promoted_products.present? %>
     <div class="container mt-5 text-center">
-      <h2 class="mt-5 mb-4 text-primary">Tenemos las mejores promociones del Mercado</h2>
+      <h2 class="mt-5 mb-5 text-primary">Tenemos las mejores promociones del Mercado</h2>
 
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 my-5 d-flex justify-content-center">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
           <% [@promoted_products.last].each do |product| %>
             <%= render partial: 'products/product_card_promo', locals: { product: product } %>
           <% end %>
@@ -44,10 +44,22 @@
     </div>
   <% end %>
 
-<!-- LOGOS DE MARCA -->
+  <!-- LOGOS DE MARCA -->
 
-<div class=" mt-5 py-5", style="">
-  <img src="<%= asset_path('PPAmarcasHome.png') %>" class="d-block w-100" alt="Marcas representadas" style="object-fit: scale-down;">
+<div class="container my-5 py-5">
+  <div class="row text-center align-items-center justify-content-center">
+    <!-- Primera Marca -->
+    <div class="col-12 col-md-5 d-flex flex-column align-items-center mb-4 mb-md-0">
+      <img src="https://ppa.wit.uy/ppa.png" alt="PPA" style="max-width: 40%; height: auto;">
+      <p class="mt-2" style="font-size: 1.8rem;">La marca líder</p>
+    </div>
+
+    <!-- Segunda Marca -->
+    <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+      <img src="https://ppa.wit.uy/sicher.png" alt="Sicher" style="max-width: 75%; height: auto;">
+      <p class="mt-2" style="font-size: 1.8rem;">Con el mejor respaldo</p>
+    </div>
+  </div>
 </div>
 
 <!-- VIDEO DE PRESENTACIÓN -->
