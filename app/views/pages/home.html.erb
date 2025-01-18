@@ -32,7 +32,7 @@
     <div class="container mt-5 text-center">
       <h2 class="mt-5 mb-5 text-primary">Tenemos las mejores promociones del Mercado</h2>
 
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        <div class="ms-0 ps-0">
           <% [@promoted_products.last].each do |product| %>
             <%= render partial: 'products/product_card_promo', locals: { product: product } %>
           <% end %>

@@ -87,103 +87,106 @@
   .promo-card-small {
     display: block !important; /* Muestra la card pequeña */
   }
-/* Contenedor de la card */
-.promo-card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%; /* Garantiza que ocupe toda la altura disponible */
-  margin:  auto;
-}
+  /* Contenedor de la card */
+  .promo-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%; /* Garantiza que ocupe toda la altura disponible */
+    // padding: 0;
+    margin: 0 auto;
 
-/* Configuración proporcional de la card */
-.promo-card {
-  width: 100%;
-  max-width: 400px; /* Ancho máximo en pantallas grandes */
-  min-width: 336px;
-  aspect-ratio: 1 / 1.5; /* Relación de aspecto fija */
-  background-color: #E1E4E3;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: visible;
-}
+  }
 
-/* Contenedor de la imagen */
-.promo-card-image-container {
-  flex: 0 0 auto;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center;    /* Centrar verticalmente */
-  text-align: center;     /* Asegura que el contenido interno esté centrado */
-  padding: 0; /* Elimina cualquier padding que pueda afectar el centrado */
-  margin: 0 auto; /* Centra el contenedor */
-  // margin-top: 25px;
-}
+  /* Configuración proporcional de la card */
+  .promo-card {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px; /* Ancho máximo en pantallas grandes */
+    min-width: 336px;
+    aspect-ratio: 1 / 1.5; /* Relación de aspecto fija */
+    background-color: #E1E4E3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+  }
 
-/* Imagen */
-.promo-card-image {
-  width: 100%; /* Ajusta la imagen al ancho del contenedor */
-  height: auto; /* Mantiene las proporciones */
-  object-fit: cover; /* Recorta la imagen si es necesario para llenar el espacio */
-  border-radius: 50%; /* Mantén el borde redondeado */
-  max-width: 300px; /* Limita el ancho máximo si es necesario */
-  max-height: 300px; /* Limita el alto máximo */
-  // margin-top: 25px;
-}
+  /* Contenedor de la imagen */
+  .promo-card-image-container {
+    flex: 0 0 auto;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;    /* Centrar verticalmente */
+    text-align: center;     /* Asegura que el contenido interno esté centrado */
+    padding: 0; /* Elimina cualquier padding que pueda afectar el centrado */
+    margin: 0 auto; /* Centra el contenedor */
+    // margin-top: 25px;
+  }
 
-/* Badge de instalación */
-.promo-card-badge {
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  padding: 5px 10px;
-  font-size: 0.8rem;
-  color: white;
-  border-radius: 15px;
-  white-space: nowrap;
-}
+  /* Imagen */
+  .promo-card-image {
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Mantiene las proporciones */
+    object-fit: cover; /* Recorta la imagen si es necesario para llenar el espacio */
+    border-radius: 50%; /* Mantén el borde redondeado */
+    max-width: 300px; /* Limita el ancho máximo si es necesario */
+    max-height: 300px; /* Limita el alto máximo */
+    // margin-top: 25px;
+  }
 
-/* Ícono de fuego */
-.fire-icon {
-  position: absolute;
-  bottom: 10%;
-  left: 20%;
-  width: 50px;
-  height: 50px;
-}
+  /* Badge de instalación */
+  .promo-card-badge {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: white;
+    border-radius: 15px;
+    white-space: nowrap;
+  }
 
-/* Cuerpo de la card */
-.promo-card-body {
-  flex: 1;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+  /* Ícono de fuego */
+  .fire-icon {
+    position: absolute;
+    bottom: 10%;
+    left: 20%;
+    width: 50px;
+    height: 50px;
+  }
 
-/* Texto del descuento */
-.discount-tag {
-  background-color: #dc3545;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 0.9rem;
-}
+  /* Cuerpo de la card */
+  .promo-card-body {
+    flex: 1;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-/* Botón de agregar al carrito */
-.promo-card-button {
-  width: 100%;
-  max-width: 200px;
-  font-size: 1rem;
-}
+  /* Texto del descuento */
+  .discount-tag {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+  }
+
+  /* Botón de agregar al carrito */
+  .promo-card-button {
+    width: 100%;
+    max-width: 200px;
+    font-size: 1rem;
+  }
 
 // card chica actualizada
 
