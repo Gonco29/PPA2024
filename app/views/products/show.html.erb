@@ -41,7 +41,9 @@
                 <div class="row">
                   <% photos_slice.each do |photo| %>
                     <div class="col-3">
-                      <%= link_to(cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid"), "#", onclick: "document.getElementById('main-image').src=this.querySelector('img').src; return false;") %>
+                      <%= link_to "#", onclick: "updateMainImage('#{photo.key}'); return false;" do %>
+                        <%= cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid") %>
+                      <% end %>
                     </div>
                   <% end %>
                 </div>
@@ -262,4 +264,12 @@
       }
     }
   });
+  function updateMainImage(imageKey) {
+    const mainImage = document.getElementById('main-image');
+    if (mainImage) {
+      // Genera una URL de alta calidad con las dimensiones deseadas
+      const newSrc = `https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/c_fill,h_600,w_800/${imageKey}`;
+      mainImage.src = newSrc;
+    }
+  }
 </script>
