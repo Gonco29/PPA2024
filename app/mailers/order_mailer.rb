@@ -1,11 +1,11 @@
 class OrderMailer < ApplicationMailer
-  default to: 'goncobos@gmail.com' # !!!!!!REEMPLAZAR CAMBIAR MAIL!!!!!!!!!!!!!
+  default to: 'webppa@madeinwit.com'
 
   def confirmation_email(order)
     @order = order
     mail(
       to: @order.email, # Correo del visitante
-      bcc: 'goncobos@gmail.com', # !!!!!!REEMPLAZAR CAMBIAR MAIL!!!!!!!!!!!!!
+      bcc: 'webppa@madeinwit.com', # Recibe una copia oculta del correo
       subject: "Confirmación de tu pedido ##{@order.id}"
     )
   end
