@@ -7,6 +7,12 @@ class ContactMailer < ApplicationMailer
     @email = email
     @message = message
     attachments[attachment.original_filename] = attachment.read if attachment.present?
-    mail(from: email, to: 'webppa@madeinwit.com', subject: 'Nuevo Mensaje de Contacto')
+
+    mail(
+      from: email,
+      to: 'webppa@madeinwit.com',
+      bcc: ['contabilidad@ppa.com.uy', 'marketing@ppa.com.uy'],
+      subject: 'Nuevo mensaje de contacto'
+    )
   end
 end

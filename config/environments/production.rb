@@ -86,27 +86,25 @@ Rails.application.configure do
   #   enable_starttls_auto: true
   # }
 
-    # Configuración para enviar correos en producción con la cuenta oficial
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-      address: 'mail.madeinwit.com',
-      port: 465,  # Prueba con 587 si no funciona
-      domain: 'madeinwit.com',
-      user_name: 'webppa@madeinwit.com',
-      password: 'nMIb$q63mO',
-      authentication: :plain,
-      ssl: true,  # Necesario para el puerto 465
-      tls: true,
-      enable_starttls_auto: true
-    }
+  # Configuración para enviar correos en producción con la cuenta oficial
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'mail.madeinwit.com',
+    port: 465,  # Prueba con 587 si no funciona
+    domain: 'madeinwit.com',
+    user_name: 'webppa@madeinwit.com',
+    password: 'nMIb$q63mO',
+    authentication: :plain,
+    ssl: true,  # Necesario para el puerto 465
+    tls: true,
+    enable_starttls_auto: true
+  }
 
-    # Cambia "TODO_PUT_YOUR_DOMAIN_HERE" por el dominio real de la app
-    # config.action_mailer.default_url_options = { host: "https://tudominio.com" }
-    # QUIZAS CAMBIAR REEMPLAZAR CON EL DOMINIO NUEVO
-    config.action_mailer.default_url_options = { host: 'https://webppa-8f2e7c7f27ee.herokuapp.com', protocol: 'https' }
 
-    # Configurar para que los errores de entrega sean visibles
-    config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'www.ppa.com.uy', protocol: 'https' }
+
+  # Configurar para que los errores de entrega sean visibles
+  config.action_mailer.raise_delivery_errors = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
