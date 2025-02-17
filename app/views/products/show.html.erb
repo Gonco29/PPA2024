@@ -40,9 +40,9 @@
               <div class="carousel-item <%= 'active' if index == 0 %>">
                 <div class="row">
                   <% photos_slice.each do |photo| %>
-                    <div class="col-3">
-                      <%= link_to(cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid"), "#", onclick: "document.getElementById('main-image').src=this.querySelector('img').src; return false;") %>
-                    </div>
+                  <div class="col-3">
+                    <%= link_to(cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid"), "#", onclick: "document.getElementById('main-image').src=this.querySelector('img').src.replace('h_150,w_200', 'h_600,w_800'); return false;") %>
+                  </div>
                   <% end %>
                 </div>
               </div>
