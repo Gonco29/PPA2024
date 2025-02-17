@@ -1,17 +1,11 @@
 class ProductsController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [:index, :show, :promotions]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
 
   def index
     @products = Product.all
     @products = @products.where(category: params[:category]) if params[:category].present?
     @products = @products.where(subcategory: params[:subcategory]) if params[:subcategory].present?
-
-    # Filtro por búsqueda de texto
-    if params[:query].present?
-      @products = @products.search_by(params[:query])
-    end
+    @products = @products.search_by(params[:query]) if params[:query].present?
   end
 
   def show
@@ -19,7 +13,6 @@ class ProductsController < ApplicationController
     @related_products = Product.where(subcategory: @product.subcategory).where.not(id: @product.id).limit(5)
   end
 
-  # Acciones restringidas a usuarios administradores
   def new
     @product = Product.new
     authorize @product
@@ -30,7 +23,7 @@ class ProductsController < ApplicationController
     authorize @product
 
     if @product.save
-      redirect_to @product, notice: 'Product was successfully created.'
+      redirect_to @product, notice: 'Producto creado con éxito.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,20 +38,14 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     authorize @product
 
-    # Eliminar fotos marcadas para eliminación
     if params[:remove_photos].present?
-      params[:remove_photos].each do |photo_id|
-        @product.photos.find(photo_id).purge
-      end
+      params[:remove_photos].each { |photo_id| @product.photos.find(photo_id).purge }
     end
 
-    # Adjuntar nuevas fotos
-    if product_params[:photos].present?
-      @product.photos.attach(product_params[:photos])
-    end
+    @product.photos.attach(product_params[:photos]) if product_params[:photos].present?
 
     if @product.update(product_params.except(:photos))
-      redirect_to @product, notice: 'Product was successfully updated.'
+      redirect_to @product, notice: 'Producto actualizado con éxito.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -67,9 +54,8 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     authorize @product
-
     @product.destroy
-    redirect_to products_url, notice: 'Product was successfully destroyed.'
+    redirect_to products_url, notice: 'Producto eliminado con éxito.'
   end
 
   def promotions

@@ -91,7 +91,7 @@
       <div class="promo-card-body text-center">
         <% if product.on_sale? %>
           <p class="discount-tag mt-3 fw-bold">
-            DESCUENTO: <%= product.discount_percentage %> %
+            DESCUENTO: <%= product.discount_percentage.to_i %> %
           </p>
         <% end %>
         <h5 class="card-title"><%= link_to product.name, product %></h5>
