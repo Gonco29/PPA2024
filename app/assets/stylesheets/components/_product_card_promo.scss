@@ -3,10 +3,10 @@
 @media (min-width: 993px) {
 
   .promo-card-large {
-    display: block; /* Oculta la card grande */
+    display: block !important ;/* Oculta la card grande */
   }
   .promo-card-small {
-    display: none; /* Muestra la card pequeña */
+    display: none!important ; /* Muestra la card pequeña */
   }
 
 /* Contenedor específico para centrar la card */
@@ -68,15 +68,6 @@
 }
 
 }
-
-.promo-card-large {
-  display: block;
-}
-.promo-card-small {
-  display: none;
-}
-
-
 
 
 /* Para pantallas más pequeñas */
@@ -188,6 +179,6 @@
     font-size: 1rem;
   }
 
-// card chica actualizada
+// archivo actual 19.2
 
 }
