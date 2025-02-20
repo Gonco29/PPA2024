@@ -37,3 +37,56 @@ h1, h2, h3, h4, h5, h6 {
   outline: none; /* Elimina el contorno del navegador */
   box-shadow: none;
 }
+
+
+// BANNER
+.carousel-inner {
+  height: auto; /* Ocupa el 50% de la altura de la ventana visible */
+}
+
+.banner-img {
+  object-fit: contain; /* Llena el contenedor sin deformarse */
+  width: 100%; /* Ocupa el 100% del ancho */
+  height: 100%; /* Se adapta al 100% de la altura del contenedor */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .carousel-inner {
+    height: 20vh; /* Reduce la altura a 30% en dispositivos pequeños */
+  }
+}
+
+
+// VIDEOS DE HOME
+
+.video-container {
+  max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+  margin: 0 auto; /* Centra el video si hay espacio extra */
+}
+
+.text-gray {
+  color: #6c757d; /* Ajusta el color del texto gris si es necesario */
+}
+
+// MAPA
+
+#map {
+  height: 400px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+// SHOW DE ORDERS
+/* Configuración para pantallas pequeñas */
+@media (max-width: 576px) {
+  .logos-container {
+    flex-direction: column; /* Cambia de fila a columna */
+  }
+
+  .logo-item {
+    margin: 10px 0; /* Asegura que haya espacio entre las imágenes */
+  }
+}

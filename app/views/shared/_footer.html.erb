@@ -1,57 +1,56 @@
 <div class="bg-primary mt-4">
   <div class="container py-5 ps-4">
-
-
     <div class="row">
-      <!-- Primer Columna -->
-      <div class="col-md-5">
-        <p class="my-1", style="font-size: 1.2rem;"> Motor con 1 año de garantía por defectos de fábrica.</p>
-        <p class="my-1", style="font-size: 1.2rem;">Instalación incluida en Montevideo y alrededores.</p>
-        <p class="mt-1 mb-4", style="font-size: 1.2rem;">Envíos al interior a cargo del comprador.</p>
-        <%= link_to 'Términos y condiciones', legales_path, class: 'linkfooter my-5', style: "font-size: 1.2rem;" %>
+      <!-- Primera Columna -->
+      <div class="col-md-5 col-sm-12">
+        <p class="my-1 fw-bold" style="font-size: 1.2rem;">Motor con 1 año de garantía por defectos de fábrica.</p>
+        <p class="my-1 fw-bold" style="font-size: 1.2rem;">Instalación incluida en Montevideo y alrededores.</p>
+        <p class="mt-1 fw-bold mb-4" style="font-size: 1.2rem;">Envíos al interior a cargo del comprador.</p>
+        <%= link_to 'Términos y condiciones', legales_path, class: 'linkfooter my-5 fw-bold', style: "font-size: 1.2rem;" %>
       </div>
 
-      <div class="col-md-1">
-      </div>
+      <!-- Espacio vacío (columna separadora en pantallas grandes) -->
+      <div class="col-md-1 d-none d-md-block"></div>
 
-      <div class="col-md-3">
-      </div>
+      <!-- Segunda Columna (oculta por ahora) -->
+      <div class="col-md-3 d-none d-md-block"></div>
 
-
-      <!-- Cuarta Columna -->
-      <div class="col-md-3 ps-5">
-        <%= image_tag('Logo-PPA.png', alt: 'Logo PPA', class: 'img-fluid mb-3 mt-3 navbar-logo') %>
+      <!-- Cuarta Columna (Logos) -->
+      <div class="col-md-3 col-sm-12 text-center">
+        <%= image_tag('Logo-PPA.png', alt: 'Logo PPA', class: 'img-fluid mb-3 mt-3 footer-logos') %>
         <br>
-        <%= image_tag('sicher-logo.png', alt: 'Logo Sicher', class: 'img-fluid navbar-logo') %>
+        <%= image_tag('sicher-logo.png', alt: 'Logo Sicher', class: 'img-fluid footer-logos') %>
       </div>
     </div>
   </div>
 
-<div class="subfooter w-100">
-  <div class="d-flex justify-content-between align-items-center my-2 p-3">
-    <!-- Usuario logueado -->
-    <div class="ms-3">
-      <% if user_signed_in? %>
-        <p class="mb-0" style="font-size: 1rem;">
-          Sesión iniciada: <%= current_user.email %>
-          <br>
-          <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "btn btn-link text-dark p-0" %>
-        </p>
-      <% end %>
-    </div>
+  <!-- Subfooter -->
+  <div class="subfooter w-100">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center my-2 p-3">
+      <!-- Usuario logueado -->
+      <div class="ms-3 mb-3 mb-md-0 text-center text-md-start">
+        <% if user_signed_in? %>
+          <p class="mb-0" style="font-size: 1rem;">
+            Sesión iniciada: <%= current_user.email %>
+            <br>
+            <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "btn btn-link text-dark p-0" %>
+          </p>
+        <% end %>
+      </div>
 
-    <!-- Enlaces sociales -->
-    <div class="d-flex justify-content-end align-items-center flex-grow-1">
-      <p class="mb-0 me-5" style="font-size: 1.4rem;">Síguenos en:</p>
-      <%= link_to 'https://www.instagram.com/ppauruguay/?hl=es', target: '_blank', class: 'text-black me-2' do %>
-        <i class="fa-brands fa-instagram fa-2x"></i>
-      <% end %>
-      <%= link_to 'https://www.facebook.com/profile.php?id=100064102380858', target: '_blank', class: 'text-black me-2' do %>
-        <i class="fa-brands fa-facebook-f fa-2x"></i>
-      <% end %>
-      <%= link_to 'https://www.tiktok.com/@ppa.uruguay.sicher?_t=ZM-8sBYDBXWJuv&_r=1', target: '_blank', class: 'text-black me-2' do %>
-        <i class="fa-brands fa-tiktok fa-2x"></i>
-      <% end %>
+      <!-- Redes Sociales -->
+      <div class="d-flex justify-content-center align-items-center">
+        <p class="mb-0 me-3" style="font-size: 1.4rem;">Síguenos en:</p>
+        <%= link_to 'https://www.instagram.com/ppauruguay/?hl=es', target: '_blank', class: 'text-black me-2' do %>
+          <i class="fa-brands fa-instagram fa-2x"></i>
+        <% end %>
+        <%= link_to 'https://www.facebook.com/profile.php?id=100064102380858', target: '_blank', class: 'text-black me-2' do %>
+          <i class="fa-brands fa-facebook-f fa-2x"></i>
+        <% end %>
+        <%= link_to 'https://www.tiktok.com/@ppa.uruguay.sicher?_t=ZM-8sBYDBXWJuv&_r=1', target: '_blank', class: 'text-black me-2' do %>
+          <i class="fa-brands fa-tiktok fa-2x"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="container mt-5">
 
-  <p style="font-size: 1.25rem;">
+  <p class="mb-5" style="font-size: 1.25rem;">
     <%= link_to "Tienda", products_path %> /
     <%= link_to @product.category, products_path(category: @product.category) %> /
     <%= link_to @product.subcategory, products_path(category: @product.category, subcategory: @product.subcategory) %>
@@ -11,7 +11,7 @@
       <h1 class="product-name"><%= @product.name %></h1>
     </div>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 position-relative">
       <!-- Imagen principal del producto -->
       <div class="text-center">
         <% if @product.photos.present? %>
@@ -23,12 +23,12 @@
 
       <!-- Con o Sin Instalación -->
       <% if @product.installation_included %>
-        <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 23.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
+        <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: -5%; right: 0%; max-width: 120px; font-size: 1.2rem;">
           Instalación incluida
         </div>
       <% else %>
-        <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 23.5%; right: 50%; max-width: 120px; font-size: 1.2rem;">
-          Instalación no incluida
+        <div class="position-absolute text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: -5%; right: -5%; max-width: 120px; font-size: 1.2rem; background-color: #fbab10;">
+          Sin instalación
         </div>
       <% end %>
 
@@ -40,9 +40,9 @@
               <div class="carousel-item <%= 'active' if index == 0 %>">
                 <div class="row">
                   <% photos_slice.each do |photo| %>
-                    <div class="col-3">
-                      <%= link_to(cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid"), "#", onclick: "document.getElementById('main-image').src=this.querySelector('img').src; return false;") %>
-                    </div>
+                  <div class="col-3">
+                    <%= link_to(cl_image_tag(photo.key, height: 150, width: 200, crop: :fill, class: "img-thumbnail img-fluid"), "#", onclick: "document.getElementById('main-image').src=this.querySelector('img').src.replace('h_150,w_200', 'h_600,w_800'); return false;") %>
+                  </div>
                   <% end %>
                 </div>
               </div>
@@ -62,7 +62,7 @@
       <% end %>
 
       <!-- Botones de navegación -->
-      <div class="d-flex justify-content-between align-items-center mt-3">
+      <div class="d-flex justify-content-between align-items-center mt-1 mb-5">
         <div>
           <%= link_to 'Volver a Productos', products_path, class: 'btn btn-secondary rounded-5' %>
         </div>
@@ -110,7 +110,7 @@
       <% if @product.installation_included %>
        <p class="my-0 fw-bold"> Instalación incluida </p>
       <% else %>
-       <p class="my-0 fw-bold"> Instalación no incluida </p>
+       <p class="my-0 fw-bold"> Sin instalación </p>
       <% end %>
       <p class="mt-0 text-secondary">Disponible para retiro</p>
 
@@ -224,6 +224,8 @@
   </div>
 </div>
 
+<%# ok %>
+
 <script>
   document.addEventListener('turbo:load', function () {
     const decrementButton = document.getElementById('button-decrement');
@@ -263,3 +265,5 @@
     }
   });
 </script>
+
+<%# ok %>

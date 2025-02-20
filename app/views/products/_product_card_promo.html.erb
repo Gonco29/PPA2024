@@ -1,4 +1,4 @@
-<div class="promo-card-container">
+<div class="promo-card-container promo-card-large d-flex justify-content-center">
   <div class="promo-card">
     <div class="card h-100 py-4 flex-row rounded-5" style="background-color: #E1E4E3 !important;">
       <% if product.photos.present? %>
@@ -16,15 +16,16 @@
               Instalación incluida
             </div>
           <% else %>
-            <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem;">
-              Instalación no incluida
+            <div class="position-absolute text-center text-white px-2 py-1 rounded-pill text-wrap fw-bold" style="top: 12%; right: 2%; max-width: 80px; font-size: 0.75rem; background-color: #fbab10;">
+
+              Sin instalación
             </div>
           <% end %>
         </div>
       <% end %>
       <div class="card-body d-flex flex-column text-center" style="flex: 2;">
         <% if product.on_sale? %>
-          <p class="mb-3 bg-danger mx-auto text-white px-5 py-1 rounded-pill" style="font-size: 0.90rem;">
+          <p class="mb-3 mx-auto text-white px-5 p-2 fw-bold rounded-pill discount-tag" style="font-size: 1.05rem;">
             DESCUENTO: <%= product.discount_percentage %> %
           </p>
         <% end %>
@@ -50,3 +51,65 @@
     </div>
   </div>
 </div>
+
+<%# original %>
+
+
+
+<div class="promo-card-container promo-card-small ">
+  <div class="promo-card ">
+    <div class="card flex-column align-items-center justify-content-center rounded-5">
+      <% if product.photos.present? %>
+        <div class="promo-card-image-container mt-5">
+          <%= link_to product_path(product) do %>
+            <%= cl_image_tag(
+            product.photos.first.key,
+            class: "promo-card-image",
+            alt: product.name,
+            width: 300,
+            height: 300,
+            crop: :fill
+          ) %>
+          <% end %>
+          <% if product.on_sale? %>
+            <div class="fire-icon">
+              <%= image_tag('fire3.png', class: 'img-fluid') %>
+            </div>
+          <% end %>
+          <% if product.installation_included %>
+            <div class="promo-card-badge bg-danger">
+              Instalación incluida
+            </div>
+          <% else %>
+            <div class="promo-card-badge fw-bold" style="background-color: #fbab10;">
+              Sin instalación
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="promo-card-body text-center">
+        <% if product.on_sale? %>
+          <p class="discount-tag mt-3 fw-bold">
+            DESCUENTO: <%= product.discount_percentage.to_i %> %
+          </p>
+        <% end %>
+        <h5 class="card-title"><%= link_to product.name, product %></h5>
+        <p class="card-text text-secondary mt-2 promo-card-text"><%= product.promo_text %></p>
+        <div>
+          <% if product.on_sale? %>
+            <p class="text-decoration-line-through text-muted mb-0">Precio: $ <%= product.formatted_price %></p>
+            <p><strong>Precio en oferta:</strong> $ <%= product.formatted_promotional_price %></p>
+          <% else %>
+            <p><strong>Precio:</strong> $ <%= product.formatted_price %></p>
+          <% end %>
+          <%= button_to cart_items_path(product_id: product.id, quantity: 1), method: :post, class: "btn btn-primary mt-3 mb-5 rounded-5 promo-card-button" do %>
+            <i class="fa-solid fa-cart-plus pe-3"></i> Agregar
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# la nueva para pantallas chicas %>

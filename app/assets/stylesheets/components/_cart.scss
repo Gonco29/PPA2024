@@ -1,0 +1,47 @@
+/* Ocultar tabla en pantallas pequeñas */
+@media (max-width: 768px) {
+  .cart-table {
+    display: none;
+  }
+  .cart-card {
+    display: block;
+  }
+}
+
+/* Mostrar tabla en pantallas grandes */
+@media (min-width: 769px) {
+  .cart-table {
+    display: table;
+  }
+  .cart-card {
+    display: none;
+  }
+}
+
+/* Estilos de las cards en pantallas pequeñas */
+.cart-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.cart-card img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.cart-card .card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}

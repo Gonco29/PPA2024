@@ -42,19 +42,33 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  #  !!!!!!CAMBIAR CON DATOS DE CORREO REAL, aún no esstá configurado para Producción!!!!!!!!!
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'gmail.com',
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_APP_PASSWORD'],
-    authentication: 'plain',
-    enable_starttls_auto: true
-  }
+  # #  !!!!!!CAMBIAR CON DATOS DE CORREO REAL, aún no esstá configurado para Producción!!!!!!!!!
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   domain: 'gmail.com',
+  #   user_name: ENV['GMAIL_USERNAME'],
+  #   password: ENV['GMAIL_APP_PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+   # Configuración para enviar correos en desarrollo
+   config.action_mailer.delivery_method = :smtp
+   config.action_mailer.smtp_settings = {
+     address: 'mail.madeinwit.com',
+     port: 465, # Prueba con 587 si no funciona
+     domain: 'madeinwit.com',
+     user_name: 'webppa@madeinwit.com',
+     password: 'nMIb$q63mO',
+     authentication: :plain,
+     ssl: true,  # Necesario para el puerto 465
+     tls: true,
+     enable_starttls_auto: true
+   }
+   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

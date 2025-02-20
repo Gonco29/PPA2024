@@ -111,12 +111,12 @@
         <%= form.text_area :promo_text, class: "form-control", rows: 5, maxlength: 200, placeholder: "Datos del Producto en Promoción" %>
       </div>
       <div class="col-md-3 mb-3">
-        <%= form.label :discount_percentage, "Porcentaje de descuento", class: "form-label" %>
-        <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20" %>
+        <%= form.label :promotional_price, "Precio promocional", class: "form-label" %>
+        <%= form.text_field :promotional_price, value: product.promotional_price, class: "form-control" %>
       </div>
       <div class="col-md-3 mb-3">
-        <%= form.label :promotional_price, "Precio promocional (calculado)", class: "form-label" %>
-        <%= form.text_field :promotional_price, value: product.promotional_price, class: "form-control", readonly: true %>
+        <%= form.label :discount_percentage, "Porcentaje de descuento (calculado)", class: "form-label" %>
+        <%= form.number_field :discount_percentage, class: "form-control", placeholder: "Ejemplo: 20" %>
       </div>
     </div>
 
@@ -129,36 +129,23 @@
 
 <script>
   document.addEventListener('turbo:load', function() {
-    const onSaleCheckbox = document.getElementById('on_sale_checkbox');
     const discountPercentageInput = document.getElementById('product_discount_percentage');
     const promotionalPriceInput = document.getElementById('product_promotional_price');
     const originalPriceInput = document.getElementById('product_price');
 
-    // Mostrar/ocultar campos de promoción al cambiar el estado de la casilla "En promoción"
-    if (onSaleCheckbox) {
-      onSaleCheckbox.addEventListener('change', function() {
-        if (!this.checked) {
-          discountPercentageInput.value = '';
-          promotionalPriceInput.value = '';
-        }
-      });
-    }
-
-    // Calcular automáticamente el precio promocional al cambiar el porcentaje de descuento
-    if (discountPercentageInput && promotionalPriceInput && originalPriceInput) {
-      discountPercentageInput.addEventListener('input', function() {
-        const discountPercentage = parseFloat(this.value);
+    // Calcular automáticamente el porcentaje de descuento al cambiar el precio promocional
+    if (promotionalPriceInput && discountPercentageInput && originalPriceInput) {
+      promotionalPriceInput.addEventListener('input', function() {
+        const promotionalPrice = parseFloat(this.value);
         const originalPrice = parseFloat(originalPriceInput.value);
 
-        if (!isNaN(discountPercentage) && !isNaN(originalPrice)) {
-          const discountAmount = (originalPrice * discountPercentage) / 100;
-          const promotionalPrice = originalPrice - discountAmount;
-          promotionalPriceInput.value = promotionalPrice.toFixed(2);
+        if (!isNaN(promotionalPrice) && promotionalPrice > 0 && !isNaN(originalPrice) && originalPrice > 0) {
+          const discount = ((1 - promotionalPrice / originalPrice) * 100).toFixed(0);
+          discountPercentageInput.value = discount;
         } else {
-          promotionalPriceInput.value = '';
+          discountPercentageInput.value = '';
         }
       });
     }
   });
 </script>
-

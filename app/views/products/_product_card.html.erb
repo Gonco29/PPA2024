@@ -11,12 +11,13 @@
           </div>
         <% end %>
         <% if product.installation_included %>
-          <div class="position-absolute bg-danger text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 9%; max-width: 80px; font-size: 0.75rem;">
+          <div class="position-absolute bg-danger text-center fw-bold text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 9%; max-width: 80px; font-size: 0.75rem;">
             Instalación incluida
           </div>
         <% else %>
-          <div class="position-absolute bg-primary text-center text-white px-2 py-1 rounded-pill text-wrap" style="top: 12%; right: 9%; max-width: 80px; font-size: 0.75rem;">
-            Instalación no incluida
+          <div class="position-absolute text-center text-white px-2 py-1 rounded-pill text-wrap fw-bold" style="top: 12%; right: 9%; max-width: 80px; font-size: 0.75rem; background-color: #fbab10;">
+
+            Sin instalación
           </div>
         <% end %>
       </div>

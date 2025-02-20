@@ -74,17 +74,37 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Configuración para Action Mailer en producción
+  # # Configuración para Action Mailer en producción
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   domain: 'gmail.com',
+  #   user_name: ENV['GMAIL_USERNAME'],
+  #   password: ENV['GMAIL_APP_PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # Configuración para enviar correos en producción con la cuenta oficial
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'gmail.com',
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_APP_PASSWORD'],
-    authentication: 'plain',
+    address: 'mail.madeinwit.com',
+    port: 465,  # Prueba con 587 si no funciona
+    domain: 'madeinwit.com',
+    user_name: 'webppa@madeinwit.com',
+    password: 'nMIb$q63mO',
+    authentication: :plain,
+    ssl: true,  # Necesario para el puerto 465
+    tls: true,
     enable_starttls_auto: true
   }
+
+
+  config.action_mailer.default_url_options = { host: 'www.ppa.com.uy', protocol: 'https' }
+
+  # Configurar para que los errores de entrega sean visibles
+  config.action_mailer.raise_delivery_errors = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

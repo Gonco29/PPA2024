@@ -1,14 +1,14 @@
 <div class="container my-5">
 
-<div class="d-flex justify-content-center align-items-center my-5">
-  <%= link_to root_path, class: "me-3" do %>
-    <%= image_tag("Logo-PPA.png", alt: "Logo PPA", style: "height: 80px; width: auto;") %>
-  <% end %>
+  <div class="d-flex flex-wrap justify-content-center align-items-center my-5 logos-container">
+    <%= link_to root_path, class: "me-3 logo-item" do %>
+      <%= image_tag("Logo-PPA.png", alt: "Logo PPA", style: "height: 80px; width: auto;") %>
+    <% end %>
 
-  <%= link_to root_path, class: "ms-3" do %>
-    <%= image_tag("sicher-logo.png", alt: "Logo Sicher", style: "height: 80px; width: auto;") %>
-  <% end %>
-</div>
+    <%= link_to root_path, class: "ms-3 logo-item" do %>
+      <%= image_tag("sicher-logo.png", alt: "Logo Sicher", style: "height: 80px; width: auto;") %>
+    <% end %>
+  </div>
 
   <!-- Mensaje de confirmación -->
   <div class="text-center mb-4">
