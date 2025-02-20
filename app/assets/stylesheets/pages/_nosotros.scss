@@ -59,18 +59,9 @@
 
 
 /* Responsive */
+
 @media (max-width: 1070px) {
 
-  .fondonos {
-    background-size: 100%; // Hace que la imagen sea más grande en móviles
-    background-position: center top; // Reposiciona la imagen
-    background-repeat:repeat-y;
-
-  }
-
-}
-
-@media (max-width: 768px) {
   .about-text, .about-highlight, .about-list {
     font-size: 1rem;
     padding: 20px;
